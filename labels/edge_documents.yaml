@@ -1,0 +1,40 @@
+meeting_id: edge_documents
+labeller: coding agent (Claude), 2026-10-24, before any pipeline run — PROVISIONAL (synthetic document)
+reviewed_by: null  # a team member must review
+items:
+  PS 1/26:
+    expect: passages
+    passages:
+    - document: local:tests/cases/edge_documents/okonomiplan_nn.pdf
+      physical_page: 2
+      section: 2.1 Vidaregåande opplæring
+      via: search
+      quote: Driftsramma for vidaregåande opplæring er 1 234,5 mill. kr i 2027.
+    - document: local:tests/cases/edge_documents/okonomiplan_nn.pdf
+      physical_page: 2
+      section: 2.1 Vidaregåande opplæring
+      via: search
+      quote: Fylkesdirektøren tilrår at ramma for skulane vert vidareført i heile økonomiplanperioden
+        2027–2030
+    - document: local:tests/cases/edge_documents/okonomiplan_nn.pdf
+      physical_page: 3
+      section: 3.1 Skulebygg
+      via: cross_reference
+      quote: Ny skule på Hamar er planlagd med ei investeringsramme på 480 mill. kr i perioden 2027–2030.
+    - document: local:tests/cases/edge_documents/okonomiplan_nn.pdf
+      physical_page: 1
+      section: 1 Innleiing
+      via: search
+      quote: Rammene for vidaregåande opplæring er omtala i kapittel 2.
+  PS 2/26:
+    passages: []
+    expect: nothing_found
+  PS 3/26:
+    passages: []
+    expect: nothing_found
+  PS 4/26:
+    passages: []
+    expect: nothing_found
+  PS 5/26:
+    passages: []
+    expect: skipped

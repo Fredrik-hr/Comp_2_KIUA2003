@@ -1,0 +1,128 @@
+# SYNTHETIC test meeting. Structure follows the base agenda template; the attachment is a
+# public algorithms textbook (Dasgupta, Papadimitriou, Vazirani), not a council document.
+# Expected answers are NOT here: they live in labels/algorithms_synthetic.yaml.
+meeting:
+  id: algorithms_synthetic
+  body: "Hovedutvalg for test (syntetisk)"
+  municipality: "Innlandet fylkeskommune"
+  date: 2026-11-05
+  written_standard: nb
+  synthetic: true
+
+items:
+  - case_no: "PS 1/26"
+    type: procedural
+    title: "Godkjenning av innkalling og saksliste"
+    attachments: []
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 2/26"
+    type: case
+    title: "Asymptotisk kjøretid og O-notasjon"
+    description: >-
+      Saken gjelder hvordan kjøretiden til algoritmer sammenlignes: definisjonen av O-notasjon,
+      og de tilhørende notasjonene Omega og Theta.
+    attachments:
+      - title: "Algorithms (Dasgupta, Papadimitriou, Vazirani)"
+        url: "local:algorithms.pdf"
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 3/26"
+    type: case
+    title: "Korteste vei i grafer med negative kantlengder"
+    description: >-
+      Hvorfor Dijkstras algoritme ikke virker med negative kanter, Bellman-Ford-algoritmen,
+      og hvordan negative sykler oppdages.
+    recommendation: "Bellman-Ford brukes når grafen kan ha negative kantlengder."
+    attachments:
+      - title: "Algorithms (Dasgupta, Papadimitriou, Vazirani)"
+        url: "local:algorithms.pdf"
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 4/26"
+    type: case
+    title: "Redigeringsavstand med dynamisk programmering"
+    description: >-
+      Definisjonen av redigeringsavstand (edit distance) mellom to strenger, delproblemene og
+      tabellen som fylles ut, og kjøretiden.
+    attachments:
+      - title: "Algorithms (Dasgupta, Papadimitriou, Vazirani)"
+        url: "local:algorithms.pdf"
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 5/26"
+    type: information
+    title: "RSA-kryptering med offentlig nøkkel"
+    description: >-
+      Orientering om RSA: hvordan nøklene lages, kryptering og dekryptering, og hvorfor
+      sikkerheten bygger på at faktorisering er vanskelig.
+    attachments:
+      - title: "Algorithms (Dasgupta, Papadimitriou, Vazirani)"
+        url: "local:algorithms.pdf"
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 6/26"
+    type: case
+    title: "Minimale spenntrær med Kruskals algoritme"
+    description: >-
+      Kruskals grådige algoritme for minimale spenntrær, kuttegenskapen som viser at den er
+      korrekt, og union-find-datastrukturen den bruker.
+    attachments:
+      - title: "Algorithms (Dasgupta, Papadimitriou, Vazirani)"
+        url: "local:algorithms.pdf"
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 7/26"
+    type: case
+    title: "Randomiserte algoritmer i pensum"
+    description: >-
+      Oversikt over hvor randomiserte algoritmer brukes: primtallstesting, universell hashing
+      og randomisert algoritme for minimalt kutt.
+    attachments:
+      - title: "Algorithms (Dasgupta, Papadimitriou, Vazirani)"
+        url: "local:algorithms.pdf"
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 8/26"
+    type: case
+    title: "Personalsak"
+    attachments:
+      - title: "Algorithms (Dasgupta, Papadimitriou, Vazirani)"
+        url: "local:algorithms.pdf"
+    closed: true
+    in_scope: true
+
+  - case_no: "OS 9/26"
+    type: information
+    title: "Orientering fra fylkesordføreren"
+    attachments: []
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 10/26"
+    type: case
+    title: "Brøytekontrakter for fylkesveier 2027–2030"
+    description: >-
+      Ny anbudsrunde for vinterdrift og brøyting av fylkesveiene i Innlandet, med
+      kostnadsrammer per kontraktsområde.
+    attachments:
+      - title: "Algorithms (Dasgupta, Papadimitriou, Vazirani)"
+        url: "local:algorithms.pdf"
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 11/26"
+    type: case
+    title: "Søknader om tilskudd – enkeltsaker"
+    attachments:
+      - title: "Algorithms (Dasgupta, Papadimitriou, Vazirani)"
+        url: "local:algorithms.pdf"
+    closed: false
+    in_scope: false

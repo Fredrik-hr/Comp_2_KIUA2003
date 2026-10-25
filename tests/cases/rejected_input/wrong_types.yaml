@@ -1,0 +1,5 @@
+meeting: {id: r3, body: Fylkesutvalget, municipality: Innlandet fylkeskommune,
+          date: "not a date", written_standard: se}
+items:
+  - {case_no: "PS 1/26", type: decision, title: "", attachments: "none", closed: "no",
+     in_scope: true}

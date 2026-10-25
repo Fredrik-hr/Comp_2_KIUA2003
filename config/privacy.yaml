@@ -1,0 +1,4 @@
+# S3 personal-data screen.
+# A document where more than this share of segments is flagged is rejected for review.
+max_flagged_ratio: 0.05
+retention_days: 90

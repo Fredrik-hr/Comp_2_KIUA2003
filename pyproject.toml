@@ -1,0 +1,47 @@
+[project]
+name = "agenda-brief-builder"
+version = "0.1.0"
+description = "Collects verbatim, page-referenced passages from meeting attachments for each agenda item."
+requires-python = ">=3.11"
+dependencies = [
+    # PyMuPDF 2.0 crashes on import on Windows (access violation); 1.24 is stable.
+    "pymupdf==1.24.14",
+    "pdfplumber>=0.11",
+    "rank-bm25>=0.2.2",
+    "pydantic>=2.7",
+    "typer>=0.12",
+    "pyyaml>=6.0",
+    "jsonschema>=4.22",
+    "httpx>=0.27",
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "jinja2>=3.1",
+    "python-multipart>=0.0.9",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+briefer = "briefer.cli:app"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+briefer = ["web/templates/*.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/unit"]
+pythonpath = ["src", "."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

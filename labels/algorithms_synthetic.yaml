@@ -1,0 +1,297 @@
+meeting_id: algorithms_synthetic
+labeller: coding agent (Claude), 2026-10-24, before any pipeline run — PROVISIONAL
+reviewed_by: null  # a team member must review before these are reported as gold
+items:
+  PS 2/26:
+    expect: passages
+    passages:
+    - document: local:algorithms.pdf
+      physical_page: 15
+      section: 0.3 Big-O notation
+      via: search
+      quote: Let f(n) and g(n) be functions from positive integers to positive reals. We say f = O(g)
+        (which means that “f grows no faster than g”) if there is a constant c > 0 such that
+    - document: local:algorithms.pdf
+      physical_page: 15
+      section: 0.3 Big-O notation
+      via: search
+      quote: It differs from the usual notion of ≤ because of the constant c, so that for instance 10n
+        = O(n).
+    - document: local:algorithms.pdf
+      physical_page: 16
+      section: 0.3 Big-O notation
+      via: search
+      quote: For example, suppose we are choosing between two algorithms for a particular computational
+        task.
+    - document: local:algorithms.pdf
+      physical_page: 16
+      section: 0.3 Big-O notation
+      via: search
+      quote: f = Ω(g) means g = O(f)
+    - document: local:algorithms.pdf
+      physical_page: 16
+      section: 0.3 Big-O notation
+      via: search
+      quote: f = Θ(g) means f = O(g) and f = Ω(g).
+    - document: local:algorithms.pdf
+      physical_page: 17
+      section: 0.3 Big-O notation
+      via: search
+      quote: Big-O notation lets us focus on the big picture. When faced with a complicated function like
+        3n2 + 4n + 5, we just replace it with O(f(n)), where f(n) is as simple as possible.
+  PS 3/26:
+    expect: passages
+    passages:
+    - document: local:algorithms.pdf
+      physical_page: 128
+      section: 4.6.1 Negative edges
+      via: search
+      quote: Dijkstra’s algorithm works in part because the shortest path from the starting point s to
+        any node v must pass exclusively through nodes that are closer than v. This no longer holds when
+        edge lengths can be negative.
+    - document: local:algorithms.pdf
+      physical_page: 128
+      section: 4.5.3 d-ary heap
+      via: search
+      quote: Figure 4.12 Dijkstra’s algorithm will not work if there are negative edges.
+    - document: local:algorithms.pdf
+      physical_page: 128
+      section: 4.6.1 Negative edges
+      via: search
+      quote: This update operation is simply an expression of the fact that the distance to v cannot possibly
+        be more than the distance to u, plus l(u, v).
+    - document: local:algorithms.pdf
+      physical_page: 129
+      section: 4.6.1 Negative edges
+      via: search
+      quote: simply update all the edges, |V | −1 times! The resulting O(|V | · |E|) procedure is called
+        the Bellman-Ford algorithm
+    - document: local:algorithms.pdf
+      physical_page: 129
+      section: 4.6.1 Negative edges
+      via: search
+      quote: Figure 4.13 The Bellman-Ford algorithm for single-source shortest paths in general graphs.
+    - document: local:algorithms.pdf
+      physical_page: 129
+      section: 4.6.2 Negative cycles
+      via: search
+      quote: If the length of edge (E, B) in Figure 4.14 were changed to −4, the graph would have a negative
+        cycle
+    - document: local:algorithms.pdf
+      physical_page: 129
+      section: 4.6.2 Negative cycles
+      via: search
+      quote: So instead of stopping after |V | −1 iterations, perform one extra round. There is a negative
+        cycle if and only if some dist value is reduced during this final round.
+  PS 4/26:
+    expect: passages
+    passages:
+    - document: local:algorithms.pdf
+      physical_page: 174
+      section: 6.3 Edit distance
+      via: search
+      quote: A natural measure of the distance between two strings is the extent to which they can be
+        aligned, or matched up.
+    - document: local:algorithms.pdf
+      physical_page: 174
+      section: 6.3 Edit distance
+      via: search
+      quote: The cost of an alignment is the number of columns in which the letters differ. And the edit
+        distance between two strings is the cost of their best possible alignment.
+    - document: local:algorithms.pdf
+      physical_page: 175
+      section: 6.3 Edit distance
+      via: search
+      quote: Call this subproblem E(i, j) (see Figure 6.3). Our final objective, then, is to compute E(m,
+        n).
+    - document: local:algorithms.pdf
+      physical_page: 175
+      section: 6.3 Edit distance
+      via: search
+      quote: E(i, j) = min{1 + E(i −1, j), 1 + E(i, j −1), diff(i, j) + E(i −1, j −1)}
+    - document: local:algorithms.pdf
+      physical_page: 175
+      section: 6.3 Edit distance
+      via: search
+      quote: The answers to all the subproblems E(i, j) form a two-dimensional table, as in Figure 6.4.
+    - document: local:algorithms.pdf
+      physical_page: 176
+      section: 6.3 Edit distance
+      via: search
+      quote: Figure 6.4 (a) The table of subproblems.
+    - document: local:algorithms.pdf
+      physical_page: 176
+      section: 6.3 Edit distance
+      via: search
+      quote: 'for i = 0, 1, 2, . . . , m: E(i, 0) = i'
+    - document: local:algorithms.pdf
+      physical_page: 176
+      section: 6.3 Edit distance
+      via: search
+      quote: Each entry takes constant time to fill in, so the overall running time is just the size of
+        the table, O(mn).
+  PS 5/26:
+    expect: passages
+    passages:
+    - document: local:algorithms.pdf
+      physical_page: 39
+      section: 1.4 Cryptography
+      via: search
+      quote: Our next topic, the Rivest-Shamir-Adelman (RSA) cryptosystem, uses all the ideas we have
+        introduced in this chapter!
+    - document: local:algorithms.pdf
+      physical_page: 42
+      section: 1.4.2 RSA
+      via: search
+      quote: Unlike the previous two protocols, the RSA scheme is an example of public-key cryptography
+    - document: local:algorithms.pdf
+      physical_page: 42
+      section: 1.4.2 RSA
+      via: search
+      quote: Property Pick any two primes p and q and let N = pq.
+    - document: local:algorithms.pdf
+      physical_page: 43
+      section: 1.4.2 RSA
+      via: search
+      quote: So, if Bob publishes (N, e) as his public key, everyone else can use it to send him encrypted
+        messages.
+    - document: local:algorithms.pdf
+      physical_page: 43
+      section: 1.4.2 RSA
+      via: search
+      quote: Given N, e, and y = xe mod N, it is computationally intractable to determine x.
+    - document: local:algorithms.pdf
+      physical_page: 43
+      section: 1.4.2 RSA
+      via: search
+      quote: Or she could try to factor N to retrieve p and q, and then figure out d by inverting e modulo
+        (p−1)(q−1), but we believe factoring to be hard.
+    - document: local:algorithms.pdf
+      physical_page: 44
+      section: 1.5 Universal hashing
+      via: cross_reference
+      quote: His secret key is d, the inverse of e modulo (p −1)(q −1), computed using the extended Euclid
+        algorithm.
+    - document: local:algorithms.pdf
+      physical_page: 44
+      section: 1.5 Universal hashing
+      via: cross_reference
+      quote: She looks up his public key (N, e) and sends him y = (xe mod N)
+  PS 6/26:
+    expect: passages
+    passages:
+    - document: local:algorithms.pdf
+      physical_page: 139
+      section: 5.1 Minimum spanning trees
+      via: search
+      quote: The particular tree we want is the one with minimum total weight, known as the minimum spanning
+        tree.
+    - document: local:algorithms.pdf
+      physical_page: 140
+      section: 5.1.1 A greedy approach
+      via: search
+      quote: Kruskal’s minimum spanning tree algorithm starts with the empty graph and then selects edges
+        from E according to the following rule.
+    - document: local:algorithms.pdf
+      physical_page: 140
+      section: 5.1.1 A greedy approach
+      via: search
+      quote: Repeatedly add the next lightest edge that doesn’t produce a cycle.
+    - document: local:algorithms.pdf
+      physical_page: 140
+      section: 5.1.1 A greedy approach
+      via: search
+      quote: The correctness of Kruskal’s method follows from a certain cut property
+    - document: local:algorithms.pdf
+      physical_page: 142
+      section: 5.1.2 The cut property
+      via: search
+      quote: Cut property Suppose edges X are part of a minimum spanning tree of G = (V, E).
+    - document: local:algorithms.pdf
+      physical_page: 142
+      section: 5.1.2 The cut property
+      via: search
+      quote: What this property says is that it is always safe to add the lightest edge across any cut
+    - document: local:algorithms.pdf
+      physical_page: 143
+      section: 5.1.3 Kruskal’s algorithm
+      via: search
+      quote: We are ready to justify Kruskal’s algorithm.
+    - document: local:algorithms.pdf
+      physical_page: 144
+      section: 5.1.3 Kruskal’s algorithm
+      via: search
+      quote: Figure 5.4 Kruskal’s minimum spanning tree algorithm.
+    - document: local:algorithms.pdf
+      physical_page: 144
+      section: 5.1.3 Kruskal’s algorithm
+      via: search
+      quote: It uses |V | makeset, 2|E| find, and |V | −1 union operations.
+    - document: local:algorithms.pdf
+      physical_page: 144
+      section: 5.1.4 A data structure for disjoint sets
+      via: search
+      quote: One way to store a set is as a directed tree (Figure 5.5).
+    - document: local:algorithms.pdf
+      physical_page: 146
+      section: 5.1.4 A data structure for disjoint sets
+      via: search
+      quote: This last observation implies, crucially, that the maximum rank is log n.
+  PS 7/26:
+    expect: passages
+    passages:
+    - document: local:algorithms.pdf
+      physical_page: 39
+      section: 'Randomized algorithms: a virtual chapter'
+      via: search
+      quote: These randomized algorithms are often very simple and elegant, and their output is correct
+        with high probability.
+    - document: local:algorithms.pdf
+      physical_page: 39
+      section: 'Randomized algorithms: a virtual chapter'
+      via: search
+      quote: 'Here are pointers to the major randomized algorithms in this book: One of the earliest and
+        most dramatic examples of a randomized algorit'
+    - document: local:algorithms.pdf
+      physical_page: 37
+      section: Hey, that was group theory!
+      via: cross_reference
+      quote: Figure 1.8 An algorithm for testing primality, with low error probability.
+    - document: local:algorithms.pdf
+      physical_page: 37
+      section: Hey, that was group theory!
+      via: search
+      quote: This probability of error drops exponentially fast, and can be driven arbitrarily low by
+        choosing k large enough.
+    - document: local:algorithms.pdf
+      physical_page: 43
+      section: 1.5 Universal hashing
+      via: cross_reference
+      quote: We end this chapter with an application of number theory to the design of hash functions.
+    - document: local:algorithms.pdf
+      physical_page: 46
+      section: 1.5.2 Families of hash functions
+      via: search
+      quote: We will show that if we pick these coefficients a at random, then ha is very likely to be
+        good in the following sense.
+    - document: local:algorithms.pdf
+      physical_page: 150
+      section: A randomized algorithm for minimum cut
+      via: cross_reference
+      quote: Suppose the graph we were working with was unweighted, and that its edges were ordered uniformly
+        at random for Kruskal’s algorithm to process them.
+  PS 1/26:
+    passages: []
+    expect: skipped
+  PS 8/26:
+    passages: []
+    expect: skipped
+  PS 11/26:
+    passages: []
+    expect: skipped
+  OS 9/26:
+    passages: []
+    expect: nothing_found
+  PS 10/26:
+    passages: []
+    expect: nothing_found

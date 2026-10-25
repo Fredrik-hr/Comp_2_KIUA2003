@@ -1,0 +1,44 @@
+# Provider and model per LLM stage. Change a stage's provider here; no pipeline code changes.
+providers:
+  ollama_local:
+    adapter: ollama
+    base_url: http://localhost:11434
+    gdpr_approved: true          # runs on this machine, nothing leaves it
+    cost_per_mtok_usd: 0.0
+  anthropic:
+    adapter: anthropic
+    base_url: https://api.anthropic.com
+    api_key_env: ANTHROPIC_API_KEY
+    gdpr_approved: false         # not approved until a DPA with EEA processing is confirmed
+    cost_per_mtok_usd: 15.0
+  eu_endpoint:
+    adapter: openai_compatible
+    base_url: https://example.invalid/v1   # set to an EEA-hosted endpoint
+    api_key_env: OPENAI_COMPATIBLE_API_KEY
+    gdpr_approved: false
+    cost_per_mtok_usd: 1.0
+
+stages:
+  S6:
+    provider: ollama_local
+    model: llama3.2:3b
+    temperature: 0.0
+    seed: 42
+    max_tokens: 800
+  S8:
+    # agent: bounded tool loop (§4.2). pointwise: one call per candidate (for small models).
+    strategy: pointwise
+    provider: ollama_local
+    model: qwen2.5:7b
+    temperature: 0.0
+    seed: 42
+    max_tokens: 1200
+  judge:
+    provider: ollama_local
+    model: llama3.2:3b
+    temperature: 0.0
+    seed: 42
+    max_tokens: 300
+
+# Context window requested from local models (Ollama defaults to 2048, which is too small).
+num_ctx: 12288

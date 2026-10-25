@@ -1,0 +1,4 @@
+# Token and currency caps, enforced in the LLM client wrapper (llm/budget.py).
+per_item_tokens: 60000
+per_run_tokens: 1500000
+per_run_usd: 2.00

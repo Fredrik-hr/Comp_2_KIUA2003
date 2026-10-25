@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>{{ t.meetings }}</h1>
+<table>
+<tr><th>{{ t.run }}</th><th>Meeting</th><th>{{ t.style }}</th><th>{{ t.items }}</th><th></th></tr>
+{% for r in runs %}
+<tr>
+  <td class="muted">{{ r.summary.run_id }}</td>
+  <td>{{ r.summary.meeting_id }}{% if r.summary.halted %} <span class="status s-halted">halted</span>{% endif %}</td>
+  <td>{{ r.summary.style }} · {{ r.summary.brief_language }}</td>
+  <td>{{ r.summary.statuses|length }}</td>
+  <td><a href="/m/{{ r.path }}">{{ t.review }}</a></td>
+</tr>
+{% else %}
+<tr><td colspan="5" class="muted">No runs yet. Drop an agenda.yaml into inbox/ or run <code>briefer run</code>.</td></tr>
+{% endfor %}
+</table>
+{% endblock %}

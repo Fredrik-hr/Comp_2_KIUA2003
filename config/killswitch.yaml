@@ -1,0 +1,7 @@
+# Kill-switch thresholds (§8.5). Checked between every stage and every item.
+max_failed_extract_ratio: 0.20     # condition 1
+max_consecutive_llm_failures: 3    # condition 3
+stop_file: STOP                    # condition 5
+disable_env: BRIEFER_DISABLED      # condition 5
+# Minimum number of selected extracts before condition 1 is evaluated.
+min_extracts_for_ratio: 5

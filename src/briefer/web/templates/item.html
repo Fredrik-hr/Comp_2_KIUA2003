@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ brief.case_no }} — review{% endblock %}
+{% block body %}
+<p><a href="/m/{{ base }}">← {{ brief.meeting_id }}</a></p>
+<h1>{{ brief.case_no }} {{ brief.title }}</h1>
+<p><span class="status s-{{ state.status }}">{{ state.status }}</span>
+{% if brief.skip_reason %}<span class="muted"> · {{ brief.skip_reason }}</span>{% endif %}</p>
+<p class="muted">{% for c in brief.verification.checks %}{{ c }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
+
+<div class="actions">
+  <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action">
+    <input type="hidden" name="op" value="language">
+    <label>{{ t.language }}
+    <select name="language" onchange="this.form.submit()">
+      {% for l in ["nb", "nn", "en"] %}<option value="{{ l }}" {% if l == state.language %}selected{% endif %}>{{ l }}</option>{% endfor %}
+    </select></label>
+  </form>
+  {% if state.status not in ["skipped", "halted"] %}
+  <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="approve"><button class="primary">{{ t.approve }}</button></form>
+  {% endif %}
+  <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="reject"><button class="danger">{{ t.reject }}</button></form>
+  {% if state.status == "approved" %}
+    {{ t.export }}: <a href="/export/{{ base }}/{{ case }}.html">HTML</a> · <a href="/export/{{ base }}/{{ case }}.md">Markdown</a> · <a href="/export/{{ base }}/{{ case }}.json">JSON</a>
+  {% else %}<span class="muted">{{ t.only_approved }}</span>{% endif %}
+</div>
+
+<form method="post" action="/i/{{ base }}/{{ case }}/action">
+  <input type="hidden" name="op" value="note">
+  <label>{{ t.note }}<textarea name="note">{{ state.organiser_note }}</textarea></label>
+  <button>{{ t.save }}</button>
+</form>
+
+{% for e in extracts %}
+{% set doc_id = e.segment_id.split(":")[0] %}
+<div class="row {% if e.segment_id in state.removed %}removed{% endif %}">
+  <div>
+    <p class="muted">{{ e.relevance }} · {{ e.found_via }}</p>
+    <blockquote>{{ e.text }}</blockquote>
+    {% if e.table_header %}<p class="muted">Table header: {{ e.table_header }}</p>{% endif %}
+    <p class="muted">{{ e.document_title }} · {{ t.page }} {{ e.physical_page }}{% if e.printed_page_label %} ({{ e.printed_page_label }}){% endif %} · {{ e.section_path|join(" › ") }}</p>
+    {% if e.note %}<p class="note">{{ note_label }}: {{ e.note }}</p>{% endif %}
+    <div class="actions">
+      {% for op in ["up", "down"] %}
+      <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="{{ op }}"><input type="hidden" name="segment_id" value="{{ e.segment_id }}"><button>{{ t[op] }}</button></form>
+      {% endfor %}
+      {% if e.segment_id in state.removed %}
+      <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="restore"><input type="hidden" name="segment_id" value="{{ e.segment_id }}"><button>{{ t.restore }}</button></form>
+      <span class="muted">{{ t.removed }}</span>
+      {% else %}
+      <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="remove"><input type="hidden" name="segment_id" value="{{ e.segment_id }}"><button class="danger">{{ t.remove }}</button></form>
+      {% endif %}
+    </div>
+  </div>
+  <div><img class="page" loading="lazy" alt="{{ t.page }} {{ e.physical_page }}" src="/page/{{ base }}/{{ doc_id }}/{{ e.physical_page }}.png"></div>
+</div>
+{% else %}
+<p class="muted">—</p>
+{% endfor %}
+
+<h2>{{ t.audit }}</h2>
+<table>{% for a in audit %}<tr><td class="muted">{{ a[0] }}</td><td>{{ a[1] }}</td><td>{{ a[2] }}</td><td class="muted">{{ a[3] }}</td></tr>{% endfor %}</table>
+{% endblock %}

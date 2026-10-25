@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agenda item brief",
+  "type": "object",
+  "required": ["case_no", "status", "brief_language", "extracts", "verification", "run_id",
+               "disclaimer"],
+  "additionalProperties": false,
+  "properties": {
+    "case_no": {"type": "string", "minLength": 1},
+    "title": {"type": "string"},
+    "meeting_id": {"type": "string"},
+    "status": {"enum": ["draft", "draft_incomplete", "awaiting_review", "approved", "rejected",
+                        "nothing_found", "skipped", "halted"]},
+    "skip_reason": {"type": ["string", "null"]},
+    "brief_language": {"enum": ["nb", "nn", "en"]},
+    "agenda_style": {"enum": ["described", "titles_only"]},
+    "attachments": {"type": "array", "items": {
+      "type": "object", "required": ["title", "url"],
+      "properties": {"title": {"type": "string"}, "url": {"type": "string"},
+                     "status": {"type": "string"}}}},
+    "unsearchable_pages": {"type": "array", "items": {"type": "string"}},
+    "extracts": {"type": "array", "items": {
+      "type": "object",
+      "required": ["segment_id", "text", "document_title", "source_url", "physical_page",
+                   "printed_page_label", "section_path", "relevance", "found_via", "note"],
+      "additionalProperties": false,
+      "properties": {
+        "segment_id": {"type": "string", "pattern": "^doc_[0-9a-f]{8}:p\\d{4}:s\\d{3}$"},
+        "text": {"type": "string", "minLength": 1},
+        "document_title": {"type": "string"},
+        "source_url": {"type": "string", "pattern": "#page=\\d+$"},
+        "physical_page": {"type": "integer", "minimum": 1},
+        "printed_page_label": {"type": ["string", "null"]},
+        "section_path": {"type": "array", "items": {"type": "string"}},
+        "relevance": {"enum": ["direct", "supporting", "cross_reference"]},
+        "found_via": {"type": "string", "pattern": "^(search|cross_reference_from:.+)$"},
+        "note": {"type": "string"},
+        "table_header": {"type": ["string", "null"]}
+      }}},
+    "verification": {
+      "type": "object", "required": ["all_passed", "checks"],
+      "properties": {
+        "all_passed": {"type": "boolean"},
+        "checks": {"type": "array", "items": {"type": "string"}},
+        "removed": {"type": "array"},
+        "notes_dropped": {"type": "array"}
+      }},
+    "llm_calls": {"type": "integer"},
+    "tokens": {"type": "integer"},
+    "run_id": {"type": "string"},
+    "disclaimer": {"type": "string"}
+  }
+}

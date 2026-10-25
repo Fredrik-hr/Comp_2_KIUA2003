@@ -1,0 +1,13 @@
+# Fetch allowlist. Any other host is refused by fetch.py.
+allowed_domains:
+  - innlandetfylke.no
+  - www.innlandetfylke.no
+  # Add the fylkeskommune's document-portal host here once it is confirmed from a real
+  # attachment link (T04). Unverified hosts were removed 25.10.2026.
+
+# Local test documents ("local:<path>") are read relative to the project root.
+local_roots:
+  - .
+  - tests/cases
+
+max_download_mb: 200

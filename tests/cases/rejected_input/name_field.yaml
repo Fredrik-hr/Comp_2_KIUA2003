@@ -1,0 +1,5 @@
+meeting: {id: r2, body: Fylkesutvalget, municipality: Innlandet fylkeskommune,
+          date: 2026-11-05, written_standard: nb}
+items:
+  - {case_no: "PS 1/26", type: case, title: "Budsjett", attachments: [], closed: false,
+     in_scope: true, saksbehandler: "Kari Nordmann"}

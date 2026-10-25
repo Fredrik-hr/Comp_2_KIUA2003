@@ -1,0 +1,23 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Secrets
+.env
+
+# Generated data (cached PDFs, parsed segments, indexes, run outputs)
+data/
+runs/
+eval/runs/*
+!eval/runs/.gitkeep
+briefer.sqlite
+STOP
+
+# Source documents are fetched, not committed. algorithms.pdf is a copyrighted
+# textbook used only as a local test document.
+*.pdf
+!tests/cases/**/*.pdf

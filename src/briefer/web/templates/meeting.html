@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>{{ summary.meeting_id }}</h1>
+<p class="muted">{{ t.run }} {{ summary.run_id }} · {{ summary.style }} · {{ summary.llm_calls }} LLM calls · {{ summary.tokens }} tokens · {{ summary.seconds }} s</p>
+{% if summary.halted %}<p class="disclaimer">HALTED: {{ summary.halted }}</p>{% endif %}
+<table>
+<tr><th>Sak</th><th>Tittel</th><th>{{ t.status }}</th><th>{{ t.extracts }}</th><th></th></tr>
+{% for i in items %}
+<tr>
+  <td>{{ i.brief.case_no }}</td>
+  <td>{{ i.brief.title }}{% if i.brief.skip_reason %}<br><span class="muted">{{ i.brief.skip_reason }}</span>{% endif %}</td>
+  <td><span class="status s-{{ i.state.status }}">{{ i.state.status }}</span></td>
+  <td>{{ i.n }}</td>
+  <td><a href="/i/{{ base }}/{{ i.case }}">{{ t.review }}</a></td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
