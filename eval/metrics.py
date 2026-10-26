@@ -41,6 +41,18 @@ def _overlap(a: tuple[int, int], b: tuple[int, int]) -> int:
     return max(0, min(a[1], b[1]) - max(a[0], b[0]))
 
 
+def _by_topic(found: list[dict], passages: list[dict]) -> dict[str, list[int]]:
+    """[found, total] per subtopic tag; a passage with several tags counts once for each."""
+    out: dict[str, list[int]] = {}
+    for g in passages:
+        for t in g.get("topics", []):
+            out.setdefault(t, [0, 0])[1] += 1
+    for g in found:
+        for t in g.get("topics", []):
+            out[t][0] += 1
+    return out
+
+
 def score_item(brief: dict, gold: dict) -> dict:
     expect = gold.get("expect", "passages")
     status = brief["status"]
@@ -88,13 +100,15 @@ def score_item(brief: dict, gold: dict) -> dict:
         found_by_via={v: [sum(1 for g in found if g.get("via") == v),
                           sum(1 for g in passages if g.get("via") == v)]
                       for v in ("search", "cross_reference")},
+        found_by_topic=_by_topic(found, passages),
         selected_by_found_via={
             "search": [sum(1 for e in correct_sel if e["found_via"] == "search"),
                        sum(1 for e, _, _ in sel if e["found_via"] == "search")],
             "cross_reference": [
                 sum(1 for e in correct_sel if e["found_via"] != "search"),
                 sum(1 for e, _, _ in sel if e["found_via"] != "search")]},
-        missed=[{"page": g["physical_page"], "quote": g["quote"][:120]} for g in missed],
+        missed=[{"page": g["physical_page"], "quote": g["quote"][:120],
+                 "topics": g.get("topics", [])} for g in missed],
         false_positives=[{"segment_id": e["segment_id"], "page": e["physical_page"],
                           "text": e["text"][:120]} for e in wrong_sel],
     )
@@ -114,6 +128,12 @@ def aggregate(rows: list[dict]) -> dict:
     micro_p = corr / sel if sel else None
     f1 = (2 * micro_r * micro_p / (micro_r + micro_p)) if micro_r and micro_p else 0.0
     xr = [sum(r["found_by_via"]["cross_reference"][i] for r in p_rows) for i in (0, 1)]
+    by_topic: dict[str, list[int]] = {}
+    for r in p_rows:
+        for t, (f, n) in r.get("found_by_topic", {}).items():
+            acc = by_topic.setdefault(t, [0, 0])
+            acc[0] += f
+            acc[1] += n
     return {
         "items": len(rows),
         "recall_micro": micro_r, "precision_micro": micro_p, "f1_micro": f1,
@@ -121,6 +141,7 @@ def aggregate(rows: list[dict]) -> dict:
         "precision_macro": sum(precs) / len(precs) if precs else None,
         "gold_passages": gold, "found": found, "selected": sel,
         "recall_cross_reference_gold": xr[1] and xr[0] / xr[1],
+        "found_by_topic": by_topic,
         "skip_correct": [sum(r["correct"] for r in rows if r["expect"] == "skipped"),
                          sum(1 for r in rows if r["expect"] == "skipped")],
         "reject_correct": [sum(r["correct"] for r in rows if r["expect"] == "nothing_found"),

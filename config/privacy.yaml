@@ -2,3 +2,27 @@
 # A document where more than this share of segments is flagged is rejected for review.
 max_flagged_ratio: 0.05
 retention_days: 90
+
+# Rule-based name screen for the fixed blocks of Norwegian case papers (no NER model).
+# A segment is flagged pii:name when it
+#   - starts with one of `field_labels` followed by ":" (header fields), or
+#   - is at most `max_words` long, contains one of `roles` as a whole word and a run of two
+#     or more capitalised words (signatures, addresses "v/ <role> <name>"), or
+#   - follows a closing line such as "Med vennlig hilsen" on the same page (letter signature), or
+#   - ends with two or three short capitalised words after "." "!" or "?" (signature run
+#     into text), or
+#   - contains a credit such as "Foto: <Name> <Name>" anywhere (photo captions).
+# Capitalised words in `not_names` never count as part of a name.
+name_rules:
+  max_words: 15
+  field_labels: [Saksbehandler, Saksbeh., Kontaktperson, Kontakt, Ansvarlig, Prosjektleder,
+                 Godkjent av, Underskrevet av, Signert av, Utarbeidet av, Kontrollert av]
+  roles: [Fylkeskommunedirektør, Fylkesordfører, Fylkesvaraordfører, Kommunedirektør,
+          Rådmann, Ordfører, Varaordfører, Kommunalsjef, Fylkesdirektør, Daglig leder,
+          Styreleder, Avdelingsleder, Seksjonsleder, Enhetsleder, Fagleder, Rådgiver,
+          Seniorrådgiver, Spesialrådgiver, Fylkesaksjonsleder, Generalsekretær, Konstituert]
+  closings: [Med vennlig hilsen, Vennlig hilsen, Med hilsen, Hilsen]
+  credit_labels: [Foto, Fotograf, Photo, Illustrasjon]
+  not_names: [Innlandet, Fylkeskommune, Fylkesutvalget, Fylkestinget, Fylkeshuset, Hamar,
+              Lillehammer, Gjøvik, Norge, Parkgata, NOU, NRK, Statsforvalteren, Utvalg,
+              Møtedato, Saksnummer]

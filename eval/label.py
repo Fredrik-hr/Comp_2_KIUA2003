@@ -1,7 +1,9 @@
 """Labelling helper (T29). Writes labels/<meeting_id>.yaml; refuses quotes that fail V1.
 
     python eval/label.py find  <agenda.yaml> "<phrase>" [--context 200]
+    python eval/label.py topics <agenda.yaml> <scheme.txt>
     python eval/label.py add   <agenda.yaml> <case_no> <page> "<quote>" [--via cross_reference]
+                               [--topic <name> ...]
     python eval/label.py expect <agenda.yaml> <case_no> passages|nothing_found|skipped
     python eval/label.py check <agenda.yaml>
     python eval/label.py agree <labels_a.yaml> <labels_b.yaml> <agenda.yaml>
@@ -11,6 +13,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from typing import Annotated
 
 import fitz
 import typer
@@ -75,25 +78,76 @@ def find(agenda: Path, phrase: str, context: int = 160, limit: int = 15) -> None
                 pos = t.lower().find(needle, pos + 1)
 
 
+THEME_KEYS = {"hovedtema", "theme", "main theme"}
+
+
+def parse_scheme(text: str) -> tuple[str, dict[str, str]]:
+    """(theme, {subtopic: description}) from `Name: description` lines; other lines are
+    ignored. A `Hovedtema:` line names the theme and is not a subtopic."""
+    theme, out = "", {}
+    for line in text.splitlines():
+        name, sep, desc = line.partition(":")
+        name, desc = name.strip(), desc.strip()
+        if not (sep and name and desc and len(name.split()) <= 6):
+            continue
+        if name.lower() in THEME_KEYS:
+            theme = desc
+        else:
+            out[name] = desc
+    return theme, out
+
+
+@app.command()
+def topics(agenda: Path, scheme: Path) -> None:
+    """Store the subtopic scheme in the labels file; `add --topic` must then use these names."""
+    meeting = load(agenda).meeting
+    theme, parsed = parse_scheme(scheme.read_text(encoding="utf-8"))
+    if not parsed:
+        typer.echo("REFUSED: no `Name: description` lines in the scheme", err=True)
+        raise typer.Exit(1)
+    data = read_labels(meeting.id)
+    data["theme"] = theme
+    data["topics"] = parsed
+    _write(meeting.id, data)
+    typer.echo(f"theme: {theme}\ntopics: " + ", ".join(parsed))
+
+
+def resolve_topics(given: list[str], scheme: dict[str, str]) -> list[str]:
+    """Case-insensitive match against the scheme; unknown names are refused."""
+    by_lower = {t.lower(): t for t in scheme}
+    unknown = [t for t in given if t.lower() not in by_lower]
+    if unknown:
+        raise typer.BadParameter(f"unknown topic(s) {unknown}; use one of {list(scheme)}")
+    return [by_lower[t.lower()] for t in given]
+
+
 @app.command()
 def add(agenda: Path, case_no: str, physical_page: int, quote: str,
-        via: str = "search", section: str = "") -> None:
+        via: str = "search", section: str = "",
+        topic: Annotated[list[str] | None, typer.Option(
+            help="Subtopic from the scheme; repeatable.")] = None) -> None:
     """Add a gold passage. The quote must be verbatim on the page after normalisation."""
     meeting = load(agenda).meeting
     q = normalize(quote)
+    data = read_labels(meeting.id)
+    if topic and not data.get("topics"):
+        raise typer.BadParameter("no topic scheme stored; run `label.py topics` first")
+    tags = resolve_topics(topic or [], data.get("topics", {}))
     docs = _docs(agenda)
     hits = [u for u, d in docs.items()
             if physical_page <= d.page_count and q in page_text(d[physical_page - 1])]
     if not hits:
         typer.echo(f"REFUSED: quote not found verbatim on page {physical_page}", err=True)
         raise typer.Exit(1)
-    data = read_labels(meeting.id)
     item = data["items"].setdefault(case_no, {"expect": "passages", "passages": []})
-    item.setdefault("passages", []).append(
-        {"document": hits[0], "physical_page": physical_page, "section": section,
-         "via": via, "quote": q})
+    passage = {"document": hits[0], "physical_page": physical_page, "section": section,
+               "via": via, "quote": q}
+    if tags:
+        passage["topics"] = tags
+    item.setdefault("passages", []).append(passage)
     _write(meeting.id, data)
-    typer.echo(f"added to {case_no}: p{physical_page} {q[:70]}…")
+    typer.echo(f"added to {case_no}: p{physical_page} {q[:70]}…"
+               + (f" [{', '.join(tags)}]" if tags else ""))
 
 
 @app.command()

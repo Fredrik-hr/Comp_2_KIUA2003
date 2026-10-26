@@ -104,8 +104,12 @@ def main(live: bool = False, case: str | None = None, judge: bool = False,
     for agenda_path in agendas:
         meeting = load(agenda_path).meeting
         labels_file = ROOT / "labels" / f"{meeting.id}.yaml"
-        labels = yaml.safe_load(labels_file.read_text(encoding="utf-8")) \
-            if labels_file.exists() else {"items": {}}
+        if not labels_file.exists():
+            # label before output (labelling guideline): an unlabelled case is not run
+            typer.echo(f"== {agenda_path.parent.name}: no labels yet, not run")
+            results.setdefault("unlabelled", []).append(agenda_path.parent.name)
+            continue
+        labels = yaml.safe_load(labels_file.read_text(encoding="utf-8"))
         case_res = {}
         for style in ("described", "titles_only"):
             typer.echo(f"== {agenda_path.parent.name} [{style}]")
@@ -180,13 +184,18 @@ def report(results: dict) -> str:
                 md.append(f"| {r['case_no']} | {r['expect']} | {r['status']} | {r['n_gold']} | "
                           f"{r.get('n_found', '–')} | {r['n_selected']} | "
                           f"{_fmt(r.get('recall'))} | {_fmt(r.get('precision'))} |")
+            if topics := c[style]["aggregate"].get("found_by_topic"):
+                md += ["", "### Recall by subtopic", "", "| subtopic | found / gold |",
+                       "|---|---|"]
+                md += [f"| {t} | {f}/{n} |" for t, (f, n) in sorted(topics.items())]
             md += ["", "### Qualitative: misses and false positives", ""]
             for r in c[style]["items"]:
                 if r.get("missed") or r.get("false_positives") or r.get("removed") or \
                         r.get("correct") is False:
                     md.append(f"**{r['case_no']}** ({r['status']}, expected {r['expect']})")
                     for m in r.get("missed", []):
-                        md.append(f"- missed p{m['page']}: “{m['quote']}…”")
+                        tags = f" [{', '.join(m['topics'])}]" if m.get("topics") else ""
+                        md.append(f"- missed p{m['page']}{tags}: “{m['quote']}…”")
                     for fp in r.get("false_positives", []):
                         if isinstance(fp, dict):
                             md.append(f"- extra p{fp['page']}: “{fp['text']}…”")
@@ -199,6 +208,8 @@ def report(results: dict) -> str:
             if "judge" in c and style in c["judge"]:
                 j = c["judge"][style]
                 md += ["### LLM-as-judge (notes)", "", f"{json.dumps(j['summary'])}", ""]
+    if results.get("unlabelled"):
+        md += ["Not run (no labels yet): " + ", ".join(results["unlabelled"]), ""]
     md += ["## Rejected input (S0)", ""]
     for r in results.get("rejected_input", []):
         md.append(f"- {r['case']}: {'rejected ✓' if r['rejected'] else 'ACCEPTED ✗'} "

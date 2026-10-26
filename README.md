@@ -30,6 +30,12 @@ make synthetic && make test
 Test document: put `algorithms.pdf` (Dasgupta, Papadimitriou, Vazirani, *Algorithms*, 2006
 draft; not committed) in the project root.
 
+Real meeting (`tests/cases/fylkesutvalget_2026-09-29/`): Fylkesutvalget, Innlandet
+fylkeskommune, 29.09.2026. Download the møteinnkalling (one 1 319-page PDF with case papers
+and all attachments) from
+<https://prod01.elementscloud.no/publikum/920717152/DmbMeeting/1544> and save it as
+`fylkesutvalget_2026-09-29.pdf` in the project root (not committed).
+
 ### A normal run
 
 ```powershell

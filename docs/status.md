@@ -13,7 +13,7 @@ Executed against `project_plan.md` with `algorithms.pdf` as the test document (a
 | T07 S1 fetch (allowlist, sha256 cache, local mode) | done | `test_fetch.py` |
 | T08, T17, T19 S2 parse: pages, labels, segments, heading tree, invisible-text stripping, scanned-page flag | done | 336 pages → 4 412 segments, 209 headings, labels on 335/336 pages, 4 411/4 412 segments pass V1 against their own page |
 | T18 tables | done, guarded | tables kept only if every row is verbatim on the page; the textbook has no ruled tables, so untested on real budgets |
-| T20 S3 personal data | partly | ID number (checksum), e-mail, phone; **person-name NER not wired in** (no Norwegian NER model installed) |
+| T20 S3 personal data | partly | ID number (checksum), e-mail, phone; person names by **rules** for case-paper blocks (header fields, signatures, letter closings, photo credits; `config/privacy.yaml`): 20 segments flagged in the 1 319-page Fylkesutvalget bundle, 0 in `algorithms.pdf`, one false positive (a reference list). **Names in running text are not detected** (no Norwegian NER model) |
 | T11, T21 S4 index | partly | BM25 only; **dense multilingual embeddings not added** |
 | T22 S5 cross-references | done (code only) | section / chapter / figure / table / page / exercise / appendix, nb + en patterns; no LLM fallback |
 | T10, T27, T28 swappable LLM, record/replay | done | ollama, openai_compatible, anthropic adapters; per-stage model; `gdpr_approved` gate; replay is deterministic (identical numbers, 1 s vs 75 s) |

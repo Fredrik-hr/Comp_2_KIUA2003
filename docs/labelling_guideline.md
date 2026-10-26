@@ -25,6 +25,15 @@ to search the document themselves without it:
 Not gold: the table of contents, the index, exercise lists, historical notes, or passages that
 only mention the item's subject in passing.
 
+## Subtopic tags (optional scheme)
+
+A meeting can have a subtopic scheme (`Hovedtema:` line plus `Name: description` lines,
+e.g. `docs/labels.txt` for PS 93/26, *Kjernekraft – naturvirkninger*). Store it once with
+`python eval/label.py topics <agenda.yaml> <scheme.txt>`, then tag each passage with every
+subtopic that fits: `add … --topic Arealbruk --topic "Vannmiljø og kjølevann"`. Unknown names
+are refused. The report then shows recall per subtopic. The scheme is evaluation material:
+it must never be copied into `context/` or a prompt.
+
 ## Granularity
 
 - A gold passage is one paragraph, list item, table row, figure caption or algorithm box.

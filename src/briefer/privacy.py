@@ -4,8 +4,10 @@ Segments with a detected national ID number (with checksum), e-mail address or p
 number are flagged and excluded from the index, so they cannot reach a brief. A document
 above the flagged-share threshold is rejected for review.
 
-Person-name detection with a Norwegian NER model (§4.2) is not wired in yet: no NER model
-is installed. `NAME_DETECTION` reports that state so it shows up in run logs.
+Person names are caught by rules for the fixed blocks of case papers (header fields,
+signatures, letter closings; `name_rules` in config/privacy.yaml). Names in running text
+are not detected: no Norwegian NER model is installed (§4.2). `NAME_DETECTION` reports
+that state so it shows up in run logs.
 
 Injection patterns are flagged but kept in the index: kill-switch condition 4 halts the run
 if the agent selects a flagged segment.
@@ -21,7 +23,9 @@ from .models import ParsedDoc
 
 log = logging.getLogger(__name__)
 
-NAME_DETECTION = "disabled (no Norwegian NER model installed)"
+NAME_DETECTION = "rules only (header fields, signatures, closings); no NER for running text"
+
+_CAP = r"[A-ZÆØÅ][a-zæøåäöüé]+(?:-[A-ZÆØÅ][a-zæøåäöüé]+)?"
 
 _FNR = re.compile(r"(?<!\d)(\d{6})\s?(\d{5})(?!\d)")
 _EMAIL = re.compile(r"\b[\w.+-]+@[\w-]+(?:\.[\w-]+)+\b")
@@ -67,12 +71,66 @@ def detect(text: str) -> list[str]:
     return found
 
 
+class NameRules:
+    """Rule-based person-name screen for header fields and signature blocks."""
+
+    def __init__(self, cfg: dict) -> None:
+        self.max_words = cfg["max_words"]
+        labels = "|".join(re.escape(x) for x in cfg["field_labels"])
+        self.field = re.compile(rf"^(?:{labels})\s*:\s*\S", re.IGNORECASE)
+        self.roles = {r.lower() for r in cfg["roles"]}
+        self.closings = tuple(c.lower() for c in cfg["closings"])
+        self.not_names = {w.lower() for w in cfg["not_names"]} | {
+            w for r in self.roles for w in r.split()}
+        self.trailing = re.compile(rf"[.!?]\s+({_CAP}(?:\s+{_CAP}){{1,2}})$")
+        credits = "|".join(re.escape(x) for x in cfg["credit_labels"])
+        self.credit = re.compile(rf"\b(?:{credits})\s*:\s*{_CAP}\s+{_CAP}")
+
+    def _is_name_word(self, w: str) -> bool:
+        return re.fullmatch(_CAP, w) is not None and w.lower() not in self.not_names
+
+    def _has_name_run(self, words: list[str]) -> bool:
+        run = 0
+        for w in words:
+            run = run + 1 if self._is_name_word(w) else 0
+            if run >= 2:
+                return True
+        return False
+
+    def _has_role(self, text: str) -> bool:
+        low = " " + " ".join(re.findall(r"[\wæøåÆØÅ]+", text.lower())) + " "
+        return any(f" {r} " in low for r in self.roles)
+
+    def is_name(self, text: str, previous: str | None) -> bool:
+        words = [w.strip(",;()") for w in text.split()]
+        short = len(words) <= self.max_words
+        if self.field.match(text) or self.credit.search(text):
+            return True
+        if short and self._has_role(text) and self._has_name_run(words):
+            return True
+        if short and previous and previous.lower().rstrip(" ,!").endswith(self.closings) \
+                and self._has_name_run(words):
+            return True
+        # names are short words; long compounds ("Generalistkommuneutvalget") cut by a
+        # page break are not
+        m = self.trailing.search(text)
+        return bool(m) and all(self._is_name_word(w) and len(w) <= 15
+                               for w in m.group(1).split())
+
+
 def screen(doc: ParsedDoc) -> tuple[ParsedDoc, dict]:
-    threshold = paths.config("privacy")["max_flagged_ratio"]
+    cfg = paths.config("privacy")
+    threshold = cfg["max_flagged_ratio"]
+    names = NameRules(cfg["name_rules"])
     counts: dict[str, int] = {}
     segments = []
+    prev = None
     for s in doc.segments:
         flags = list(s.flags) + detect(s.text)
+        before = prev.text if prev is not None and prev.page == s.page else None
+        if names.is_name(s.text, before):
+            flags.append("pii:name")
+        prev = s
         if INJECTION.search(s.text):
             flags.append("injection")
         for f in flags:

@@ -1,0 +1,109 @@
+# REAL meeting: Fylkesutvalget, Innlandet fylkeskommune, 29.09.2026 (T04).
+# Titles and case numbers are copied from the published saksliste. The attachment is the
+# published meeting bundle (møteinnkalling with case papers and all attachments, 1 319 pages),
+# saved locally as fylkesutvalget_2026-09-29.pdf in the project root (not committed).
+# Source: https://prod01.elementscloud.no/publikum/920717152/DmbMeeting/1544
+# Every item points to the whole bundle (baseline); bookmark-based scoping comes later.
+# `description` is a short neutral summary drafted by the coding agent from the case paper;
+# `recommendation` condenses the fylkeskommunedirektørens innstilling. No names.
+# Expected answers are NOT here: they live in labels/fylkesutvalget_2026-09-29.yaml.
+meeting:
+  id: fylkesutvalget_2026-09-29
+  body: "Fylkesutvalget"
+  municipality: "Innlandet fylkeskommune"
+  date: 2026-09-29
+  written_standard: nb
+
+items:
+  - case_no: "PS 93/26"
+    type: case
+    title: "Svar til høring av NOU 2026:4 Kjernekraft i Norge"
+    description: >-
+      Fylkeskommunens høringssvar til NOU 2026:4 om kjernekraft som mulig kraftkilde i Norge:
+      utvalgets hovedanbefaling om et nasjonalt kompetanseprogram, og regionale myndigheters
+      rolle i arealforvaltning, infrastruktur, kompetanse og samfunnssikkerhet.
+    recommendation: >-
+      Utredningen gir et bredt kunnskapsgrunnlag, men omtaler fylkeskommunens rolle i
+      begrenset grad; fylkesutvalget støtter forslaget om et kompetanseprogram.
+    attachments:
+      - title: "Møteinnkalling Fylkesutvalget 29.09.2026 (saksdokumenter med vedlegg)"
+        url: "local:fylkesutvalget_2026-09-29.pdf"
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 94/26"
+    type: case
+    title: "Høringsinnspill - forslag til ny Oslofjordplan"
+    description: >-
+      Høringsinnspill til forslag til helhetlig tiltaksplan for en ren og rik Oslofjord med et
+      aktivt friluftsliv 2026-2030, særlig tiltak mot næringsstofftilførsler fra avløp og
+      landbruk i Innlandet.
+    recommendation: >-
+      Fylkeskommunen støtter hovedretningen, ber om statlige virkemidler til kommunene og
+      samordning med vannforvaltningen etter vannforskriften.
+    attachments:
+      - title: "Møteinnkalling Fylkesutvalget 29.09.2026 (saksdokumenter med vedlegg)"
+        url: "local:fylkesutvalget_2026-09-29.pdf"
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 95/26"
+    type: case
+    title: "Regional plan for nettinfrastrukturen – Høring av planprogram"
+    description: >-
+      Forslag til planprogram for regional plan for nettinfrastrukturen for energi i Innlandet
+      legges ut på høring og offentlig ettersyn.
+    recommendation: >-
+      Planprogrammet legges ut på høring etter plan- og bygningsloven § 8-3, med høringsfrist
+      11.11.2026.
+    attachments:
+      - title: "Møteinnkalling Fylkesutvalget 29.09.2026 (saksdokumenter med vedlegg)"
+        url: "local:fylkesutvalget_2026-09-29.pdf"
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 96/26"
+    type: case
+    title: "Høring - endringer i reglene om interkommunalt samarbeid"
+    description: >-
+      Høringssvar om endringer i kommunelovens regler om interkommunalt samarbeid, blant annet
+      kommunale oppgavefellesskap, vertskommunesamarbeid og interkommunale politiske råd.
+    recommendation: >-
+      Fylkeskommunen støtter hovedretningen og ønsker en tydeligere rolle for de
+      interkommunale politiske rådene.
+    attachments:
+      - title: "Møteinnkalling Fylkesutvalget 29.09.2026 (saksdokumenter med vedlegg)"
+        url: "local:fylkesutvalget_2026-09-29.pdf"
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 97/26"
+    type: case
+    title: "Offentlig ettersyn av kommunedelplan for Fagernes-Leira i Nord-Aurdal kommune"
+    description: >-
+      Fylkeskommunens uttalelse til kommunedelplan for Fagernes-Leira: friluftsliv, statlig
+      sikra friområde, vannmiljø og flom, barn og unge, kulturmiljø og kulturminner, og
+      trafikksikker skoleveg.
+    recommendation: >-
+      Planforslaget er et godt styringsverktøy, men bestemmelsene må justeres for friluftsliv,
+      kulturmiljø, lekeplass og skoleveg, og undersøkelsesplikten for kulturminner er ikke
+      oppfylt.
+    attachments:
+      - title: "Møteinnkalling Fylkesutvalget 29.09.2026 (saksdokumenter med vedlegg)"
+        url: "local:fylkesutvalget_2026-09-29.pdf"
+    closed: false
+    in_scope: true
+
+  - case_no: "PS 98/26"
+    type: case
+    title: "TV-aksjonen 2026 - bidrag"
+    description: >-
+      Søknad om fylkesbidrag til TV-aksjonen 2026 og størrelsen på bidraget.
+    recommendation: >-
+      Fylkeskommunen bevilger 380 000 kroner (1 krone per innbygger) fra det generelle
+      disposisjonsfondet.
+    attachments:
+      - title: "Møteinnkalling Fylkesutvalget 29.09.2026 (saksdokumenter med vedlegg)"
+        url: "local:fylkesutvalget_2026-09-29.pdf"
+    closed: false
+    in_scope: true
