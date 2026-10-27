@@ -1,66 +1,75 @@
-# Handoff — 25.10.2026
+# Handoff — 26.10.2026
 
 Read this first when picking the work up again. Details: `docs/status.md` (task by task),
 `docs/stress_tests.md` (measurements and repairs), `README.md` (setup and commands).
+`docs/section2_checklist.md` and `docs/report_checklist.md` are the user's personal
+checklists for Compulsory 2: local only, never commit them (listed in `.git/info/exclude`).
 
 ## Where we are
 
-- The whole pipeline S0–S11 is built and runs end to end on `algorithms.pdf` with a synthetic
-  11-item agenda (`tests/cases/algorithms_synthetic/agenda.yaml`), plus synthetic edge cases.
-- Default models: S6 `llama3.2:3b`, S8 `qwen2.5:7b` with `strategy: pointwise`
-  (`config/llm.yaml`), all local in Ollama. No API keys exist or are needed.
-- Results (described / titles only): recall 0.49 / 0.40, precision 0.20 / 0.18 (lower bound),
-  retrieval ceiling 0.53 / 0.45. Skips 3/3, rejects 2/2 and 1/2, 0 extracts failed V1–V5.
-  The §3.4 targets (recall ≥ 0.80 / 0.65, precision ≥ 0.60) are **not met**.
-- Retrieval (S7) is now the main limit: only about half the gold passages reach the model.
-- 49 unit tests pass, `ruff` is clean. `.\make.ps1 eval` (replay) reproduces the numbers offline.
-- **Nothing is committed.** Everything is untracked on `main`.
-- `config/sources.yaml` allows only `innlandetfylke.no` and `www.innlandetfylke.no`. The
-  unverified portal hosts (`prod01.elementscloud.no`, `innlandetfylke.innsynsportal.no`) were
-  removed until a real attachment link confirms them.
+- Work is on branch **`realagenda`** (commit `4e07228`), **not pushed**. `main` is pushed and
+  matches `origin/main`. This file is not committed yet.
+- **First real meeting added (T04):** Fylkesutvalget, Innlandet fylkeskommune, 29.09.2026,
+  items PS 93–98/26, all open and in scope. Agenda: `tests/cases/fylkesutvalget_2026-09-29/`.
+  The input is one 1 319-page møteinnkalling (case papers + all attachments, with PDF
+  bookmarks per item), saved as `fylkesutvalget_2026-09-29.pdf` in the project root (not
+  committed). Source:
+  <https://prod01.elementscloud.no/publikum/920717152/DmbMeeting/1544> (in the README).
+- Every item points to the **whole bundle** (baseline). Bookmark-based scoping per item is
+  planned after the baseline, to measure the difference.
+- **The pipeline has not been run on the real meeting.** It waits for labels (label before
+  output). The harness now skips any case without a labels file and reports it as "not run".
+- **S3 name screen (rules, not NER):** header fields, signatures, letter closings, photo
+  credits (`config/privacy.yaml`). On the bundle: 20 segments flagged, 1 false positive (a
+  reference list), 0 in `algorithms.pdf`. Names in running text are still not detected.
+- **Subtopic labels:** `docs/labels.txt` is the team's scheme for PS 93/26
+  (*Kjernekraft – naturvirkninger*, 8 subtopics). `eval/label.py topics` stores it,
+  `add --topic` tags passages, and the report shows recall per subtopic.
+- Results on the synthetic case are unchanged: recall 0.49 / 0.40, precision 0.20 / 0.18.
+  The §3.4 targets are **not met**.
+- 53 unit tests pass, `ruff` is clean, `.\make.ps1 eval` (replay) reproduces the numbers.
 
 ## What I am not fully comfortable with
 
-1. **The gold labels are mine.** The coding agent wrote all 47 + 4 gold passages (before any
-   run, but it also built the pipeline). They are marked PROVISIONAL and are too narrow, so
-   precision is understated and the evaluation is not independent until people review them.
-2. **The test document is the wrong kind.** A clean English textbook with an agenda written to
-   match it is easier than real Norwegian meeting papers with budget tables and scans. The
-   numbers say little about the real use case until a real Innlandet meeting is tested
-   (plan rule 5).
-3. **Small local models are unreliable selectors.** The 3B agent selects almost nothing; the
-   pointwise mode accepts almost everything. Qwen 7B is better but far from the targets.
-   The agent vs. pointwise choice is open.
-4. **Known gaps in safety-related parts:** no person-name detection (no Norwegian NER),
-   tables untested on real budgets, a word hyphenated across text blocks fails V1 (p290),
-   CI and gitleaks never actually run.
-5. **Choices made without asking:** pulled `qwen2.5:7b` (~4.7 GB) and added unverified domains
-   (since removed). Flag such things before doing them next time.
+1. **The descriptions in the real agenda are mine.** `description` and `recommendation` were
+   drafted by the coding agent from the case papers (marked in the file header). A team
+   member should check them before the run.
+2. **The subtopic scheme must stay out of the pipeline.** If it reaches `context/` or a
+   prompt, the evaluation measures our checklist instead of retrieval.
+3. **The harness ran the real meeting once before labels existed** (replay, 0 model calls,
+   no selections). Nobody looked at the output and the run was deleted; the harness is fixed.
+   Worth a line in the prompt logs.
+4. **Reproducibility is weaker than the README says.** The replay cache (`data/llm_cache/`)
+   is gitignored, so `make eval` on a fresh clone needs Ollama with both models. `make run`
+   still uses the textbook, which others must get themselves.
+5. **No prompt logs or meeting reports exist yet.** Both are required appendices.
 
 ## What's next (in order)
 
-1. **Commit** the current state on a branch, after a quick look through `git status`.
-2. **Review the labels** (`labels/*.yaml`) — a team member, using
-   `docs/labelling_guideline.md`; then the second-annotator agreement step (T30).
-3. **Run one real Innlandet meeting** (T04/T31): write its `agenda.yaml` with real attachment
-   URLs, label it before looking at output, and confirm which domains belong in
-   `config/sources.yaml`.
-4. **Improve retrieval (S7):** add multilingual embeddings / hybrid search (T11), since
-   retrieval caps recall at ~0.5.
-5. **Decide S8 strategy** (agent vs. pointwise) after 3–4, ideally also testing a stronger
-   GDPR-approved model.
-6. **Fill the gaps:** person-name NER (S3), install pre-commit + gitleaks, push and let CI run,
-   fix cross-block hyphenation in the parser.
-7. **Later milestones:** T41 large-agenda run (200+ page budget), T43 demo, T44–T50,
-   white paper T51–T58. Add session excerpts to `docs/prompt_logs/`.
+1. **Commit** this handoff; **push** `realagenda` (or merge to `main`) after the team has
+   looked at it.
+2. **Label the real meeting** (people, not the agent): both team members, independently,
+   following `docs/labelling_guideline.md`; store the scheme first with
+   `python eval/label.py topics tests/cases/fylkesutvalget_2026-09-29/agenda.yaml docs/labels.txt`.
+   Then run the agreement step (T30).
+3. **Run the baseline** on the real meeting (whole bundle), then add **bookmark scoping** per
+   item in S2/S7 and run again; report both.
+4. **Fix reproducibility:** commit the replay cache or correct the README; make the real
+   meeting the default `make run`.
+5. **Compulsory 2 report:** follow the user's local `docs/report_checklist.md`; write prompt logs and meeting
+   reports; confirm the deadline and the §3.4 targets with the lecturer.
+6. **Then, as before:** improve retrieval (T11, multilingual embeddings: ask before
+   downloading a model), decide the S8 strategy, person-name NER, gitleaks + CI, cross-block
+   hyphenation, later milestones T41–T58.
 
 ## How to resume quickly
 
 ```powershell
-.\make.ps1 test        # should say 49 passed
-.\make.ps1 eval        # replay; should reproduce the numbers above
-.\make.ps1 run         # one run; then .\make.ps1 ui → http://127.0.0.1:8000
+git switch realagenda
+.\make.ps1 test        # should say 53 passed
+.\make.ps1 eval        # replay; reproduces the numbers above; real meeting "not run" until labelled
+.\make.ps1 run         # one run on the synthetic agenda; then .\make.ps1 ui → http://127.0.0.1:8000
 ```
 
-Ollama must be running with `llama3.2:3b` and `qwen2.5:7b`; `algorithms.pdf` must be in the
-project root.
+Ollama must be running with `llama3.2:3b` and `qwen2.5:7b`; `algorithms.pdf` and
+`fylkesutvalget_2026-09-29.pdf` must be in the project root.
