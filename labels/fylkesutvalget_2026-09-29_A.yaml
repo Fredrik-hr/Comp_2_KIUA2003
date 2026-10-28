@@ -1,0 +1,670 @@
+meeting_id: fylkesutvalget_2026-09-29
+labeller: coding agent (draft), confirmed by annotator A
+provenance: agent-drafted, human-confirmed (28.10.2026)
+reviewed_by: null
+items:
+  PS 93/26:
+    expect: passages
+    passages:
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 183
+      section: NOU 12.1.2
+      via: search
+      quote: Kjernekraftverk utmerker seg ved et lavt og konsentrert arealbeslag sammenlignet med mange
+        andre kraftproduksjonsteknologier. Det direkte arealet omfatter reaktorbygninger, infrastruktur
+        for kjøling, mellomlager, sikkerhetssoner og tilhørende infrastruktur, og er i hovedsak samlet
+        på én utbygget sone.
+      topics:
+      - Arealbruk
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 183
+      section: NOU 12.1.2
+      via: search
+      quote: Her er fire reaktorer på til sammen 3 956 MW plassert på et område på 150 hektar eller 1,5
+        km2
+      topics:
+      - Arealbruk
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 184
+      section: NOU 12.1.2
+      via: search
+      quote: Selv om én enkelt SMR kan ha et mindre fotavtrykk enn en storskala reaktor, kan arealbehovet
+        per MW bli større, fordi SMR-er har lavere installert effekt enn storskala reaktorer.
+      topics:
+      - Arealbruk
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 185
+      section: NOU 12.1.2
+      via: search
+      quote: For Norges del finnes det imidlertid ikke slike større arealer etter kjernekraft-, kull-
+        eller gasskraftverk som kan gjenbrukes, og nye anlegg må derfor vurderes på eksisterende gråarealer
+        eller helt nye områder.
+      topics:
+      - Arealbruk
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 182
+      section: NOU 12.1
+      via: search
+      quote: Arealtyper som bør unngås til utbyggingsformål, er særlig karbonrike områder som myr og produktiv
+        skog, arealer med viktig naturmangfold, verneområder, villreinområder, store sammenhengende naturområder
+        og områder med særlig betydning for friluftsliv.
+      topics:
+      - Arealbruk
+      - Naturmangfold
+      - Landskap og friluftsliv
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 5
+      section: Saksfremlegg, generell vurdering
+      via: search
+      quote: Den mest kritiske problemstillingen er knyttet til miljøkonsekvenser, spesielt påvirkning
+        på vassdragene som kilde for kjølevann.
+      topics:
+      - Vannmiljø og kjølevann
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 185
+      section: NOU 12.1.3
+      via: search
+      quote: Et åpent kjølesystem fører til termisk forurensning i form av temperaturøkning som påvirker
+        det akvatiske økosystemet hvor det oppvarmede vannet slippes ut. Effekten avhenger i stor grad
+        av resipientens størrelse og gjennomstrømning.
+      topics:
+      - Vannmiljø og kjølevann
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 186
+      section: NOU 12.1.3
+      via: search
+      quote: kan konsekvensene for lokale arter og økosystemer være betydelige, mens utslipp til åpent
+        hav eller store vannmasser normalt har mindre miljømessig betydning.
+      topics:
+      - Vannmiljø og kjølevann
+      - Naturmangfold
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 186
+      section: NOU boks 12.1
+      via: search
+      quote: Utslipp av kjølevann, inkludert mengde, temperatur og mulig forurensning, samt risiko for
+        påvirkning av vannmiljø og naturmangfold i kyst- og ferskvann, skal vurderes.
+      topics:
+      - Vannmiljø og kjølevann
+      - Naturmangfold
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 189
+      section: NOU 12.2.2
+      via: search
+      quote: Uavhengig av kjøleløsning må miljøpåvirkning knyttet til både vanninntak og utslipp vurderes
+        nøye. Mulige påvirkninger er for eksempel redusert oksygeninnhold eller biologisk mangfold.
+      topics:
+      - Vannmiljø og kjølevann
+      - Naturmangfold
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 182
+      section: NOU 12.1
+      via: search
+      quote: I Meld. St. 35 (2023–2024) understreker regjeringen at arealendringer og nedbygging av natur
+        er den viktigste årsaken til tap av naturmangfold i Norge.
+      topics:
+      - Naturmangfold
+      - Arealbruk
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 37
+      section: NOU 2.3 (sammendrag)
+      via: search
+      quote: Bl.a. må vannforbruk og termiske utslipp håndteres for å beskytte økosystemene. Arealbruk
+        og naturmangfold skal integreres i planleggingen
+      topics:
+      - Naturmangfold
+      - Vannmiljø og kjølevann
+      - Arealbruk
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 356
+      section: NOU 23.3.3
+      via: search
+      quote: Nedbygging av et sammenhengende, urørt naturområde, en nasjonalpark eller et viktig vill-
+        eller tamreinområde har langt større konsekvenser enn utbygging på allerede påvirkede arealer.
+      topics:
+      - Naturmangfold
+      - Arealbruk
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 37
+      section: NOU 2.3 (sammendrag)
+      via: search
+      quote: Kjølesystemet kan medføre betydelig vannforbruk og kan øke temperaturene i berørte vannøkosystemer.
+      topics:
+      - Vannmiljø og kjølevann
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 85
+      section: NOU 6 (innledning)
+      via: search
+      quote: Når brenselet er brukt og tas ut av reaktoren, er det svært radioaktivt. Det må derfor håndteres
+        og oppbevares trygt i mange år før det deponeres sikkert i et 100 000 års perspektiv.
+      topics:
+      - Radioaktivt avfall
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 187
+      section: NOU 12.1.5
+      via: search
+      quote: Lagring av brukt brensel har svært lav miljøpåvirkning under normal drift, forutsatt at anleggene
+        er riktig utformet og vedlikeholdt. De viktigste miljøutfordringene er knyttet til risiko for
+        lekkasje av radioaktive stoffer til vann, grunn eller luft, særlig ved uhell, langvarig degradering
+        av materialer eller svikt i overvåkingssystemene.
+      topics:
+      - Radioaktivt avfall
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 187
+      section: NOU 12.1.7
+      via: search
+      quote: Permanent deponi av brukt brensel i dype geologiske formasjoner regnes som sikreste og mest
+        miljømessig forsvarlige løsningen.
+      topics:
+      - Radioaktivt avfall
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 188
+      section: NOU 12.1.7
+      via: search
+      quote: Miljørisikoen knyttet til lekkasje av radioaktive stoffer til grunnvann og biosfære er sentral.
+        Eventuelle utslipp kan medføre helseskade for mennesker og uakseptabel påvirkning på økosystemer,
+        og internasjonale retningslinjer krever at risikoen for slike utslipp skal være ekstremt lav.
+      topics:
+      - Radioaktivt avfall
+      - Strålevern, utslipp og ulykker
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 191
+      section: NOU 12.2.6
+      via: search
+      quote: Et kjernekraftverk må ha tilgang til egnede fasiliteter for mellomlagring av flere hundre
+        til tusen tonn høyaktivt avfall før det overføres til permanent deponi.
+      topics:
+      - Radioaktivt avfall
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 356
+      section: NOU 23.3.3
+      via: search
+      quote: Kjernekraft er den eneste teknologien som genererer høyaktivt avfall som må håndteres og
+        lagres sikkert over lang tid.
+      topics:
+      - Radioaktivt avfall
+      - Sammenligning med andre energikilder
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 186
+      section: NOU 12.1.3
+      via: search
+      quote: Under normal drift er utslippene til luft fra kjernekraftverk svært lave, både når det gjelder
+        klimagasser og radioaktive stoffer. Radioaktive utslipp til luft og vann under ordinær drift ligger
+        godt under internasjonale grenseverdier, og risikoen for helseskade, også i nærområdet, anses
+        som minimal
+      topics:
+      - Strålevern, utslipp og ulykker
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 157
+      section: NOU 11.1.4
+      via: search
+      quote: Selv om nyere reaktordesign er sikrere enn eldre løsninger, er det ikke mulig å bygge kjernekraftverk
+        som er fullstendig risikofrie.
+      topics:
+      - Strålevern, utslipp og ulykker
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 157
+      section: NOU 11.1.4
+      via: search
+      quote: Dersom det blir en alvorlig ulykke der flere av barrierene i sikkerhetssystemet svikter,
+        kan det bli et stort utslipp av radioaktive stoffer til luft.
+      topics:
+      - Strålevern, utslipp og ulykker
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 157
+      section: NOU 11.1.4
+      via: search
+      quote: Radioaktiv forurensning kan gi negative konsekvenser for naturmiljø, næringer og turisme.
+        Forurensningen kan vedvare i naturmiljø, og påvirke fritidssysler og turisme i forurensede områder.
+      topics:
+      - Strålevern, utslipp og ulykker
+      - Landskap og friluftsliv
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 157
+      section: NOU 11.1.4
+      via: search
+      quote: Radioaktivt nedfall kan utløse behov for evakuering av befolkningen i nærområdet til kjernekraftverket.
+        Avhengig av plassering, kan dette også gjelde for nabokommuner.
+      topics:
+      - Strålevern, utslipp og ulykker
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 180
+      section: NOU 11.3.4
+      via: search
+      quote: Et radioaktivt nedfall forurenser naturen, og noen av de radioaktive stoffene tas opp i næringskjedene.
+        Dette kan derfor gi konsekvenser for landbruk, reindrift, jakt, fiskeri- og sjømatnæring.
+      topics:
+      - Strålevern, utslipp og ulykker
+      - Naturmangfold
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 187
+      section: NOU 12.1.4
+      via: search
+      quote: For kategori I-anlegg kan disse sonene strekke seg fra 3–5 km (PAZ) til opptil 300 km (ICPD).
+      topics:
+      - Strålevern, utslipp og ulykker
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 183
+      section: NOU 12.1.2
+      via: search
+      quote: Miljøpåvirkningen i anleggsfasen inkluderer støy, støv, utslipp fra anleggsmaskiner og visuell
+        påvirkning.
+      topics:
+      - Landskap og friluftsliv
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 37
+      section: NOU 2.3 (sammendrag)
+      via: search
+      quote: Arealbeslaget, og dermed naturinngrep og landskapspåvirkning, per produsert kWh er lavt for
+        kjernekraftverk.
+      topics:
+      - Landskap og friluftsliv
+      - Arealbruk
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 186
+      section: NOU boks 12.1
+      via: search
+      quote: Det skal vurderes hvordan utbyggingen påvirker eksisterende arealbruk, naturmangfold, friluftsliv
+        og kulturmiljø.
+      topics:
+      - Landskap og friluftsliv
+      - Arealbruk
+      - Naturmangfold
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 180
+      section: NOU 11.3.4
+      via: search
+      quote: Et radioaktivt nedfall kan også svekke turistenes villighet til å besøke området og redusere
+        befolkningens ønske om å bruke naturområder for rekreasjon.
+      topics:
+      - Landskap og friluftsliv
+      - Strålevern, utslipp og ulykker
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 183
+      section: NOU 12.1.2
+      via: search
+      quote: Denne fasen inkluderer grunnarbeid, transportinfrastruktur, riggområder, midlertidige lagerplasser
+        og installasjon av store komponenter som reaktortank, dampturbiner og kjølesystemer. I tillegg
+        kommer behovet for anleggsveier, kranplattformer og boliger for arbeidskraft.
+      topics:
+      - Følgeinngrep
+      - Arealbruk
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 190
+      section: NOU 12.2.4
+      via: search
+      quote: Annen kritisk transportinfrastruktur omfatter veier, jernbane og havner. Plassering av kjernekraftverk
+        krever tilgang til infrastruktur med tilstrekkelig kapasitet til å kunne håndtere transport av
+        tungt utstyr, brensel og avfall, både under bygging og drift, og i beredskapssituasjoner.
+      topics:
+      - Følgeinngrep
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 189
+      section: NOU boks 12.2
+      via: search
+      quote: For både bygging og drift kreves det tilgang til havn og veier som tåler de tunge transportene
+        kraftverket vil medføre.
+      topics:
+      - Følgeinngrep
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 182
+      section: NOU 12.1
+      via: search
+      quote: Dette innebærer at vurderinger av arealbruk, plassering, nettilknytning og tilhørende infrastruktur
+        for nye energianlegg må ta utgangspunkt i oppdatert kunnskap om naturverdier, økosystemtjenester
+        og samlet belastning på naturen.
+      topics:
+      - Følgeinngrep
+      - Naturmangfold
+      - Arealbruk
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 185
+      section: NOU 12.1.2
+      via: search
+      quote: UNECEs livsløpsanalyse viser at kjernekraftverk beslaglegger mellom 0,25 og 0,75 kvadratmeter
+        per produserte MWh i løpet av ett år (m2/MWh). Dette er betydelig mindre enn for bakkemonterte
+        solkraftverk (12,0–37,0 m2/MWh) og på nivå med direkte berørt areal for landbasert vindkraftverk
+        (0,3–0,7 m2/MWh).
+      topics:
+      - Sammenligning med andre energikilder
+      - Arealbruk
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 354
+      section: NOU 23.3.2
+      via: search
+      quote: Areal til kjernekraftverk båndlegges for lang tid, inkludert bygge-, drifts- og dekommisjoneringsfasen.
+        Vind- og solkraft har kortere økonomisk levetid og kan lettere tilbakestilles etter at anlegget
+        tas ut av drift.
+      topics:
+      - Sammenligning med andre energikilder
+      - Arealbruk
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 356
+      section: NOU 23.3.3
+      via: search
+      quote: Mens kjernekraftens arealpåvirkning er konsentrert og lettere å kontrollere, gir fornybare
+        teknologier som sol og vind ofte spredt arealpåvirkning over store områder, noe som kan føre til
+        arealkonflikter med landbruk, reindrift, naturverdier og annen arealbruk
+      topics:
+      - Sammenligning med andre energikilder
+      - Arealbruk
+      - Naturmangfold
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 356
+      section: NOU 23.3.3
+      via: search
+      quote: Vannforbruket, hovedsakelig knyttet til kjøling, kan være betydelig, men UNECE viser til
+        at vannforbruket er lavere enn for fossile kraftverk, og at det meste av vannet returneres til
+        miljøet.
+      topics:
+      - Sammenligning med andre energikilder
+      - Vannmiljø og kjølevann
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 418
+      section: NOU 29.3
+      via: search
+      quote: Hvis vi velger kjernekraft, «redder» vi både naturen og klimaet, men kostnaden kan bli stor
+        knyttet til både risikoen for ulykker med store konsekvenser og avfallsproblematikken som kan
+        bli veltet over på framtidige generasjoner. Hvis vi velger vindkraft, risikerer vi (kanskje) å
+        ofre natur for å redde klimaet.
+      topics:
+      - Sammenligning med andre energikilder
+      - Naturmangfold
+      - Radioaktivt avfall
+      - Strålevern, utslipp og ulykker
+  PS 94/26:
+    expect: passages
+    passages:
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 502
+      section: Saksfremlegg, innstilling pkt. 1
+      via: search
+      quote: Innlandet fylkeskommune støtter hovedretningen i forslag til helhetlig tiltaksplan for en
+        ren og rik Oslofjord med et aktivt friluftsliv 2026-2030, og deler vurderingen av at det er behov
+        for en styrket og koordinert innsats for å bedre miljøtilstanden i Oslofjorden.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 505
+      section: Saksfremlegg, generell vurdering
+      via: search
+      quote: Selv om Innlandet fylke ikke grenser til Oslofjorden, bidrar aktiviteter i fylket til næringstilførsel
+        og annen påvirkning på vannforekomster som drenerer til fjorden. Innlandet har derfor et medansvar
+        for å bidra til at miljømålene for Oslofjorden nås.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 505
+      section: Saksfremlegg, innsatsområde 5.1
+      via: search
+      quote: Samtidig vil oppfølging av krav om økt nitrogenrensing og redusert tilførsel av næringsstoffer
+        medføre betydelige investeringsbehov innen kommunal avløpsinfrastruktur. Dette vil være særlig
+        krevende for mindre kommuner med begrenset økonomisk handlingsrom og få innbyggere.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 506
+      section: Saksfremlegg, innsatsområde 5.2
+      via: search
+      quote: Fylkeskommunen vil særlig framheve betydningen av kantsoner langs vassdrag som et tiltak
+        med flere positive effekter. Kantsoner kan bidra til redusert næringsstoffavrenning, økt biologisk
+        mangfold og klimatilpasning, og bør derfor inngå som en viktig del av den samlede tiltakspakken.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 506
+      section: Saksfremlegg, kap. 5.8 organisering
+      via: search
+      quote: Det er ikke satt av ekstra ressurser til dette arbeidet hos fylkeskommunene gjennom planen.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 507
+      section: Saksfremlegg, samspill med vannforvaltning
+      via: search
+      quote: Det bør derfor legges vekt på samspillet mellom de regionale planene for vannforvaltning
+        og Oslofjordplanen, og samordne rapportering, oppfølging og kunnskapsinnhenting så langt som mulig.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 522
+      section: Oslofjordplan 5.1
+      via: cross_reference
+      quote: Redusere tilførslene av nitrogen til et nivå som gir god tilstand, i første omgang frem mot
+        2033
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 521
+      section: Oslofjordplan kap. 4 (s. 14)
+      via: cross_reference
+      quote: Vannforvaltningsplanene etter vannforskriften dekker ikke alle elementer som inngår i denne
+        planen for Oslofjorden. Dette gjelder særlig friluftsliv, arealbruk i hundremetersbeltet i strandsonen
+        og langs vassdrag, arealbruk i sjø, sjøfugl og fiskebestander.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 548
+      section: Oslofjordplan 5.8
+      via: cross_reference
+      quote: Utvide Oslofjordrådet med en representant fra en kommune i Telemark, og en ytterligere representant
+        fra en kommune i Innlandet.
+  PS 95/26:
+    expect: passages
+    passages:
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 551
+      section: Saksfremlegg, innstilling pkt. 1
+      via: search
+      quote: Fylkesutvalget legger forslag til Planprogram for Regional plan for nettinfrastrukturen for
+        energi ut på høring/offentlig ettersyn i henhold til plan- og bygningslovens § 8-3.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 551
+      section: Saksfremlegg, innstilling pkt. 2
+      via: search
+      quote: 'Høringsfrist er satt til: 11.11.2026'
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 552
+      section: Saksfremlegg, bakgrunn
+      via: search
+      quote: Nettinfrastrukturen i Innlandet er høyt utnyttet. Dagens kapasitet i strømnettet til nytt
+        forbruk og ny produksjon er allerede reservert.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 552
+      section: Saksfremlegg, planens formål
+      via: search
+      quote: Formålet med prosjektet vil være å teste om tidligere og eventuelt grundigere avklaringer
+        av forhold som er viktige for kommunene og fylkeskommunene i nettutbygging, kan bidra til en raskere
+        meldings- og konsesjonsfase og samlet sett kortere ledetider.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 553
+      section: Saksfremlegg, planens mål
+      via: search
+      quote: 'Målet med Regional plan for nettinfrastrukturen for energi i Innlandet er: - å bidra til
+        en mer effektiv planleggings- og utbyggingsprosess for transmisjonsnettet - å redusere dagens
+        ledetid på nettet - å sikre nettkapasiteten på regionalnettet - å sikre hele Innlandet tilgang
+        til nok energi for omstilling og utvikling'
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 554
+      section: Saksfremlegg, om planprogrammet
+      via: search
+      quote: I samhandling med nettaktørene skal utvalgte linjer/traséer og områder for installasjoner
+        prioriteres. Disse får en overordnet konsekvensanalyse for miljø og samfunn.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 556
+      section: Saksfremlegg, generell vurdering
+      via: search
+      quote: Regional plan for nettinfrastruktur for energi vil ikke formelt sett være retningsgivende
+        for konsesjonsbehandlingen, men vil likevel kunne få fram kunnskap, vurderinger og avklaringer
+        som bidrar til raskere framdrift i prosjekter når konsesjonssøknader skal behandles.
+  PS 96/26:
+    expect: passages
+    passages:
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 628
+      section: Saksfremlegg, innstilling pkt. 1
+      via: search
+      quote: Innlandet fylkeskommune støtter hovedretningen i forslagene. Fylkeskommunen mener endringene
+        vil bidra til mer robuste og langsiktige samarbeidsløsninger, bedre ressursutnyttelse og sterkere
+        fagmiljøer.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 628
+      section: Saksfremlegg, innstilling pkt. 2
+      via: search
+      quote: Særlig positivt er forslaget om at kommunale oppgavefellesskap kan utøve offentlig myndighet,
+        og at kommuner og fylkeskommuner kan inngå vertskommunesamarbeid om felles oppgaver.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 628
+      section: Saksfremlegg, innstilling pkt. 3
+      via: search
+      quote: Videre er det positivt med en tydeliggjøring av rollene til de interkommunale politiske rådene,
+        men erfaringene tilsier at dette med fordel kunne gjøres enda tydeligere.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 628
+      section: Saksfremlegg, innstilling pkt. 4
+      via: search
+      quote: Innlandet fylkeskommune kunne også ønsket en klargjøring når det gjelder daglig leders oppgaver
+        og rolle knyttet til de interkommunale politiske rådene.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 630
+      section: Saksfremlegg, fakta
+      via: search
+      quote: Departementet viser til at kommunene i dag deltar i svært mange ulike samarbeid. Mange kommuner
+        er involvert i 20 til 60 samarbeid hver.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 630
+      section: Saksfremlegg, kommunalt oppgavefellesskap
+      via: search
+      quote: 'Departementet foreslår at oppgavefellesskap som er eget rettssubjekt skal kunne: • fatte
+        enkeltvedtak • vedta forskrifter • utøve offentlig myndighet'
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 631
+      section: Saksfremlegg, vertskommunesamarbeid
+      via: search
+      quote: Forslaget åpner for at kommuner og fylkeskommuner kan være vertskommune for hverandre når
+        det gjelder oppgaver de har felles.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 632
+      section: Saksfremlegg, interkommunale politiske råd
+      via: search
+      quote: Kommunestyrene og fylkestingene kan instruere representantskapsmedlemmene i IPR-et.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 629
+      section: Saksfremlegg, bakgrunn
+      via: search
+      quote: Forslaget til endringer er ute på høring, med høringsfrist 1. oktober 2026
+  PS 97/26:
+    expect: passages
+    passages:
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 796
+      section: Saksfremlegg, innstilling pkt. 1
+      via: search
+      quote: Fylkesutvalget mener i all hovedsak at planforslaget fremstår som et godt styringsverktøy
+        for utvikling av Fagernes og Leira.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 796
+      section: Saksfremlegg, innstilling pkt. 2
+      via: search
+      quote: Fylkesutvalget ber om at bestemmelsene for delområde N_F2 stiller krav om avbøtende tiltak
+        for friluftsliv. Delområdet er et kartlagt viktig friluftsområde, og utbygging her vil gi sterk
+        negativ konsekvens for friluftslivet.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 796
+      section: Saksfremlegg, innstilling pkt. 3
+      via: search
+      quote: Delområde N_F9 innebærer inngrep i statlig sikra friområde. Fylkesutvalget forutsetter at
+        bestemmelsene justeres slik at brukere av friområde kan benytte arealet til parkering.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 796
+      section: Saksfremlegg, innstilling pkt. 4
+      via: search
+      quote: Fylkesutvalget ber kommunen vurdere vannmiljø som tema i konsekvensutredningen og bestemmelser
+        til bruk og vern av sjø og vassdrag uavhengig av LNFR formålet. Videre mener vi kommunen ikke
+        må legge til rette for boligutvikling i flomutsatte områder.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 796
+      section: Saksfremlegg, innstilling pkt. 5
+      via: search
+      quote: Fylkesutvalget ber kommunen ivareta hensyn til barn og unge ved å ta inn krav til lekeplass
+        innunder pkt. 3.5.2 uteoppholdsarealer.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 796
+      section: Saksfremlegg, innstilling pkt. 6
+      via: search
+      quote: Fylkesutvalget ber om hensynssone for bevaring av kulturmiljø øst for brua på Fagernes utvides
+        inn i Jernbanevegen, og i tillegg inkluderer kulturmiljøet på vestsida av elva.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 796
+      section: Saksfremlegg, innstilling pkt. 7
+      via: search
+      quote: Fylkesutvalget bemerker at undersøkelsesplikten etter kulturminnelovens § 9 ikke er oppfylt
+        i forbindelse med forelagte planforslag. Dette skal senest gjøres på reguleringsplannivå. Fylkesutvalget
+        kan derfor ikke automatisk si seg enig i den arealdisponeringen som er foreslått i kommunedelplanen.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 796
+      section: Saksfremlegg, innstilling pkt. 8
+      via: search
+      quote: Fylkesutvalget ber om at det settes tydeligere krav i bestemmelsene om trafikksikker skoleveg.
+        Byggegrenser mot fylkesveg skal gjelde etter veglov eller reguleringsplan.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 797
+      section: Saksfremlegg, bakgrunn
+      via: search
+      quote: Kommunedelplanen legger opp til 1200 daa med fremtidig utbyggingsareal, hvorav 846 daa av
+        dette utgjør arealer for næringsområder.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 798
+      section: Saksfremlegg, næringsbebyggelse
+      via: search
+      quote: Fylkeskommunedirektøren er altså ikke enig i at foreslått etablering er en del av arbeidet
+        med Innlandsporteføljen.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 838
+      section: Planbestemmelser 5.8.2.2 N_F2
+      via: cross_reference
+      quote: Dette er et stort område som er brukt til friluftsliv og som inneholder rødlistede arter
+        og karbonrike arealer. Utbygging av området skal bare skje til arealkrevende industri og virksomheter
+        med produksjon og potensiell høy samfunnsnytte.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 839
+      section: Planbestemmelser 5.8.2.7 N_F9
+      via: cross_reference
+      quote: Innenfor området kan det etableres parkeringsplass for ansatte og gjester til bedriftene
+        i området.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 1068
+      section: Konsekvensutredning, N_F2 Skaveldskogen sør
+      via: cross_reference
+      quote: Arealet ligger i kartlagt friluftsområde, som er nærturterreng og rangert som svært viktig.
+        Avstanden til Fløafjorden er 220-320 meter. En har ivaretatt viktige stier på LNFR-areal vest
+        for N_F2, mellom dette og Fløafjorden. Men noen turstier og mulighet for friluftsliv vil utvilsomt
+        bli påvirket.
+  PS 98/26:
+    expect: passages
+    passages:
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 1317
+      section: Saksfremlegg, innstilling pkt. 1
+      via: search
+      quote: Fylkesutvalget vedtar at Innlandet fylkeskommune bevilger 380 000 kroner til TVaksjonen 2026,
+        beregnet ut fra prinsippet om 1 krone per innbygger.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 1317
+      section: Saksfremlegg, innstilling pkt. 2
+      via: search
+      quote: Midlene utbetales fra det generelle disposisjonsfondet.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 1318
+      section: Saksfremlegg, bakgrunn
+      via: search
+      quote: NRK TV-aksjonen 2026 går til NRC Flyktninghjelpen. Aksjonen gjennomføres 18. oktober 2026.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 1318
+      section: Saksfremlegg, generell vurdering
+      via: search
+      quote: Folketallet i Innlandet var 379 488 innbyggere per 1. januar 2026. Et bidrag på 1 krone per
+        innbygger tilsvarer 379 488 kroner.
+    - document: local:fylkesutvalget_2026-09-29.pdf
+      physical_page: 1318
+      section: Saksfremlegg, generell vurdering
+      via: search
+      quote: I 2024 og 2025 vedtok fylkesutvalget å gi et innbyggerbasert bidrag til TV-aksjonen.
+theme: Kjernekraft – naturvirkninger
+topics:
+  Arealbruk: areal som selve kraftverket og sikringssonen rundt det legger beslag på
+  Naturmangfold: påvirkning på arter, leveområder og verdifulle naturtyper
+  Vannmiljø og kjølevann: uttak av kjølevann og utslipp av oppvarmet vann til sjø, elv eller innsjø, og
+    virkningene på livet i vannet
+  Radioaktivt avfall: mellomlagring, deponi og langsiktig forvaltning av brukt brensel og annet avfall,
+    også lekkasje fra lager og deponi
+  Strålevern, utslipp og ulykker: stråling og utslipp ved normal drift, og ulykkesrisiko med følger for
+    natur og mennesker
+  Landskap og friluftsliv: visuell påvirkning, støy og tap av turområder
+  Følgeinngrep: kraftledninger, veier, havner og annen infrastruktur som bygges i tillegg til selve kraftverket
+  Sammenligning med andre energikilder: når en naturvirkning av kjernekraft settes opp mot vindkraft,
+    vannkraft eller andre kilder

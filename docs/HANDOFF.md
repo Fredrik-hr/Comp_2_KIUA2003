@@ -22,7 +22,7 @@ checklists for Compulsory 2: local only, never commit them (listed in `.git/info
 - **S3 name screen (rules, not NER):** header fields, signatures, letter closings, photo
   credits (`config/privacy.yaml`). On the bundle: 20 segments flagged, 1 false positive (a
   reference list), 0 in `algorithms.pdf`. Names in running text are still not detected.
-- **Subtopic labels:** `docs/labels.txt` is the team's scheme for PS 93/26
+- **Subtopic labels:** `docs/labels.yaml` is the team's scheme for PS 93/26
   (*Kjernekraft – naturvirkninger*, 8 subtopics). `eval/label.py topics` stores it,
   `add --topic` tags passages, and the report shows recall per subtopic.
 - Results on the synthetic case are unchanged: recall 0.49 / 0.40, precision 0.20 / 0.18.
@@ -46,11 +46,17 @@ checklists for Compulsory 2: local only, never commit them (listed in `.git/info
 
 ## What's next (in order)
 
+> **Reminder (added 28.10.2026):** the real meeting is labelled by annotator A only
+> (`labels/fylkesutvalget_2026-09-29_A.yaml`, 83 passages, agent-drafted and human-confirmed),
+> and `labels/fylkesutvalget_2026-09-29.yaml` is a **provisional** copy of it so the baseline
+> could run. Annotator B must still label independently, then `label.py agree`, merge,
+> overwrite the gold file, set `reviewed_by`, and re-run `eval-live`. Step 2 below is open.
+
 1. **Commit** this handoff; **push** `realagenda` (or merge to `main`) after the team has
    looked at it.
 2. **Label the real meeting** (people, not the agent): both team members, independently,
    following `docs/labelling_guideline.md`; store the scheme first with
-   `python eval/label.py topics tests/cases/fylkesutvalget_2026-09-29/agenda.yaml docs/labels.txt`.
+   `python eval/label.py topics tests/cases/fylkesutvalget_2026-09-29/agenda.yaml docs/labels.yaml`.
    Then run the agreement step (T30).
 3. **Run the baseline** on the real meeting (whole bundle), then add **bookmark scoping** per
    item in S2/S7 and run again; report both.
@@ -68,7 +74,7 @@ checklists for Compulsory 2: local only, never commit them (listed in `.git/info
 git switch realagenda
 .\make.ps1 test        # should say 53 passed
 .\make.ps1 eval        # replay; reproduces the numbers above; real meeting "not run" until labelled
-.\make.ps1 run         # one run on the synthetic agenda; then .\make.ps1 ui → http://127.0.0.1:8000
+.\make.ps1 run         # one run on the real meeting (needs the PDF); then .\make.ps1 ui → http://127.0.0.1:8000
 ```
 
 Ollama must be running with `llama3.2:3b` and `qwen2.5:7b`; `algorithms.pdf` and

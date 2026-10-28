@@ -42,6 +42,10 @@ pointwise S8) on the algorithms agenda: recall 0.49 described / 0.40 titles-only
 - **Gold labels are provisional**, drafted by the coding agent before any run. Reviewing the
   first results shows they are too narrow (several "false positives" are relevant passages,
   e.g. the RSA summary box), so precision is a lower bound. T30 (two annotators, κ) is open.
+- **REMINDER (real meeting, T30):** `fylkesutvalget_2026-09-29` is evaluated against
+  **provisional gold = annotator A only** (83 passages, agent-drafted, human-confirmed,
+  28.10.2026). Still to do: annotator B labels independently, `label.py agree` A vs B, merge,
+  overwrite `labels/fylkesutvalget_2026-09-29.yaml`, set `reviewed_by`, run `eval-live` again.
 - No **real Innlandet fylkeskommune meeting** yet (T04, T31): the plan's rule 5 requires one
   before the evaluation numbers mean anything for the actual use case.
 - T41 large-agenda run on a real 200+ page budget, T43 demo, T44–T50, T51–T58 (white paper).

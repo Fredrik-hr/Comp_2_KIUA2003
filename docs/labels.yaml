@@ -1,0 +1,13 @@
+# Subtopic scheme for PS 93/26. Evaluation material only, never copy into context/ or a prompt.
+# Stored with `python eval/label.py topics <agenda.yaml> docs/labels.yaml`.
+# Tag each passage with every subtopic that fits. Boundary rules are in docs/labelling_guideline.md.
+hovedtema: Kjernekraft – naturvirkninger
+underemner:
+  Arealbruk: areal som selve kraftverket og sikringssonen rundt det legger beslag på
+  Naturmangfold: påvirkning på arter, leveområder og verdifulle naturtyper
+  Vannmiljø og kjølevann: uttak av kjølevann og utslipp av oppvarmet vann til sjø, elv eller innsjø, og virkningene på livet i vannet
+  Radioaktivt avfall: mellomlagring, deponi og langsiktig forvaltning av brukt brensel og annet avfall, også lekkasje fra lager og deponi
+  Strålevern, utslipp og ulykker: stråling og utslipp ved normal drift, og ulykkesrisiko med følger for natur og mennesker
+  Landskap og friluftsliv: visuell påvirkning, støy og tap av turområder
+  Følgeinngrep: kraftledninger, veier, havner og annen infrastruktur som bygges i tillegg til selve kraftverket
+  Sammenligning med andre energikilder: når en naturvirkning av kjernekraft settes opp mot vindkraft, vannkraft eller andre kilder
