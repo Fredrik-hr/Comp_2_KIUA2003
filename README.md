@@ -10,7 +10,9 @@ Design rule: **the LLM selects segment IDs; code copies and checks the text** (V
 
 ## Reproduce from a fresh clone
 
-Requirements: Python 3.11+, [Ollama](https://ollama.com) running locally.
+Requirements: Python 3.11+ (a plain `python -m venv`; if `python` is not on PATH, use the
+full path to `python.exe`, or set `$env:PYTHON` before `.\make.ps1 setup`).
+[Ollama](https://ollama.com) is only needed for live runs; `make eval` replays offline.
 
 ```powershell
 # Windows (PowerShell)
