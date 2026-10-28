@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\"action\": \"search_index\", \"query\": \"Brøytekontrakter fylkesveier 2027-2030\"}", "usage": {"input_tokens": 1662, "output_tokens": 30}}

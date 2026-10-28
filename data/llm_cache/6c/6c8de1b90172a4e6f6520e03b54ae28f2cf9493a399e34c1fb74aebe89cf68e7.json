@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Tilbakemelding om behov for et solid kunnskapsgrunnlag for tiltak.\"\n}", "usage": {"input_tokens": 1029, "output_tokens": 39}}

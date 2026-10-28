@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Baserer seg på innspill i arbeidet med planprogram.\"\n}", "usage": {"input_tokens": 909, "output_tokens": 33}}

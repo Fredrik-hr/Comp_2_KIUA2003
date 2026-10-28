@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\"action\": \"finish\", \"nothing_found\": false, \"selections\": [{\"segment_id\": \"doc_6bfe4f9d:p0174:s008\", \"relevance\": \"direct\", \"note\": \"Definisjonen av redigeringsavstand mellom to strenger ved dynamisk programmering\"}]}", "usage": {"input_tokens": 3141, "output_tokens": 70}}

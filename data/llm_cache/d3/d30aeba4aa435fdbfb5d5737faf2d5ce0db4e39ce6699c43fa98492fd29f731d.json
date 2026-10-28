@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Førstegaten for å finne d og kryptering av M = 41 i et RSA-eksersis\"\n}", "usage": {"input_tokens": 853, "output_tokens": 43}}

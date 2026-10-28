@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ikke relevant for kjernekraft i Norge.\"\n}", "usage": {"input_tokens": 824, "output_tokens": 30}}

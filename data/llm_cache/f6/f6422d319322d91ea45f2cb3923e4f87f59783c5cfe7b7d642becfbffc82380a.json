@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til O-notasjon og asymptotisk kjøretid\"\n}", "usage": {"input_tokens": 772, "output_tokens": 32}}

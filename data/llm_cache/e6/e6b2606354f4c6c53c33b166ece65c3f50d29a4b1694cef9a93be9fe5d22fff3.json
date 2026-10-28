@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Baserer vurderinger på analyser som sammenligner kjernekraftscenarioer med scenarioer uten kjernekraft.\"\n}", "usage": {"input_tokens": 1090, "output_tokens": 46}}

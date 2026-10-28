@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjonen av algoritmer for beregning av N! er relevant for diskusjon om O-notasjon\"\n}", "usage": {"input_tokens": 814, "output_tokens": 43}}

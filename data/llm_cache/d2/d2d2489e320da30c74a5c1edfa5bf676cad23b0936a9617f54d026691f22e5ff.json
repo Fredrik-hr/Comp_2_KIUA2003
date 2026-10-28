@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Gir eksempel på hvordan Dijkstras algoritme kan omformuleres for negative kanter.\"\n}", "usage": {"input_tokens": 895, "output_tokens": 41}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Angir høringsfrist for offentlig ettersyn.\"\n}", "usage": {"input_tokens": 914, "output_tokens": 31}}

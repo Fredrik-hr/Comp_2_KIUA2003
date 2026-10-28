@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Sender senderer y = (xe mod N) med hjelp av en effektiv modulær eksponering algoritm\"\n}", "usage": {"input_tokens": 826, "output_tokens": 43}}

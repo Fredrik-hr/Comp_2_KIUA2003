@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beregneren av r og r∗ relaterer til negativt vektet kanter.\"\n}", "usage": {"input_tokens": 783, "output_tokens": 40}}

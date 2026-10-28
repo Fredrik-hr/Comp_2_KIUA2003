@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definiserer Big-O notasjon for faktorialisering av n-bitte tall\"\n}", "usage": {"input_tokens": 783, "output_tokens": 35}}

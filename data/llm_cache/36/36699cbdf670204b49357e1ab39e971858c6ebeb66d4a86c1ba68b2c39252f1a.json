@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Prover at den oversatte påstanden og undersøger sikkerheten i scheme\"\n}", "usage": {"input_tokens": 929, "output_tokens": 34}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definiserer approximation algorithms i sammenheng med NP-completeness\"\n}", "usage": {"input_tokens": 767, "output_tokens": 32}}

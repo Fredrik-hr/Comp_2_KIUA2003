@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver primtallstesting, en algoritme som brukes i pensumet\"\n}", "usage": {"input_tokens": 810, "output_tokens": 37}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beskriver miljøtilstanden i Oslofjorden, som er relevant for høringsinnspillet.\"\n}", "usage": {"input_tokens": 1097, "output_tokens": 43}}

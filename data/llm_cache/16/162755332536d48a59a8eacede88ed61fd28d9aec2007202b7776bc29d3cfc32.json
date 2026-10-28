@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beskriver hvordan man kan lete seg fra en spanning tre til en annen ved å gjøre en serie edge-swaps\"\n}", "usage": {"input_tokens": 857, "output_tokens": 44}}

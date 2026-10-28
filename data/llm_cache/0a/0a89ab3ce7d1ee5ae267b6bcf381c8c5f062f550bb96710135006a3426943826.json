@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver Dijkstras algoritme for grafers med negative kantlengder\"\n}", "usage": {"input_tokens": 860, "output_tokens": 36}}

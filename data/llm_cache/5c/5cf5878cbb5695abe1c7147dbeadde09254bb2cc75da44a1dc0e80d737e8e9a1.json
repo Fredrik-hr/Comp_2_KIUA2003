@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av friluftsliv som relaterer til planen.\"\n}", "usage": {"input_tokens": 1087, "output_tokens": 34}}

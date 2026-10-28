@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver Kruskals algoritme og union-find-datastrukturen for minimale spenntrær\"\n}", "usage": {"input_tokens": 931, "output_tokens": 40}}

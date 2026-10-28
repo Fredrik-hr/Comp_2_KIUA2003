@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Spiller kjernekraft en rolle i det norske energisystemet?\"\n}", "usage": {"input_tokens": 847, "output_tokens": 33}}

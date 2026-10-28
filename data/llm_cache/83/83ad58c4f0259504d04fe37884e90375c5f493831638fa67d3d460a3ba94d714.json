@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer målet for regionalnetts planprogram.\"\n}", "usage": {"input_tokens": 923, "output_tokens": 28}}

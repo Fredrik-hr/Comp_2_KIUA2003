@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ingen relevans for PS 10/26, da dokument handler om entropi og bias i informasjonsteknologi\"\n}", "usage": {"input_tokens": 797, "output_tokens": 46}}

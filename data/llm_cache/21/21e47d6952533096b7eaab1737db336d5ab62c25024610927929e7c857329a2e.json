@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definisjon av O-notasjon for algoritmer\"\n}", "usage": {"input_tokens": 813, "output_tokens": 28}}

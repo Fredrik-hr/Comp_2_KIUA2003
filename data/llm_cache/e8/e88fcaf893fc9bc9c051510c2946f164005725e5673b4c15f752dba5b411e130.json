@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\"action\": \"search_index\", \"query\": \"Asymptotisk kj\\u00f8retid og O-notasjon, Big-O notation, asymptotic running time, Das\"}", "usage": {"input_tokens": 3026, "output_tokens": 41}}

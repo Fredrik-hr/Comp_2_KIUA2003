@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til minimum spanning trees, men er ikke kun optimal løsning\"\n}", "usage": {"input_tokens": 824, "output_tokens": 33}}

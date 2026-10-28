@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Belyser miljøproblemer som planen må bekymre seg om.\"\n}", "usage": {"input_tokens": 983, "output_tokens": 36}}

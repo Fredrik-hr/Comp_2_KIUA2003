@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til Bellman-Ford-algoritme for negative kanter.\"\n}", "usage": {"input_tokens": 843, "output_tokens": 32}}

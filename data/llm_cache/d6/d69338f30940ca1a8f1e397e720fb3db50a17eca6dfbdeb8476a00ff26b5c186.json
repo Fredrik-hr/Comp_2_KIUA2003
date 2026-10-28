@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til union-find-datastrukturen i Kruskals algoritme\"\n}", "usage": {"input_tokens": 838, "output_tokens": 34}}

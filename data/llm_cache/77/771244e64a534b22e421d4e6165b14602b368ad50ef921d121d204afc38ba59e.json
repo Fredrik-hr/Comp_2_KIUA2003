@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Referanse til kapittel som beskriver edit distance.\"\n}", "usage": {"input_tokens": 818, "output_tokens": 29}}

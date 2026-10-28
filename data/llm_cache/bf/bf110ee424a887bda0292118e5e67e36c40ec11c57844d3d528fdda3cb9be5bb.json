@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Hva er time- og utryddingskompleksjon for dynamisk programmering?\"\n}", "usage": {"input_tokens": 820, "output_tokens": 37}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Referer til eksersis i kapittel 4 om veier i graf\"\n}", "usage": {"input_tokens": 777, "output_tokens": 34}}

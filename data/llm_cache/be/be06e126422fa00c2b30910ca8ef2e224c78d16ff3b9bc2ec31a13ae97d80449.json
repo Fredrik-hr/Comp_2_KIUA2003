@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Introduksjon til RSA-protokollet og dessverre sikkerhet.\"\n}", "usage": {"input_tokens": 807, "output_tokens": 36}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av inverse i RSA-kryptering.\"\n}", "usage": {"input_tokens": 825, "output_tokens": 28}}

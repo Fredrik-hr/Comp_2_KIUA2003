@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definerer negativ cykel og forklarar at shortest-path-problemet er udefinert i grafer med negative cykler.\"\n}", "usage": {"input_tokens": 966, "output_tokens": 49}}

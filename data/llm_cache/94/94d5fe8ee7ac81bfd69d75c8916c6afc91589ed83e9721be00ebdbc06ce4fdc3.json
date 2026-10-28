@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer asymptotisk kjøretid og big-O-notation for algoritmer\"\n}", "usage": {"input_tokens": 771, "output_tokens": 36}}

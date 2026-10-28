@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon og simplifisering av uttrykk for RSA-kryptering.\"\n}", "usage": {"input_tokens": 899, "output_tokens": 35}}

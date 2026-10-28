@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av greedy-algoritmer og maksimalt spanningstre for graf\"\n}", "usage": {"input_tokens": 785, "output_tokens": 36}}

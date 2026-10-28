@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer bærekraftig og framtidsrettet kraftproduksjon og ledningsnett i Innlandet.\"\n}", "usage": {"input_tokens": 952, "output_tokens": 44}}

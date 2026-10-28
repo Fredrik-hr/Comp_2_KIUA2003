@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"En algoritme for minimering av kutter i et graf\"\n}", "usage": {"input_tokens": 767, "output_tokens": 31}}

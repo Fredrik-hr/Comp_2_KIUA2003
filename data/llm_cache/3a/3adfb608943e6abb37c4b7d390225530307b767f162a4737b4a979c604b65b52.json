@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Tiltak i jordbruket i forslag til ny Oslofjordplan.\"\n}", "usage": {"input_tokens": 828, "output_tokens": 37}}

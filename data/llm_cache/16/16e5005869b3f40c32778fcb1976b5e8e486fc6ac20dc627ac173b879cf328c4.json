@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Gir overblikk over transmisjonsnettet og regionalnettet i Innlandet.\"\n}", "usage": {"input_tokens": 942, "output_tokens": 38}}

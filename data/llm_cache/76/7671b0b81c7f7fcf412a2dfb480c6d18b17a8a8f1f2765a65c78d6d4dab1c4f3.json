@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer planens lovforankring.\"\n}", "usage": {"input_tokens": 825, "output_tokens": 26}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til Kruskals algoritme og MST, men er ikke direkte relateret til PS 6/26\"\n}", "usage": {"input_tokens": 856, "output_tokens": 44}}

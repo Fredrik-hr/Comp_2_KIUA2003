@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Relatert til planlegging av skoleplassering og sett-kover-problem\"\n}", "usage": {"input_tokens": 878, "output_tokens": 38}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"cross_reference\",\n  \"note\": \"Refererer til temaet i kapittel 6.2\"\n}", "usage": {"input_tokens": 851, "output_tokens": 30}}

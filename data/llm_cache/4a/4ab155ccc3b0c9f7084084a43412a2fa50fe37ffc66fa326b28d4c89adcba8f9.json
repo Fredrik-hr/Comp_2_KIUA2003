@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til åpning av en exercise i et kapittel om greedy-algoritmer\"\n}", "usage": {"input_tokens": 838, "output_tokens": 36}}

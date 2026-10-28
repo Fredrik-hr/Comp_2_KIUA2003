@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\"action\": \"search_index\", \"query\": \"Dijkstra negative edges, Bellman-Ford algorithm, shortest path graphs with negat\"}", "usage": {"input_tokens": 2575, "output_tokens": 30}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beskriver lokale søkheuristikk, som kan tilpasse seg til forskjellige opplæringstilfeller\"\n}", "usage": {"input_tokens": 841, "output_tokens": 48}}

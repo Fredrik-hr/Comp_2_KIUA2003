@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definerer Miljødirektoratet som kontaktpunkt for internasjonal høring.\"\n}", "usage": {"input_tokens": 1061, "output_tokens": 41}}

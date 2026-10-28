@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Analyserer effektivitet for å bestemme om et positivt integer er en potens\"\n}", "usage": {"input_tokens": 780, "output_tokens": 37}}

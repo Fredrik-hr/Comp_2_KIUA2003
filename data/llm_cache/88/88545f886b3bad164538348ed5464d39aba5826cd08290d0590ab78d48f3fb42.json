@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ingen relevante informasjon for PS 6/26\"\n}", "usage": {"input_tokens": 817, "output_tokens": 31}}

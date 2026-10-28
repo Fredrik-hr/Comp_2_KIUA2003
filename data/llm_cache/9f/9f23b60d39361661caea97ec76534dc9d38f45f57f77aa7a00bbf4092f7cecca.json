@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver RSA-kryptering med offentlig nøkkel og hvordan den bygger på number theory\"\n}", "usage": {"input_tokens": 877, "output_tokens": 39}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Bakgrunn for Norge's manglende kjernekraftproduksjon.\"\n}", "usage": {"input_tokens": 1157, "output_tokens": 36}}

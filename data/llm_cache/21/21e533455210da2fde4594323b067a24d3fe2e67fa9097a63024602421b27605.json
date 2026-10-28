@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Om randomiserte algoritmer i pensum\"\n}", "usage": {"input_tokens": 784, "output_tokens": 27}}

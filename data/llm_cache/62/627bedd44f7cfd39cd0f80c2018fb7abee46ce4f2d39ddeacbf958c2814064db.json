@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver fylkesutvalgets syn på utredningens behandling av regionale myndigheters rolle.\"\n}", "usage": {"input_tokens": 1110, "output_tokens": 43}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Uten forklaring av O-notasjon.\"\n}", "usage": {"input_tokens": 818, "output_tokens": 28}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beregningsmetoden for simplexalgoritmen er relevant for O-notasjon.\"\n}", "usage": {"input_tokens": 908, "output_tokens": 35}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til lokale søk for minimum spanning trees, men er ikke direkte relateret til Kruskals algoritme\"\n}", "usage": {"input_tokens": 801, "output_tokens": 44}}

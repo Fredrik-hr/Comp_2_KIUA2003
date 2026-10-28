@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til set-kover-algoritmen, som er relevant for pensum\"\n}", "usage": {"input_tokens": 784, "output_tokens": 34}}

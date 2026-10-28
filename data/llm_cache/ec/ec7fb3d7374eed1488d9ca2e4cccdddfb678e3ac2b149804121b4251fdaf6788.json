@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver tilstanden i Oslofjorden og tiden det kan ta for økosystemet å tilpasse seg nytt tiltak.\"\n}", "usage": {"input_tokens": 1025, "output_tokens": 47}}

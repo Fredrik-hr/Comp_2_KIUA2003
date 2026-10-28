@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til grafmodellering for fylkesveier, relevant for kontrakter\"\n}", "usage": {"input_tokens": 830, "output_tokens": 37}}

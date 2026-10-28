@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Belyser samordnet innsats nödvendig for å forbedre fjordens tilstand.\"\n}", "usage": {"input_tokens": 965, "output_tokens": 42}}

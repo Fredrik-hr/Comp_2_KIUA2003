@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Exercises om big-O-notation og kjøretid for algoritmer\"\n}", "usage": {"input_tokens": 781, "output_tokens": 34}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Fyller inn tabellen i tabellform, fra side til side og innen hver side, med konstant tid for hvert innlegg\"\n}", "usage": {"input_tokens": 797, "output_tokens": 47}}

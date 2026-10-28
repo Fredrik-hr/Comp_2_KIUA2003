@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beskriver Dijkstra's algoritme og hvordan det behøver endres for å håndtere negative veikjønner\"\n}", "usage": {"input_tokens": 922, "output_tokens": 47}}

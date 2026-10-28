@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definiserer en algoritt for å beregne N!, som er relevant for asymptotisk kjøretid og big-O notasjon\"\n}", "usage": {"input_tokens": 772, "output_tokens": 47}}

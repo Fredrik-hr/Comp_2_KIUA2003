@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ingen relevans for PS 7/26, da dokument handler om kvantal algoritmer og ikke om randomiserte algoritmer i pensum\"\n}", "usage": {"input_tokens": 805, "output_tokens": 52}}

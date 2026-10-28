@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Om faktoring av primtall, som er relevant for randomiserte algoritmer i pensum\"\n}", "usage": {"input_tokens": 865, "output_tokens": 38}}

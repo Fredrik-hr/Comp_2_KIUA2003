@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer referansegruppen i ny Oslofjordplanen.\"\n}", "usage": {"input_tokens": 826, "output_tokens": 32}}

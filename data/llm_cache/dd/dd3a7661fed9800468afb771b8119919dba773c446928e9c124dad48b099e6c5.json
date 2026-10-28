@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beregningsgrunnlag for friluftsliv og barns aktiviteter.\"\n}", "usage": {"input_tokens": 1117, "output_tokens": 37}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer input og output for Bellman-Ford.\"\n}", "usage": {"input_tokens": 898, "output_tokens": 28}}

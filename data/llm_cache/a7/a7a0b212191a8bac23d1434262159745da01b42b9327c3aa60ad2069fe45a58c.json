@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Oppgradering av avløpsrensing med nitrogenfjerning er relateret til ny Oslofjordplan.\"\n}", "usage": {"input_tokens": 834, "output_tokens": 45}}

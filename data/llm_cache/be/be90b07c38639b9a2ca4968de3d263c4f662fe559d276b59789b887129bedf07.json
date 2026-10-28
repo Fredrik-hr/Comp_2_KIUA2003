@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beskriver Kruskals algoritme og hvordan det tilføyer røtter til MST\"\n}", "usage": {"input_tokens": 798, "output_tokens": 40}}

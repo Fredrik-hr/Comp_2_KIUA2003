@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Betrer oppfylt kulturminnelovens § 9 på reguleringsplannivå.\"\n}", "usage": {"input_tokens": 953, "output_tokens": 41}}

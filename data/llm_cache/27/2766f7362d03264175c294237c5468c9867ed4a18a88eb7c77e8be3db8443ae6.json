@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ikke relevant for Fagernes-Leira arendplanen.\"\n}", "usage": {"input_tokens": 819, "output_tokens": 32}}

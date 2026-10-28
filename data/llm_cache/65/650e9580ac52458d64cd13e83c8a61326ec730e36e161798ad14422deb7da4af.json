@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Kobling av kunnskapsgrunnlag til planarbeidet er relevant for planprogrammet.\"\n}", "usage": {"input_tokens": 824, "output_tokens": 41}}

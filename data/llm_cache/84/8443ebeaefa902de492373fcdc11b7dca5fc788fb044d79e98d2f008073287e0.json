@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisert som en type algoritme for å finne en optimal samling av Si\"\n}", "usage": {"input_tokens": 783, "output_tokens": 37}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Faktorisering er vanskelig for å sikre sikkerheten i RSA-kryptering med offentlig nøkkel\"\n}", "usage": {"input_tokens": 824, "output_tokens": 43}}

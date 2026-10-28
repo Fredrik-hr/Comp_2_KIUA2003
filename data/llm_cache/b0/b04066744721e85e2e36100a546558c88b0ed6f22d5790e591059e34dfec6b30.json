@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til universell hashing i kapittel 1\"\n}", "usage": {"input_tokens": 835, "output_tokens": 29}}

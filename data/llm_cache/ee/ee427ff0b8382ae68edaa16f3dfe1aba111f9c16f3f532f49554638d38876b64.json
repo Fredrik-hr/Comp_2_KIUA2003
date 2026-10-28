@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Verifiseringsalgoritmen for RSA-signaturer er en viktig del av kryptografien\"\n}", "usage": {"input_tokens": 875, "output_tokens": 40}}

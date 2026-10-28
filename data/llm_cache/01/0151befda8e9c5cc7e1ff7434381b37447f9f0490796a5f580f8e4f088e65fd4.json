@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av deling og konquer-algoritmer, relaterer til temaet\"\n}", "usage": {"input_tokens": 808, "output_tokens": 37}}

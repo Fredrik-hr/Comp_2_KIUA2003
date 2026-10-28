@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til oppgave om Bellman-Ford algoritme.\"\n}", "usage": {"input_tokens": 783, "output_tokens": 32}}

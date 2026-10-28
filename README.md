@@ -71,6 +71,14 @@ Briefs are written to `runs/<run_id>/<meeting>/<style>/` as JSON, Markdown and H
 Every case runs twice (as described, and titles only). Output: `eval/runs/<timestamp>/`
 with `results.json`, `report.md` and the raw run logs.
 
+**From a fresh clone (no Ollama needed).** The recorded model answers are committed in
+`data/llm_cache/`, so replay is offline. Download the real meeting PDF (see above) and run
+`.\make.ps1 eval -Case fylkesutvalget_2026-09-29` (Linux/macOS: `make eval CASE=…`). The
+cache only matches the exact file the answers were recorded from:
+SHA-256 `ecce772de86349ddaef2049400cac65cd8b776470386a4f0553792f881aa3ba5`. A case whose
+source PDF is missing (e.g. `algorithms.pdf`) is reported as "not run" instead of failing.
+Real-meeting numbers use provisional gold (annotator A only); see `docs/labelling_guideline.md`.
+
 ## Configuration
 
 | File | What |

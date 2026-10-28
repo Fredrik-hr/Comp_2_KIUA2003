@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Ber kommunen om å vurdere vannmiljø og ikke legge til rette for boligutvikling i flomutsatte områder.\"\n}", "usage": {"input_tokens": 935, "output_tokens": 51}}

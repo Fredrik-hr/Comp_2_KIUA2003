@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Spørsmålet om kjernekraftens rolle i energisystemet er sentralt for saken.\"\n}", "usage": {"input_tokens": 1054, "output_tokens": 42}}

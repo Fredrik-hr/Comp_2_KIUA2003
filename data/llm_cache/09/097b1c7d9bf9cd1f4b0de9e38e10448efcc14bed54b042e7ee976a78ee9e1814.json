@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av kommunale oppgavefellesskap (KO).\"\n}", "usage": {"input_tokens": 960, "output_tokens": 33}}

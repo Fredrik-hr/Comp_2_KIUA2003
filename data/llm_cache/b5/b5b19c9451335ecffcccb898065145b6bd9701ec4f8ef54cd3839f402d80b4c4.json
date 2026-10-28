@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver en algoritt for å kontrollere om en tre for grafen er en korteste vei\"\n}", "usage": {"input_tokens": 897, "output_tokens": 41}}

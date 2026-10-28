@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer randomiserte algoritmer og deres egenskaper.\"\n}", "usage": {"input_tokens": 846, "output_tokens": 33}}

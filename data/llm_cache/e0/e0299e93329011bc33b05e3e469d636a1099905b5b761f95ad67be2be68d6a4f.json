@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definisjon av Big-O notasjon, f3(n) = 2n + 20\"\n}", "usage": {"input_tokens": 816, "output_tokens": 37}}

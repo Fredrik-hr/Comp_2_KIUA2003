@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av negative sykler i grafene\"\n}", "usage": {"input_tokens": 844, "output_tokens": 29}}

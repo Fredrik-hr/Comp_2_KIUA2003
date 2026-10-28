@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer mål og organisering av planarbeidet.\"\n}", "usage": {"input_tokens": 959, "output_tokens": 31}}

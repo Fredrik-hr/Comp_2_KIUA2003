@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Bekreftelser av generelle begrensninger i kommuners samarbeid.\"\n}", "usage": {"input_tokens": 1052, "output_tokens": 37}}

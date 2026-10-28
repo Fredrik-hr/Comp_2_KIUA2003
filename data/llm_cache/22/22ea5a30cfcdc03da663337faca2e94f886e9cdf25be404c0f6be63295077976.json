@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Finnes i kapittel 6, men er ikke direkte relevant for PS 4/26\"\n}", "usage": {"input_tokens": 799, "output_tokens": 38}}

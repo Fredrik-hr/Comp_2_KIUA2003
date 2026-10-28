@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definerer forholdet til forvaltningsloven for interkommunalt politisk råd.\"\n}", "usage": {"input_tokens": 958, "output_tokens": 42}}

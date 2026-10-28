@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Juridisk utredning om regional plan for nettinfrastruktur.\"\n}", "usage": {"input_tokens": 938, "output_tokens": 32}}

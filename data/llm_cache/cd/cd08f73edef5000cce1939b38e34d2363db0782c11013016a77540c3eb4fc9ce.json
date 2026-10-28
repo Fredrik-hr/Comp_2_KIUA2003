@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Begynnelsen av arbeidet med regional plan 2027-2028.\"\n}", "usage": {"input_tokens": 806, "output_tokens": 39}}

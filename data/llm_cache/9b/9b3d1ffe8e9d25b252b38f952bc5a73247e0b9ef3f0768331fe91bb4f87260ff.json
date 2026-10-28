@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisert for graf med negative kantlengder\"\n}", "usage": {"input_tokens": 773, "output_tokens": 30}}

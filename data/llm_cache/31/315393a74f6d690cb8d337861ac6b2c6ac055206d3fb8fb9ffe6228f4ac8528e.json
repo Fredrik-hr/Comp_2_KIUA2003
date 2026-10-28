@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definisjonen av O-notasjon og notasjonene Omega og Theta er relevante for saken\"\n}", "usage": {"input_tokens": 824, "output_tokens": 38}}

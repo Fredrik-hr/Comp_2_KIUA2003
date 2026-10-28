@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Bekreftelser av selttsamfunnsmøtekvellenes brukes lite.\"\n}", "usage": {"input_tokens": 962, "output_tokens": 40}}

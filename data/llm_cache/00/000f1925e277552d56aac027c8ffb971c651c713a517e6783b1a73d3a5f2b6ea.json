@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Alice skal opprette et digitaltegn som ser ut som det er signert av Bob med public RSA-nyttet (17, 391)\"\n}", "usage": {"input_tokens": 792, "output_tokens": 47}}

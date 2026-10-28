@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"cross_reference\",\n  \"note\": \"Refererer til kapittel 2 og 3 om rammer og skulebygg.\"\n}", "usage": {"input_tokens": 824, "output_tokens": 36}}

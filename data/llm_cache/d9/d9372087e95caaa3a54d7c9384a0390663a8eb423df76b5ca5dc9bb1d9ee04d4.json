@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"cross_reference\",\n  \"note\": \"Referanse til tilleggsstoff om tilfeldige algoritmer.\"\n}", "usage": {"input_tokens": 785, "output_tokens": 32}}

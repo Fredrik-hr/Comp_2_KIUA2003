@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av MST (Minimum Spanning Tree) som relaterer til Dijkstras algoritme\"\n}", "usage": {"input_tokens": 856, "output_tokens": 40}}

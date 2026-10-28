@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\"action\": \"search_index\", \"query\": \"Kruskal\\\\u2019s algoritme minimum spanning tree\"}", "usage": {"input_tokens": 2166, "output_tokens": 27}}

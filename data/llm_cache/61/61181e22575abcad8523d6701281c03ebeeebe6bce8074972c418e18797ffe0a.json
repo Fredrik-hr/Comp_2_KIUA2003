@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ingen relevans for PS 4/26, som handler om redigeringsavstand med dynamisk programmering\"\n}", "usage": {"input_tokens": 826, "output_tokens": 44}}

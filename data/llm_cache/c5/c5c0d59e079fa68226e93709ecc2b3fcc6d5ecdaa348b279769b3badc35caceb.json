@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\"action\": \"finish\", \"nothing_found\": false, \"selections\": [{\"segment_id\": \"doc_6bfe4f9d:p0140:s005\", \"relevance\": \"direct\", \"note\": \"Definisjon av minimum spanning tree med Kruskals algoritme\"}]}", "usage": {"input_tokens": 2789, "output_tokens": 64}}

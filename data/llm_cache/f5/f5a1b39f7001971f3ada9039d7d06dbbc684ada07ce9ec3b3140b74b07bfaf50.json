@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer planens mål for transmisjonsnettet.\"\n}", "usage": {"input_tokens": 843, "output_tokens": 31}}

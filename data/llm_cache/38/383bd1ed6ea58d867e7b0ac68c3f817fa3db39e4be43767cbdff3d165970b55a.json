@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Om primtallstesting og randomiserte algoritmer i kurset\"\n}", "usage": {"input_tokens": 820, "output_tokens": 33}}

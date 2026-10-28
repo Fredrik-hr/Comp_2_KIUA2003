@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til regjeringens samarbeid om å redusere miljøgifter.\"\n}", "usage": {"input_tokens": 979, "output_tokens": 39}}

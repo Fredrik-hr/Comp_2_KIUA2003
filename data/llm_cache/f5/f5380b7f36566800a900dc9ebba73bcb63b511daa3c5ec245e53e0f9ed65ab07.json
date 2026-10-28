@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\"action\": \"search_index\", \"query\": \"korteste vei i grafer med negative kantlengder, Bellman-Ford, Dijkstra\\u2019s algorit\", \"nothing_found\": false}", "usage": {"input_tokens": 3686, "output_tokens": 48}}

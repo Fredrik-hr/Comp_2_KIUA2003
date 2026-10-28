@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Bekreftelser av behovet for robust energiinfrastruktur og samordning.\"\n}", "usage": {"input_tokens": 1064, "output_tokens": 39}}

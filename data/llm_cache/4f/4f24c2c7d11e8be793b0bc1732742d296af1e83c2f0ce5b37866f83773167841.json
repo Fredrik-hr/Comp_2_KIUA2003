@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Krav til trafikksikker skoleveg og byggegrenser er relevante for offentlig ettersyn.\"\n}", "usage": {"input_tokens": 910, "output_tokens": 46}}

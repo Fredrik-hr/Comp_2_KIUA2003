@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"cross_reference\",\n  \"note\": \"Refererer til tilknytning mellom stiktrener og cut i minimumskjeden.\"\n}", "usage": {"input_tokens": 816, "output_tokens": 39}}

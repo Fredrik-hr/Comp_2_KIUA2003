@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Belyser endringer i ny kommunedelplanen for E16.\"\n}", "usage": {"input_tokens": 1129, "output_tokens": 35}}

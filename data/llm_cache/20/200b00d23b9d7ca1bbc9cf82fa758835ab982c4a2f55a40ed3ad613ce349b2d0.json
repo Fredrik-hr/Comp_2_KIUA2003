@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til universell hashing i konteksten for algoritmer med tall over 1,5\"\n}", "usage": {"input_tokens": 799, "output_tokens": 39}}

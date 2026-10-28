@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definisjonen av Big-O notasjon omfatter konstanter\"\n}", "usage": {"input_tokens": 821, "output_tokens": 32}}

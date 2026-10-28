@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Betrer krav om avbøtende tiltak for friluftslivet i planen.\"\n}", "usage": {"input_tokens": 995, "output_tokens": 39}}

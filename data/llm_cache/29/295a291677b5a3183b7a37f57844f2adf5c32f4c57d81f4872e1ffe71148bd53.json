@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definerer konvertering av decimalint til binary\"\n}", "usage": {"input_tokens": 793, "output_tokens": 29}}

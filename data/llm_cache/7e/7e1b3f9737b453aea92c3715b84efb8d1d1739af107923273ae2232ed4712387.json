@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av graf som åpnes med Kruskals algoritme\"\n}", "usage": {"input_tokens": 789, "output_tokens": 34}}

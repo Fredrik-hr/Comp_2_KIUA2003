@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definiserer begrepet om antall kantedre i et graf\"\n}", "usage": {"input_tokens": 787, "output_tokens": 34}}

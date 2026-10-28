@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Hans starter med å picke to store (n-bit) tilfeldige primtal p og q.\"\n}", "usage": {"input_tokens": 812, "output_tokens": 38}}

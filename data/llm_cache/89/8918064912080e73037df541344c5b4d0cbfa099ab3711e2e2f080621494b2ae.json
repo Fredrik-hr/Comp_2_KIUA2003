@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver primtallstesting i algoritmer med tall over 1,3\"\n}", "usage": {"input_tokens": 866, "output_tokens": 36}}

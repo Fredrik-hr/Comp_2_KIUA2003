@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ingen relevans for PS 4/26, da dokument handler DNA-sekvensering, ikke redigeringsavstand\"\n}", "usage": {"input_tokens": 876, "output_tokens": 45}}

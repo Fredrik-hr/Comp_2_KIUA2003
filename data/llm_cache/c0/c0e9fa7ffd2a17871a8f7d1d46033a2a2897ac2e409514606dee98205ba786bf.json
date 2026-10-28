@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"cross_reference\",\n  \"note\": \"Refererer til Brøytekontrakter for fylkesveier 2027–2030\"\n}", "usage": {"input_tokens": 789, "output_tokens": 39}}

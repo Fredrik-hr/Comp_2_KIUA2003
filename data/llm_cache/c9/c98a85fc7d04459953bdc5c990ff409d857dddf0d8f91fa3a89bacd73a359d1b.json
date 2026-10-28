@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til reduksjon av NP-fulle problemer, som er relevant for big-O-notasjon\"\n}", "usage": {"input_tokens": 765, "output_tokens": 40}}

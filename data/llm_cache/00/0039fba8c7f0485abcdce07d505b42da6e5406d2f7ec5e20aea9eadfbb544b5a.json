@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definerer O-notasjon og relaterer til tilfeldige tall.\"\n}", "usage": {"input_tokens": 886, "output_tokens": 33}}
