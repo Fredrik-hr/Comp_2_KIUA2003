@@ -5,7 +5,10 @@ $env:PYTHONPATH = Join-Path $PSScriptRoot "src"
 $env:PYTHONIOENCODING = "utf-8"
 $caseArgs = @(); if ($Case) { $caseArgs = @("--case", $Case) }
 switch ($Target) {
-    "setup"     { python -m venv .venv; & $py -m pip install -e ".[dev]" }
+    "setup"     {
+        $base = if ($env:PYTHON) { $env:PYTHON } else { "python" }   # any Python 3.11+, not conda
+        & $base -m venv .venv; & $py -m pip install -e ".[dev]"
+    }
     "test"      { & $py -m pytest -q }
     "lint"      { & $py -m ruff check src eval tests }
     "run"       {
