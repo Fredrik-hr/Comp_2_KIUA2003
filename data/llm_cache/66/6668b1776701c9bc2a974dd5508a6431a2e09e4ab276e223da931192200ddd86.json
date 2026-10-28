@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til lokal søk heuristikker, som kan være relevant for randomiserte algoritmer i pensum\"\n}", "usage": {"input_tokens": 877, "output_tokens": 43}}

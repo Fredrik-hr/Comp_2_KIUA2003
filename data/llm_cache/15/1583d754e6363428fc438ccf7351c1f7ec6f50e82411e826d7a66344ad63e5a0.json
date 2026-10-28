@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definiserer redigering af afstand med dynamisk programmering\"\n}", "usage": {"input_tokens": 795, "output_tokens": 31}}

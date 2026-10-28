@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til design av algoritmer for multiplikasjon av n-bitte tall\"\n}", "usage": {"input_tokens": 786, "output_tokens": 36}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver Kruskals algoritme og ordningen på hvilke grenser som legges til MST\"\n}", "usage": {"input_tokens": 844, "output_tokens": 40}}

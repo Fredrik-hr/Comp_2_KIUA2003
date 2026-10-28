@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer tabellen for edit distance.\"\n}", "usage": {"input_tokens": 865, "output_tokens": 25}}

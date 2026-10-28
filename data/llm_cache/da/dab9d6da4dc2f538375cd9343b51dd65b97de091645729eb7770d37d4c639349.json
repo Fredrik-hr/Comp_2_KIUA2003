@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til kontraktssammenheng og datastruktur for kontrakter\"\n}", "usage": {"input_tokens": 842, "output_tokens": 37}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definiserer minimum spanning trees med Kruskals algoritme\"\n}", "usage": {"input_tokens": 786, "output_tokens": 30}}

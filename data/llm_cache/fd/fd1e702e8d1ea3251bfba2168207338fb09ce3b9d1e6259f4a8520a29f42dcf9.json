@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Effektiv algoritm for å beregne det minste felles multiplet av to n-bitte tall\"\n}", "usage": {"input_tokens": 807, "output_tokens": 39}}

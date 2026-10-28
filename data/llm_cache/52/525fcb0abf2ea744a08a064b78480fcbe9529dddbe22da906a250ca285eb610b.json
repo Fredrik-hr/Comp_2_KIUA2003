@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer kommunedelplanen for Fagernes-Leira i Nord-Aurdal kommune.\"\n}", "usage": {"input_tokens": 816, "output_tokens": 39}}

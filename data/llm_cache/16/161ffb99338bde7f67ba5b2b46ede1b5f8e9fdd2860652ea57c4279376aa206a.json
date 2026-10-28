@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver hvorfor Dijkstras algoritme ikke virker med negative kanter.\"\n}", "usage": {"input_tokens": 939, "output_tokens": 35}}

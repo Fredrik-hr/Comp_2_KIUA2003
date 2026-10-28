@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer primtallstesting, som er en del av randomiserte algoritmer i pensum.\"\n}", "usage": {"input_tokens": 814, "output_tokens": 40}}

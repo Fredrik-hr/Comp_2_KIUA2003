@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til universell hashing, en teknikk brukt i randomiserte algoritmer\"\n}", "usage": {"input_tokens": 797, "output_tokens": 37}}

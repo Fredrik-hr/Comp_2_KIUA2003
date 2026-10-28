@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver Dijkstra's algoritme og hvordan det skal anpasses til negative kantlengder\"\n}", "usage": {"input_tokens": 869, "output_tokens": 40}}

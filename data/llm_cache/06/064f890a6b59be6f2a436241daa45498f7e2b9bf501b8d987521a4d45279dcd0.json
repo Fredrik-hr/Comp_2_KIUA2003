@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjonen av algoritmer med delt og konquer-algoritmer\"\n}", "usage": {"input_tokens": 829, "output_tokens": 34}}

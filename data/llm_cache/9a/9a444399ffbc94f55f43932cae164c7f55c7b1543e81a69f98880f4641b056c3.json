@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver Kruskals algoritme for minimale spenntrær\"\n}", "usage": {"input_tokens": 828, "output_tokens": 33}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver fordelene, ulemper og forutsetningene for kjernekraft.\"\n}", "usage": {"input_tokens": 799, "output_tokens": 38}}

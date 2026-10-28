@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ikke relevant for TV-aksjonen 2026 bidrag.\"\n}", "usage": {"input_tokens": 885, "output_tokens": 35}}

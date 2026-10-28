@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definerer fiskerireguleringer som en del av fylkeskommunedirektørens innstilling.\"\n}", "usage": {"input_tokens": 967, "output_tokens": 46}}

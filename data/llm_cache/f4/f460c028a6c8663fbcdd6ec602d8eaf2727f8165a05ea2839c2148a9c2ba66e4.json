@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"cross_reference\",\n  \"note\": \"Refererer til rapport om interkommunalt samarbeid.\"\n}", "usage": {"input_tokens": 871, "output_tokens": 32}}

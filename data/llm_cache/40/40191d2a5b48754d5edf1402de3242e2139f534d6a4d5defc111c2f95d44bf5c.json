@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Oppgave om endringer i korte veier, ikke relevant for negativt vektede kanter.\"\n}", "usage": {"input_tokens": 784, "output_tokens": 44}}

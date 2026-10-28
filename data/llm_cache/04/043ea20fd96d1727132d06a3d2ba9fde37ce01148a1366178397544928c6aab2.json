@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"cross_reference\",\n  \"note\": \"Refererer til Kruskals algoritme på side 301\"\n}", "usage": {"input_tokens": 773, "output_tokens": 31}}

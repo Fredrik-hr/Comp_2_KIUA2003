@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til settkover-algoritme, som kan brukes for å bestemme om en by er innen 30 miles av en annen\"\n}", "usage": {"input_tokens": 797, "output_tokens": 49}}

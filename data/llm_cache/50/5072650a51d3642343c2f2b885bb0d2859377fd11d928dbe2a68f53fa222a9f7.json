@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Viser støtte for planen fra fylkeskommunen.\"\n}", "usage": {"input_tokens": 1025, "output_tokens": 34}}

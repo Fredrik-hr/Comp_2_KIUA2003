@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Gir rettinger om Kommunedirektørens fullmektighet i planforslaget.\"\n}", "usage": {"input_tokens": 889, "output_tokens": 39}}

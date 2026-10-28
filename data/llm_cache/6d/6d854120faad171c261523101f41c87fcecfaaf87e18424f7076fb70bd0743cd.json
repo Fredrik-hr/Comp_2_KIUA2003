@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av kompatibelt mønster og subproblemer.\"\n}", "usage": {"input_tokens": 809, "output_tokens": 34}}

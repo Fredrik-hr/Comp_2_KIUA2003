@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Referanse til bok om randomiserte algoritmer\"\n}", "usage": {"input_tokens": 813, "output_tokens": 30}}

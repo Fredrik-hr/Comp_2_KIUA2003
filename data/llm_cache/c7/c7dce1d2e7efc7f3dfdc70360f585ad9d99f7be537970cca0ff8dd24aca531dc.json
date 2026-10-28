@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver RSA-kryptering og forklarer hvorfor faktorisering er viktig.\"\n}", "usage": {"input_tokens": 906, "output_tokens": 36}}

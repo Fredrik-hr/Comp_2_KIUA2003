@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Referanse til exercise i kapittel 4, som er relevant for Dijkstras algoritme og negative kantlengder\"\n}", "usage": {"input_tokens": 839, "output_tokens": 45}}

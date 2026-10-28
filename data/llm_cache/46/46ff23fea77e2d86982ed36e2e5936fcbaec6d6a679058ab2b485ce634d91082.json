@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beskriver simplex-algoritmens kjøretid i forhold til antall uavhengige uenigheter\"\n}", "usage": {"input_tokens": 901, "output_tokens": 45}}

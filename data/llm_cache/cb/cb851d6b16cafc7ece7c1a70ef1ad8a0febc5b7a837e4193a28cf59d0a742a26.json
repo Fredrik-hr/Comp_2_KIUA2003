@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til randomiserte algoritmer.\"\n}", "usage": {"input_tokens": 771, "output_tokens": 27}}

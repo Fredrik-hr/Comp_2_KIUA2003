@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Diskuterer fylkeskommunenes og regionale myndigheters rolle i utredningen.\"\n}", "usage": {"input_tokens": 903, "output_tokens": 40}}

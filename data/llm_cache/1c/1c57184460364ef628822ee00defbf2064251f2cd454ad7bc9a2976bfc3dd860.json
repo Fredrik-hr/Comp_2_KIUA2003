@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Gir eksempler på hvor randomiserte algoritmer brukes i læreboken.\"\n}", "usage": {"input_tokens": 829, "output_tokens": 37}}

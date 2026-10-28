@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"cross_reference\",\n  \"note\": \"Refererer til et tilfeldig algoritme for minste cut.\"\n}", "usage": {"input_tokens": 827, "output_tokens": 32}}

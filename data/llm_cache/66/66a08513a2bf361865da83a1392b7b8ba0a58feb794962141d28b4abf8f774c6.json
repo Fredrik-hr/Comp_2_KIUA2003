@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Om faktoring med hjelp av kvant-algoritmer, som er relevant for PS 7/26\"\n}", "usage": {"input_tokens": 829, "output_tokens": 39}}

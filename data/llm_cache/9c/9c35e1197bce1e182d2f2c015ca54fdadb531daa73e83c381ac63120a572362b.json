@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til settealgoritm i samme kapittel, men ikke direkte til brøytekontrakter\"\n}", "usage": {"input_tokens": 778, "output_tokens": 43}}

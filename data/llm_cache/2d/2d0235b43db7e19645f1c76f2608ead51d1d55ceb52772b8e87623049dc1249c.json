@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer prosjektpakker og medvirkningsprosesser for planen.\"\n}", "usage": {"input_tokens": 939, "output_tokens": 37}}

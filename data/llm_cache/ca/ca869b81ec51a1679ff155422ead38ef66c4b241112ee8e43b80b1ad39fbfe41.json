@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til en algoritm som kan brukes for å finne optimal løsning i set cover-problemet\"\n}", "usage": {"input_tokens": 872, "output_tokens": 43}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\"action\": \"search_index\", \"query\": \"korteste vei i grafer med negative kantlengder\", \"segment_id\": \"nothing_found\"}", "usage": {"input_tokens": 2786, "output_tokens": 36}}

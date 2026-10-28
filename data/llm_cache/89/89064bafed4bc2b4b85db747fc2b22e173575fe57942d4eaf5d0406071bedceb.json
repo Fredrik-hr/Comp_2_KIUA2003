@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Eksempel på en metode for å løse problemet.\"\n}", "usage": {"input_tokens": 833, "output_tokens": 32}}

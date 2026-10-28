@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Eve kan effektivt faktorisere N med e = 3\"\n}", "usage": {"input_tokens": 808, "output_tokens": 32}}

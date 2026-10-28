@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til en ny algoritme for konstruksjon av en minimæl streng (MST) i en graf med negative veikjønnskoder\"\n}", "usage": {"input_tokens": 793, "output_tokens": 55}}

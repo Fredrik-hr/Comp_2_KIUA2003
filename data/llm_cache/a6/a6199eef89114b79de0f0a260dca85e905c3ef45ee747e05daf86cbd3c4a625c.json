@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Referanse til big-O notation i prolog.\"\n}", "usage": {"input_tokens": 820, "output_tokens": 27}}

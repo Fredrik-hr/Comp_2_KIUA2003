@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av universell hashing.\"\n}", "usage": {"input_tokens": 812, "output_tokens": 25}}

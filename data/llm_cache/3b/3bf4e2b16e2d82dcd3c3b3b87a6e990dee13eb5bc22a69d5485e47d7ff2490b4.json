@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Gir eksempel på problem som ber om korteste vei i grafer.\"\n}", "usage": {"input_tokens": 841, "output_tokens": 36}}

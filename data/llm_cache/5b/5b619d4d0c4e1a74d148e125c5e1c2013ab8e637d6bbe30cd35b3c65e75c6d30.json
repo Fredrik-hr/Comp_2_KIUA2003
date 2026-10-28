@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beskriver metodene for å beregne antall gjenstående kast før en hovedsakelig hovedsak kommer opp\"\n}", "usage": {"input_tokens": 879, "output_tokens": 48}}

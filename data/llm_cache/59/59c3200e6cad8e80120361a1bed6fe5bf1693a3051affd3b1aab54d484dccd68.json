@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ingen relevans for PS 5/26, da det handler om NP-kompleksitet og ikke om RSA-kryptering\"\n}", "usage": {"input_tokens": 822, "output_tokens": 47}}

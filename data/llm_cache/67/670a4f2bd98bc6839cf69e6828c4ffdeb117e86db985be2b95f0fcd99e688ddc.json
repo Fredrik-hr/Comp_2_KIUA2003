@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av feedback edge set i graf med negative kantlengder\"\n}", "usage": {"input_tokens": 798, "output_tokens": 34}}

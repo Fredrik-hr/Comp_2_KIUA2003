@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer planprogrammet for nettinfrastrukturen.\"\n}", "usage": {"input_tokens": 852, "output_tokens": 29}}

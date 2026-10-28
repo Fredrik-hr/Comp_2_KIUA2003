@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ikke relevant for broyteteknisk kontrakt.\"\n}", "usage": {"input_tokens": 799, "output_tokens": 32}}

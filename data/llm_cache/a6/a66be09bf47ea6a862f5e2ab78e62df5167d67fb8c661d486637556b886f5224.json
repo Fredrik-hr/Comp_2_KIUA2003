@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer regional plan for nettinfrastrukturen og handlingsprogram.\"\n}", "usage": {"input_tokens": 880, "output_tokens": 32}}

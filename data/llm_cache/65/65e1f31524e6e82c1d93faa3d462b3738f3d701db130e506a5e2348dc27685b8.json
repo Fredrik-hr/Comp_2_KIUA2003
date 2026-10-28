@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beregner effektivitet i planlegging av transmisjonsnettet.\"\n}", "usage": {"input_tokens": 938, "output_tokens": 36}}

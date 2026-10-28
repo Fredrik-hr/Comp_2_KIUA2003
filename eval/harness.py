@@ -26,6 +26,7 @@ sys.path.insert(0, str(ROOT))
 
 from briefer import paths  # noqa: E402
 from briefer.agenda import AgendaError, load  # noqa: E402
+from briefer.fetch import FetchError, resolve_local  # noqa: E402
 from briefer.pipeline import run as run_pipeline  # noqa: E402
 from briefer.pipeline import slug  # noqa: E402
 from eval.metrics import aggregate, score_item  # noqa: E402
@@ -42,6 +43,22 @@ def _fmt(x) -> str:
     if isinstance(x, list) and len(x) == 2:
         return f"{x[0]}/{x[1]}"
     return str(x)
+
+
+def missing_sources(agenda) -> list[str]:
+    """Local attachments an open, in-scope item needs but this checkout lacks (e.g. the
+    copyrighted test PDF on a fresh clone); the case is then reported as not run."""
+    missing = set()
+    for item in agenda.items:
+        if item.closed or not item.in_scope:
+            continue
+        for att in item.attachments:
+            if att.url.startswith("local:"):
+                try:
+                    resolve_local(att.url)
+                except FetchError:
+                    missing.add(att.url.removeprefix("local:"))
+    return sorted(missing)
 
 
 def candidate_recall(summary: dict, labels: dict) -> dict:
@@ -102,10 +119,21 @@ def main(live: bool = False, case: str | None = None, judge: bool = False,
     if case:
         agendas = [a for a in agendas if a.parent.name == case]
     for agenda_path in agendas:
-        meeting = load(agenda_path).meeting
+        agenda = load(agenda_path)
+        meeting = agenda.meeting
         labels_file = ROOT / "labels" / f"{meeting.id}.yaml"
-        labels = yaml.safe_load(labels_file.read_text(encoding="utf-8")) \
-            if labels_file.exists() else {"items": {}}
+        if not labels_file.exists():
+            # label before output (labelling guideline): an unlabelled case is not run
+            typer.echo(f"== {agenda_path.parent.name}: no labels yet, not run")
+            results.setdefault("unlabelled", []).append(agenda_path.parent.name)
+            continue
+        missing = missing_sources(agenda)
+        if missing:
+            typer.echo(f"== {agenda_path.parent.name}: source document missing "
+                       f"({', '.join(missing)}), not run")
+            results.setdefault("missing_sources", {})[agenda_path.parent.name] = missing
+            continue
+        labels = yaml.safe_load(labels_file.read_text(encoding="utf-8"))
         case_res = {}
         for style in ("described", "titles_only"):
             typer.echo(f"== {agenda_path.parent.name} [{style}]")
@@ -180,13 +208,18 @@ def report(results: dict) -> str:
                 md.append(f"| {r['case_no']} | {r['expect']} | {r['status']} | {r['n_gold']} | "
                           f"{r.get('n_found', '–')} | {r['n_selected']} | "
                           f"{_fmt(r.get('recall'))} | {_fmt(r.get('precision'))} |")
+            if topics := c[style]["aggregate"].get("found_by_topic"):
+                md += ["", "### Recall by subtopic", "", "| subtopic | found / gold |",
+                       "|---|---|"]
+                md += [f"| {t} | {f}/{n} |" for t, (f, n) in sorted(topics.items())]
             md += ["", "### Qualitative: misses and false positives", ""]
             for r in c[style]["items"]:
                 if r.get("missed") or r.get("false_positives") or r.get("removed") or \
                         r.get("correct") is False:
                     md.append(f"**{r['case_no']}** ({r['status']}, expected {r['expect']})")
                     for m in r.get("missed", []):
-                        md.append(f"- missed p{m['page']}: “{m['quote']}…”")
+                        tags = f" [{', '.join(m['topics'])}]" if m.get("topics") else ""
+                        md.append(f"- missed p{m['page']}{tags}: “{m['quote']}…”")
                     for fp in r.get("false_positives", []):
                         if isinstance(fp, dict):
                             md.append(f"- extra p{fp['page']}: “{fp['text']}…”")
@@ -199,6 +232,10 @@ def report(results: dict) -> str:
             if "judge" in c and style in c["judge"]:
                 j = c["judge"][style]
                 md += ["### LLM-as-judge (notes)", "", f"{json.dumps(j['summary'])}", ""]
+    if results.get("unlabelled"):
+        md += ["Not run (no labels yet): " + ", ".join(results["unlabelled"]), ""]
+    for name, files in results.get("missing_sources", {}).items():
+        md += [f"Not run (source document missing): {name} ({', '.join(files)})", ""]
     md += ["## Rejected input (S0)", ""]
     for r in results.get("rejected_input", []):
         md.append(f"- {r['case']}: {'rejected ✓' if r['rejected'] else 'ACCEPTED ✗'} "

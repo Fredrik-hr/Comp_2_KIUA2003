@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Gir bakgrunn til høringen av NOU 2026:4.\"\n}", "usage": {"input_tokens": 949, "output_tokens": 38}}

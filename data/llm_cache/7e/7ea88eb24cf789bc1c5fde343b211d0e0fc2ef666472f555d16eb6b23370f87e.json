@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Prove at Kruskals algoritme er korrekt\"\n}", "usage": {"input_tokens": 811, "output_tokens": 30}}

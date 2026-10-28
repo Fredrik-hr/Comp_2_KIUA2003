@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ingen relevans for PS 2/26, da dokumentet handler om simplex-algoritmen og ikke O-notasjon\"\n}", "usage": {"input_tokens": 846, "output_tokens": 44}}

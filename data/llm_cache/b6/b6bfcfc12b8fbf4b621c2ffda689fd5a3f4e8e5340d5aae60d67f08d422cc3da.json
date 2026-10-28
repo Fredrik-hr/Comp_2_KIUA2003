@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Kjernen for Dijkstras algoritme er ikke relevant.\"\n}", "usage": {"input_tokens": 863, "output_tokens": 32}}

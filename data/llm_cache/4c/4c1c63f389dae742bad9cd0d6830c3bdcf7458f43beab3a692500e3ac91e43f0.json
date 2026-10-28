@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver dagstrukturen i dynamisk programmering for redigering af avstand\"\n}", "usage": {"input_tokens": 853, "output_tokens": 36}}

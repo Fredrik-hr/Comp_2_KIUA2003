@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definisjon av edit distance ved hjelp av dynamisk programmering.\"\n}", "usage": {"input_tokens": 808, "output_tokens": 31}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver et set-omfattende problem i et samlet, hvor hver skole må være i en by og ingen person må måtte reise mere enn 30 miles til en av dem\"\n}", "usage": {"input_tokens": 861, "output_tokens": 59}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definisjon av O-notasjon og relasjon mellom f og g\"\n}", "usage": {"input_tokens": 861, "output_tokens": 32}}

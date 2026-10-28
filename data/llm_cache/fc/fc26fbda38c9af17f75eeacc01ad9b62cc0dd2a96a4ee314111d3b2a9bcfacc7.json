@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beskriver en del av Dijkstras algoritme, men ikke direkte relevant for PS 3/26\"\n}", "usage": {"input_tokens": 855, "output_tokens": 42}}

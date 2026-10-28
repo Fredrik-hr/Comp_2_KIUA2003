@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\"action\": \"search_index\", \"query\": \"fylkesveier 2027-2030 br\\u00f8ytekontrakter\"}", "usage": {"input_tokens": 4436, "output_tokens": 34}}

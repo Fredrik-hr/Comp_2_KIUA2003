@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Oppgave om vanlig multiplum, ikke O-notasjon.\"\n}", "usage": {"input_tokens": 813, "output_tokens": 33}}

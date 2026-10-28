@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer big-O notation.\"\n}", "usage": {"input_tokens": 780, "output_tokens": 23}}

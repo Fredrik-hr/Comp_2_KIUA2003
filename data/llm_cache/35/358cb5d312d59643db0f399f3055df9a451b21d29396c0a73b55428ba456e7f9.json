@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Beskrivelse av teknologi, ikke spesielt om tilfeldige algoritmer.\"\n}", "usage": {"input_tokens": 832, "output_tokens": 38}}

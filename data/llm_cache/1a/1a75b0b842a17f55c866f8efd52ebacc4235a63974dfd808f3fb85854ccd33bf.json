@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til Kruskal’s algoritme, som brukes i big-O notation.\"\n}", "usage": {"input_tokens": 788, "output_tokens": 36}}

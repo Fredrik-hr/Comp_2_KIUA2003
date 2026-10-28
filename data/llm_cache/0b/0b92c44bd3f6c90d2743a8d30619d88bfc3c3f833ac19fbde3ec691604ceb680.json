@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer kildetilgang til midler for TV-aksjonen 2026 - bidrag.\"\n}", "usage": {"input_tokens": 827, "output_tokens": 42}}

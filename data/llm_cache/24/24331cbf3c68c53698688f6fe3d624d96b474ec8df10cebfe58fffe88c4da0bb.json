@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer grense for Fagernes-Leira kommundelplan.\"\n}", "usage": {"input_tokens": 814, "output_tokens": 32}}

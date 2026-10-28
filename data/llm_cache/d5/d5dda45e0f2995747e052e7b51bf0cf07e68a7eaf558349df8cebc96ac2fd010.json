@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beskriver basikkartets farge på kartet.\"\n}", "usage": {"input_tokens": 823, "output_tokens": 30}}

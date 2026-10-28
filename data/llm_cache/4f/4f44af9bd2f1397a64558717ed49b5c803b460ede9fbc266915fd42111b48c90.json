@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definerer hvordan algoritmen B løser problemer av størrelse n\"\n}", "usage": {"input_tokens": 787, "output_tokens": 35}}

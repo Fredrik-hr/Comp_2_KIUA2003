@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definerer analogene til ≥ og = i forhold til O(·).\"\n}", "usage": {"input_tokens": 792, "output_tokens": 35}}

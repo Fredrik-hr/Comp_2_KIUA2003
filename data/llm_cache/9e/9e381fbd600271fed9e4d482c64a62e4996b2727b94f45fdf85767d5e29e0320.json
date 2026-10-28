@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definerer kulturmiljøplaner for friluftsliv, som er relevant for planen.\"\n}", "usage": {"input_tokens": 1028, "output_tokens": 42}}

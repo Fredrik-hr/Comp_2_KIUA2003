@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Bakgrunn for høringsinnspillet om Oslofjordplanen.\"\n}", "usage": {"input_tokens": 1071, "output_tokens": 37}}

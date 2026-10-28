@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver Bellman-Ford-algoritmen for enkelsource korteste vei i allmenn graf med negative kantlengder\"\n}", "usage": {"input_tokens": 792, "output_tokens": 48}}

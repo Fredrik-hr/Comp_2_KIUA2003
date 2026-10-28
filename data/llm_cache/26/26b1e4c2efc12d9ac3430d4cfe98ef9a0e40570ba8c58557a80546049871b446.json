@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til løsning av rekurranser med Θ-beskrivelse\"\n}", "usage": {"input_tokens": 778, "output_tokens": 36}}

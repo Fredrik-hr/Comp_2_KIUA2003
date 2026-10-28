@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"cross_reference\",\n  \"note\": \"Refererer til regulering av kjernekraft som bakgrunn.\"\n}", "usage": {"input_tokens": 1046, "output_tokens": 32}}

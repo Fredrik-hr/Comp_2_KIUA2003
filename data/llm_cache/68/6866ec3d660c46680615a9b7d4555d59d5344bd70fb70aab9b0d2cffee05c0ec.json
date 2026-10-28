@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definiserer en løsning for shortest path i graf med negative kantlengder\"\n}", "usage": {"input_tokens": 889, "output_tokens": 36}}

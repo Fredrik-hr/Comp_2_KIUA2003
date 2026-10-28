@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beskriver Dijkstra's algoritme og diskuterer negative kantlengder i grafene\"\n}", "usage": {"input_tokens": 861, "output_tokens": 40}}

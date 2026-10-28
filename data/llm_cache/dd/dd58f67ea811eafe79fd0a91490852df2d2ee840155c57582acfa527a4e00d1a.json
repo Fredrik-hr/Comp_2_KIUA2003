@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\"action\": \"search_index\", \"query\": \"randomiserte algoritmer i pensum; randomized algorithms in curriculum; primtallstesting; universell hashing\"}", "usage": {"input_tokens": 2330, "output_tokens": 37}}

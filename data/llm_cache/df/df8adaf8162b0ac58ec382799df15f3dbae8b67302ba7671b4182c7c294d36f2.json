@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definerer rolle av fylkesutvalget i planprosessen.\"\n}", "usage": {"input_tokens": 921, "output_tokens": 35}}

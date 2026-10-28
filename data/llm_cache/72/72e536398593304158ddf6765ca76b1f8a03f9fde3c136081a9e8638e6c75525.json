@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definiser big-O notasjonen som en analog av ≤\"\n}", "usage": {"input_tokens": 787, "output_tokens": 30}}

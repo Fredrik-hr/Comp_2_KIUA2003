@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ikke relevant for naturvirkninger eller regionale myndigheters rolle.\"\n}", "usage": {"input_tokens": 1046, "output_tokens": 36}}

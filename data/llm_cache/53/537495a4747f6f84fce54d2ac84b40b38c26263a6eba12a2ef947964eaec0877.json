@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer problemet Kruskals algoritme løser.\"\n}", "usage": {"input_tokens": 896, "output_tokens": 30}}

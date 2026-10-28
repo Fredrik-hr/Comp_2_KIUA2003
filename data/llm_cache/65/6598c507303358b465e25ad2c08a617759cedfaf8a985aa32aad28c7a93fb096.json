@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til minimum spanning tree eksempel.\"\n}", "usage": {"input_tokens": 832, "output_tokens": 28}}

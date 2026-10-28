@@ -10,7 +10,8 @@ __pycache__/
 .env
 
 # Generated data (cached PDFs, parsed segments, indexes, run outputs)
-data/
+data/*
+!data/llm_cache/
 runs/
 eval/runs/*
 !eval/runs/.gitkeep

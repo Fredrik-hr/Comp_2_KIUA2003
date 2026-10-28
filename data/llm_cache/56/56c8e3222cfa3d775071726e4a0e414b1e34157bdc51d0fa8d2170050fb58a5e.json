@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ikke relevant for offentlig transportregulering.\"\n}", "usage": {"input_tokens": 816, "output_tokens": 30}}

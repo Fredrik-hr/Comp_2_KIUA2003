@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til RSA-kryptering med offentlig nøkkel, men er ikke direkte relevant\"\n}", "usage": {"input_tokens": 855, "output_tokens": 39}}

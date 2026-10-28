@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver big-O-notation og relasjoner mellom funksjoner\"\n}", "usage": {"input_tokens": 780, "output_tokens": 35}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Gir forståelse av subproblemer i edit distance.\"\n}", "usage": {"input_tokens": 956, "output_tokens": 31}}

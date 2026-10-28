@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"cross_reference\",\n  \"note\": \"Refererer til kapittel 4 om graftegninger, men er ikke direktelt relateret til brøytekontrakter\"\n}", "usage": {"input_tokens": 774, "output_tokens": 46}}

@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"cross_reference\",\n  \"note\": \"Refererer til nasjonale strategier som er relevant for kompetanseprogrammet.\"\n}", "usage": {"input_tokens": 1048, "output_tokens": 35}}

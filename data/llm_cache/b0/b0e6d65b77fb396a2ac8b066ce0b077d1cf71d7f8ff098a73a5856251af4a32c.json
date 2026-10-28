@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Tilsynelatende omfatter fylkesutvalgets anbefaling videre kunnskapsutvikling.\"\n}", "usage": {"input_tokens": 1091, "output_tokens": 44}}

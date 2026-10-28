@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Prover at Dijkstra's algorithm kan mislykke på graph med kun negative utgående kantlengder\"\n}", "usage": {"input_tokens": 805, "output_tokens": 43}}

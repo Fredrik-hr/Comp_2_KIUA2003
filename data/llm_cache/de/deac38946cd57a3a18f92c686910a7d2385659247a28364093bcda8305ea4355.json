@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisert for Big-O-notation i kapittel 0\"\n}", "usage": {"input_tokens": 782, "output_tokens": 31}}

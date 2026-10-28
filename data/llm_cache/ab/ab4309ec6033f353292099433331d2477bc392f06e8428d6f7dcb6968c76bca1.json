@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beregner behovet for forskning og teknologiutvikling for tiltak mot næringsstofftilførsler.\"\n}", "usage": {"input_tokens": 1045, "output_tokens": 46}}

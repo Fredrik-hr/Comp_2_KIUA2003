@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definerer primtallstesting, som er en del av temaet.\"\n}", "usage": {"input_tokens": 835, "output_tokens": 33}}

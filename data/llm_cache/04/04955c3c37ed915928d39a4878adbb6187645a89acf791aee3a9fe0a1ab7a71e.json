@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskrivelse av planlagte utbedringer på energinett i Innlandet.\"\n}", "usage": {"input_tokens": 978, "output_tokens": 38}}

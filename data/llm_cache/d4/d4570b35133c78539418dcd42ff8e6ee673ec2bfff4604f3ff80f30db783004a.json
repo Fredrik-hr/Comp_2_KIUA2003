@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Refererer til konseptet med dynamisk programmering i sammenheng med systemfunktionalitet\"\n}", "usage": {"input_tokens": 845, "output_tokens": 40}}

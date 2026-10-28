@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Diskuterer simplex-algoritmens kjøretid.\"\n}", "usage": {"input_tokens": 788, "output_tokens": 28}}

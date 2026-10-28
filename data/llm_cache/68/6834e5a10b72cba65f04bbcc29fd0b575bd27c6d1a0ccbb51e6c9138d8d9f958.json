@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Gir bakgrunn til høringen og utvalgets mandat.\"\n}", "usage": {"input_tokens": 1156, "output_tokens": 34}}

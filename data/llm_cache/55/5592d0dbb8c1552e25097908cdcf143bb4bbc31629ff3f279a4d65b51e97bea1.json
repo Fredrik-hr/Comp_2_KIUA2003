@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Illustrerer Bellman-Ford-algoritmen.\"\n}", "usage": {"input_tokens": 858, "output_tokens": 27}}

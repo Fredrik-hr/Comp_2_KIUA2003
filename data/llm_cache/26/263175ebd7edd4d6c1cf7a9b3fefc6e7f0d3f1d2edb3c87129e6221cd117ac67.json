@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Definisjonen av redigeringsavstand mellom to strenger er behandlet i kapittel 6, side 174\"\n}", "usage": {"input_tokens": 802, "output_tokens": 44}}

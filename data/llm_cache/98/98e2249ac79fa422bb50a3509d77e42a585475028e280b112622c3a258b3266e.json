@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definerer grunnleggende egenskaper for spenntrær.\"\n}", "usage": {"input_tokens": 781, "output_tokens": 34}}

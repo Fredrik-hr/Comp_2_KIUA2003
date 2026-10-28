@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"not_relevant\",\n  \"note\": \"Ingen relevante informasjon for PS 10/26: Brøytekontrakter for fylkesveier 2027–2030\"\n}", "usage": {"input_tokens": 850, "output_tokens": 50}}

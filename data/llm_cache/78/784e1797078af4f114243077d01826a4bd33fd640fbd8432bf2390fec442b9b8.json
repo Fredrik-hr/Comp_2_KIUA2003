@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "qwen2.5:7b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Beskriver tilstand og påvirkninger i Ytre Oslofjord.\"\n}", "usage": {"input_tokens": 1094, "output_tokens": 34}}

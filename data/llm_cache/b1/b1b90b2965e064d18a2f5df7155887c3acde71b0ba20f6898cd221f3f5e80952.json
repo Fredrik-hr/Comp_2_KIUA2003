@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Formulerer editdistans med dynamisk programmering\"\n}", "usage": {"input_tokens": 854, "output_tokens": 28}}

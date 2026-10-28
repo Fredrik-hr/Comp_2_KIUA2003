@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av Kruskals algoritme og behov for bevis\"\n}", "usage": {"input_tokens": 765, "output_tokens": 34}}

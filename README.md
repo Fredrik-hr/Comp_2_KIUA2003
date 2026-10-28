@@ -30,11 +30,27 @@ make synthetic && make test
 Test document: put `algorithms.pdf` (Dasgupta, Papadimitriou, Vazirani, *Algorithms*, 2006
 draft; not committed) in the project root.
 
+Real meeting (`tests/cases/fylkesutvalget_2026-09-29/`): Fylkesutvalget, Innlandet
+fylkeskommune, 29.09.2026. Download the møteinnkalling (one 1 319-page PDF with case papers
+and all attachments) from
+<https://prod01.elementscloud.no/publikum/920717152/DmbMeeting/1544> and save it as
+`fylkesutvalget_2026-09-29.pdf` in the project root (not committed).
+
 ### A normal run
 
 ```powershell
-.\make.ps1 run                                   # = python -m briefer run tests/cases/algorithms_synthetic/agenda.yaml
+.\make.ps1 run                                   # = python -m briefer run tests/cases/fylkesutvalget_2026-09-29/agenda.yaml
 .\make.ps1 ui                                    # http://127.0.0.1:8000 — review, approve, export
+```
+
+The default run is the real Fylkesutvalget meeting (6 items, one 1 319-page bundle) and needs
+`fylkesutvalget_2026-09-29.pdf` in the project root. A cold first run (live models, about 230
+LLM calls) takes about 6 minutes on a Ryzen 7 7700 / 32 GB / RTX 4070 SUPER; a repeat run that
+hits the cache in `data/llm_cache/` finishes in seconds.
+The synthetic textbook agenda is still available (needs `algorithms.pdf` and `make synthetic`):
+
+```powershell
+.\make.ps1 run -Agenda tests/cases/algorithms_synthetic/agenda.yaml   # Linux/macOS: make run AGENDA=…
 ```
 
 Unattended: drop an `agenda.yaml` into `inbox/` and run `python -m briefer watch` (or
@@ -54,6 +70,14 @@ Briefs are written to `runs/<run_id>/<meeting>/<style>/` as JSON, Markdown and H
 
 Every case runs twice (as described, and titles only). Output: `eval/runs/<timestamp>/`
 with `results.json`, `report.md` and the raw run logs.
+
+**From a fresh clone (no Ollama needed).** The recorded model answers are committed in
+`data/llm_cache/`, so replay is offline. Download the real meeting PDF (see above) and run
+`.\make.ps1 eval -Case fylkesutvalget_2026-09-29` (Linux/macOS: `make eval CASE=…`). The
+cache only matches the exact file the answers were recorded from:
+SHA-256 `ecce772de86349ddaef2049400cac65cd8b776470386a4f0553792f881aa3ba5`. A case whose
+source PDF is missing (e.g. `algorithms.pdf`) is reported as "not run" instead of failing.
+Real-meeting numbers use provisional gold (annotator A only); see `docs/labelling_guideline.md`.
 
 ## Configuration
 

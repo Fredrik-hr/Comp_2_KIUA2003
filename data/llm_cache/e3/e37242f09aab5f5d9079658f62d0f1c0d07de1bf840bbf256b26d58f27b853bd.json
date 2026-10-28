@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Beskrivning av en algoritm som kan brukes i pensum\"\n}", "usage": {"input_tokens": 851, "output_tokens": 34}}

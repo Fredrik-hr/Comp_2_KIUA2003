@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av Θ(n2) for en del algoritme\"\n}", "usage": {"input_tokens": 821, "output_tokens": 32}}

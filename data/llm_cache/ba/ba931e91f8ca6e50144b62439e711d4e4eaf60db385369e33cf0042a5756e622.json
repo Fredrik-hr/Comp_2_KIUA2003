@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Om algoritmer for faktoring av ulike tall, her spesielt for skolebruk\"\n}", "usage": {"input_tokens": 769, "output_tokens": 38}}

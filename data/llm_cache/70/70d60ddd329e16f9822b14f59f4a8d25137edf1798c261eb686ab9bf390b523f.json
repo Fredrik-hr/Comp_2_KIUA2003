@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"direct\",\n  \"note\": \"Pebbling a checkerboard er et eksempel på hvordan man kan bruke dynamisk programmering til å maksimere summen av tallene på et bord.\"\n}", "usage": {"input_tokens": 864, "output_tokens": 52}}

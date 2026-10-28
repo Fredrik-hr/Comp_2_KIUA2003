@@ -1,0 +1,1 @@
+{"stage": "S8", "model": "llama3.2:3b", "text": "{\n  \"relevance\": \"supporting\",\n  \"note\": \"Definisjon av grafpartisjoningsalgoritme for lokale søkheurister\"\n}", "usage": {"input_tokens": 801, "output_tokens": 37}}
