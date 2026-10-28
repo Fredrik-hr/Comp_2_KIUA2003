@@ -39,8 +39,18 @@ and all attachments) from
 ### A normal run
 
 ```powershell
-.\make.ps1 run                                   # = python -m briefer run tests/cases/algorithms_synthetic/agenda.yaml
+.\make.ps1 run                                   # = python -m briefer run tests/cases/fylkesutvalget_2026-09-29/agenda.yaml
 .\make.ps1 ui                                    # http://127.0.0.1:8000 — review, approve, export
+```
+
+The default run is the real Fylkesutvalget meeting (6 items, one 1 319-page bundle) and needs
+`fylkesutvalget_2026-09-29.pdf` in the project root. A cold first run (live models, about 230
+LLM calls) takes about 6 minutes on a Ryzen 7 7700 / 32 GB / RTX 4070 SUPER; a repeat run that
+hits the cache in `data/llm_cache/` finishes in seconds.
+The synthetic textbook agenda is still available (needs `algorithms.pdf` and `make synthetic`):
+
+```powershell
+.\make.ps1 run -Agenda tests/cases/algorithms_synthetic/agenda.yaml   # Linux/macOS: make run AGENDA=…
 ```
 
 Unattended: drop an `agenda.yaml` into `inbox/` and run `python -m briefer watch` (or
