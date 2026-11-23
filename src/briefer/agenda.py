@@ -85,16 +85,25 @@ class Gate(BaseModel):
 
 def load(path: Path) -> Agenda:
     try:
-        raw = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
-    except (OSError, yaml.YAMLError) as e:
+        text = Path(path).read_text(encoding="utf-8")
+    except OSError as e:
         raise AgendaError(f"{path}: cannot read agenda: {e}") from e
+    return parse(text, str(path))
+
+
+def parse(text: str, source: str) -> Agenda:
+    """Validate agenda YAML held in memory; `source` only labels error messages."""
+    try:
+        raw = yaml.safe_load(text)
+    except yaml.YAMLError as e:
+        raise AgendaError(f"{source}: cannot read agenda: {e}") from e
     if not isinstance(raw, dict):
-        raise AgendaError(f"{path}: agenda must be a mapping with `meeting` and `items`")
+        raise AgendaError(f"{source}: agenda must be a mapping with `meeting` and `items`")
     try:
         return Agenda.model_validate(raw)
     except ValidationError as e:
         lines = [f"{'.'.join(map(str, err['loc']))}: {err['msg']}" for err in e.errors()]
-        raise AgendaError(f"{path}: invalid agenda:\n  " + "\n  ".join(lines)) from e
+        raise AgendaError(f"{source}: invalid agenda:\n  " + "\n  ".join(lines)) from e
 
 
 def gate(item: Item) -> Gate:

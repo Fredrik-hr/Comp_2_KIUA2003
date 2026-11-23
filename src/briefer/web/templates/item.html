@@ -1,62 +1,117 @@
 {% extends "base.html" %}
-{% block title %}{{ brief.case_no }} — review{% endblock %}
+{% block title %}{{ brief.case_no }} · {{ t.review }}{% endblock %}
+{% block style %}
+.side{flex:1 1 220px;background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:8px}
+.side a{display:block;padding:10px 12px;border-radius:4px;color:var(--fg)!important;text-decoration:none}
+.side a.back{color:var(--brand)!important;font-size:14px}
+.side a[aria-current="page"]{background:var(--brand-tint);font-weight:700}
+.side small{display:block;font-weight:400;color:var(--muted)}
+.ex{background:var(--panel);border:1px solid var(--rule);border-radius:6px;display:flex;flex-wrap:wrap;margin-bottom:12px}
+.ex.removed{opacity:.5}
+.ex .txt{flex:999 1 420px;min-width:0;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.ex .pg{flex:1 1 220px;min-width:0;padding:18px 20px}
+.ex blockquote{margin:0;padding:12px 16px;background:var(--quote);border-radius:4px;white-space:pre-wrap;
+font-family:"Source Serif 4","Source Serif Pro",Georgia,serif;font-size:16px;line-height:1.55}
+img.page{width:100%;border:1px solid var(--rule);background:#fff;border-radius:2px}
+.mnote{font-style:italic;color:var(--muted);margin:0;font-size:14px}
+{% endblock %}
 {% block body %}
-<p><a href="/m/{{ base }}">← {{ brief.meeting_id }}</a></p>
-<h1>{{ brief.case_no }} {{ brief.title }}</h1>
-<p><span class="status s-{{ state.status }}">{{ state.status }}</span>
-{% if brief.skip_reason %}<span class="muted"> · {{ brief.skip_reason }}</span>{% endif %}</p>
-<p class="muted">{% for c in brief.verification.checks %}{{ c }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
+<div class="row">
+  <nav class="side" aria-label="{{ t.items_in_meeting }}">
+    <a class="back" href="/m/{{ base }}">← {{ brief.meeting_id }}</a>
+    {% for s in siblings %}
+    <a href="/i/{{ base }}/{{ s.case }}" {% if s.case == case %}aria-current="page"{% endif %}>{{ s.brief.case_no }}<small>{{ s.brief.title | truncate(48) }}</small></a>
+    {% endfor %}
+  </nav>
 
-<div class="actions">
-  <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action">
-    <input type="hidden" name="op" value="language">
-    <label>{{ t.language }}
-    <select name="language" onchange="this.form.submit()">
-      {% for l in ["nb", "nn", "en"] %}<option value="{{ l }}" {% if l == state.language %}selected{% endif %}>{{ l }}</option>{% endfor %}
-    </select></label>
-  </form>
-  {% if state.status not in ["skipped", "halted"] %}
-  <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="approve"><button class="primary">{{ t.approve }}</button></form>
-  {% endif %}
-  <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="reject"><button class="danger">{{ t.reject }}</button></form>
-  {% if state.status == "approved" %}
-    {{ t.export }}: <a href="/export/{{ base }}/{{ case }}.html">HTML</a> · <a href="/export/{{ base }}/{{ case }}.md">Markdown</a> · <a href="/export/{{ base }}/{{ case }}.json">JSON</a>
-  {% else %}<span class="muted">{{ t.only_approved }}</span>{% endif %}
-</div>
+  <div style="flex:999 1 640px;min-width:0">
+    <div class="actions"><strong class="muted">{{ brief.case_no }}</strong><span class="status s-{{ state.status }}">{{ t.status.get(state.status, state.status) }}</span></div>
+    <h1 style="margin:4px 0 8px;font-size:30px;line-height:1.2">{{ brief.title }}</h1>
+    {% if brief.skip_reason %}<p class="muted" style="margin:0">{{ brief.skip_reason }}</p>{% endif %}
+    {% if brief.verification and brief.verification.checks %}<p class="small muted" style="margin:0">{{ t.verification }}: {{ brief.verification.checks | join(" · ") }}</p>{% endif %}
 
-<form method="post" action="/i/{{ base }}/{{ case }}/action">
-  <input type="hidden" name="op" value="note">
-  <label>{{ t.note }}<textarea name="note">{{ state.organiser_note }}</textarea></label>
-  <button>{{ t.save }}</button>
-</form>
+    {% if interp %}
+    <section class="row" aria-labelledby="interp" style="margin-top:20px;background:var(--soft);border:1px solid var(--rule);border-radius:6px;padding:16px 20px">
+      <div style="flex:1 1 280px;min-width:0">
+        <h2 id="interp" class="label">{{ t.interpretation }}</h2>
+        <p lang="en" style="margin:4px 0 0;font-size:14px">{{ interp.topic }}</p>
+      </div>
+      <div style="flex:1 1 280px;min-width:0">
+        <p class="label">{{ t.queries }}</p>
+        <div class="qs">{% for q in interp.queries %}<span class="q"><b>{{ q.lang }}</b><span>{{ q.text }}</span></span>{% endfor %}</div>
+      </div>
+    </section>
+    {% endif %}
 
-{% for e in extracts %}
-{% set doc_id = e.segment_id.split(":")[0] %}
-<div class="row {% if e.segment_id in state.removed %}removed{% endif %}">
-  <div>
-    <p class="muted">{{ e.relevance }} · {{ e.found_via }}</p>
-    <blockquote>{{ e.text }}</blockquote>
-    {% if e.table_header %}<p class="muted">Table header: {{ e.table_header }}</p>{% endif %}
-    <p class="muted">{{ e.document_title }} · {{ t.page }} {{ e.physical_page }}{% if e.printed_page_label %} ({{ e.printed_page_label }}){% endif %} · {{ e.section_path|join(" › ") }}</p>
-    {% if e.note %}<p class="note">{{ note_label }}: {{ e.note }}</p>{% endif %}
-    <div class="actions">
-      {% for op in ["up", "down"] %}
-      <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="{{ op }}"><input type="hidden" name="segment_id" value="{{ e.segment_id }}"><button>{{ t[op] }}</button></form>
-      {% endfor %}
-      {% if e.segment_id in state.removed %}
-      <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="restore"><input type="hidden" name="segment_id" value="{{ e.segment_id }}"><button>{{ t.restore }}</button></form>
-      <span class="muted">{{ t.removed }}</span>
-      {% else %}
-      <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="remove"><input type="hidden" name="segment_id" value="{{ e.segment_id }}"><button class="danger">{{ t.remove }}</button></form>
-      {% endif %}
+    <section class="card row" aria-label="{{ t.actions }}" style="margin-top:16px;padding:16px 20px;align-items:flex-end;justify-content:space-between;gap:16px">
+      <div class="row" style="align-items:flex-end;gap:16px">
+        <form method="post" action="/i/{{ base }}/{{ case }}/action">
+          <input type="hidden" name="op" value="language">
+          <label class="small" style="display:flex;flex-direction:column;gap:4px;font-weight:600">{{ t.language }}
+            <select name="language" onchange="this.form.submit()">
+              {% for l in ["nb", "nn", "en"] %}<option value="{{ l }}" {% if l == state.language %}selected{% endif %}>{{ t.lang_names[l] }}</option>{% endfor %}
+            </select>
+          </label>
+          <noscript><button class="btn sm" style="margin-top:4px">{{ t.save }}</button></noscript>
+        </form>
+        <div class="small muted" style="padding-bottom:10px">{{ t.kept.format(kept=kept, total=extracts | length) }}</div>
+      </div>
+      <div class="actions">
+        <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="reject"><button class="btn danger">{{ t.reject }}</button></form>
+        {% if state.status not in ["skipped", "halted"] %}
+        <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="approve"><button class="btn primary">{{ t.approve }}</button></form>
+        {% endif %}
+      </div>
+    </section>
+    {% if state.status == "approved" %}
+    <div class="actions small" style="margin-top:8px;padding:12px 16px;border:1px solid var(--ok-rule);background:var(--ok-bg);border-radius:6px">
+      <strong>{{ t.approved_msg }}</strong> {{ t.export }}:
+      <a href="/export/{{ base }}/{{ case }}.html">HTML</a> <a href="/export/{{ base }}/{{ case }}.md">Markdown</a> <a href="/export/{{ base }}/{{ case }}.json">JSON</a>
     </div>
-  </div>
-  <div><img class="page" loading="lazy" alt="{{ t.page }} {{ e.physical_page }}" src="/page/{{ base }}/{{ doc_id }}/{{ e.physical_page }}.png"></div>
-</div>
-{% else %}
-<p class="muted">—</p>
-{% endfor %}
+    {% else %}<p class="small muted" style="margin:8px 0 0">{{ t.only_approved }}</p>{% endif %}
 
-<h2>{{ t.audit }}</h2>
-<table>{% for a in audit %}<tr><td class="muted">{{ a[0] }}</td><td>{{ a[1] }}</td><td>{{ a[2] }}</td><td class="muted">{{ a[3] }}</td></tr>{% endfor %}</table>
+    <form method="post" action="/i/{{ base }}/{{ case }}/action" style="margin-top:16px">
+      <input type="hidden" name="op" value="note">
+      <label class="small" style="font-weight:600">{{ t.note }}<textarea name="note">{{ state.organiser_note }}</textarea></label>
+      <button class="btn sm" style="margin-top:8px">{{ t.save }}</button>
+    </form>
+
+    <h2 style="margin:28px 0 12px;font-size:20px">{{ t.extracts_h }} <span class="muted" style="font-weight:400;font-size:16px">– {{ t.extracts_sub }}</span></h2>
+    {% for e in extracts %}
+    {% set doc_id = e.segment_id.split(":")[0] %}
+    {% set removed = e.segment_id in state.removed %}
+    <article class="ex {% if removed %}removed{% endif %}">
+      <div class="txt">
+        <div class="actions tiny muted" style="gap:8px"><strong style="color:var(--fg)">#{{ loop.index }}</strong><span>{{ e.relevance }} · {{ e.found_via }}</span>{% if removed %}<strong style="color:var(--bad)">{{ t.removed }}</strong>{% endif %}</div>
+        <blockquote>{{ e.text }}</blockquote>
+        {% if e.table_header %}<p class="tiny muted" style="margin:0">{{ t.table_header }}: {{ e.table_header }}</p>{% endif %}
+        <p class="tiny muted" style="margin:0">{{ e.document_title }} · {{ t.page }} {{ e.physical_page }}{% if e.printed_page_label %} ({{ t.printed }} {{ e.printed_page_label }}){% endif %}{% if e.section_path %} · {{ e.section_path | join(" › ") }}{% endif %}{% if e.source_url and e.source_url.startswith("http") %} · <a href="{{ e.source_url }}" target="_blank" rel="noopener">{{ t.open_pdf }}</a>{% endif %}</p>
+        {% if e.note %}<p class="mnote">{{ note_label }}: {{ e.note }}</p>{% endif %}
+        <div class="actions">
+          {% for op, sym in [("up", "↑"), ("down", "↓")] %}
+          <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="{{ op }}"><input type="hidden" name="segment_id" value="{{ e.segment_id }}"><button class="btn sm" aria-label="{{ t[op] }}" title="{{ t[op] }}">{{ sym }}</button></form>
+          {% endfor %}
+          {% if removed %}
+          <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="restore"><input type="hidden" name="segment_id" value="{{ e.segment_id }}"><button class="btn sm">{{ t.restore }}</button></form>
+          {% else %}
+          <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="remove"><input type="hidden" name="segment_id" value="{{ e.segment_id }}"><button class="btn sm danger">{{ t.remove }}</button></form>
+          {% endif %}
+        </div>
+      </div>
+      <div class="pg"><img class="page" loading="lazy" alt="{{ t.page_preview }} {{ e.physical_page }}" src="/page/{{ base }}/{{ doc_id }}/{{ e.physical_page }}.png"></div>
+    </article>
+    {% else %}
+    <p class="muted">{{ t.nothing }}</p>
+    {% endfor %}
+
+    <section aria-labelledby="log" style="margin-top:28px">
+      <h2 id="log" style="font-size:20px;margin:0 0 8px">{{ t.audit }}</h2>
+      <div class="card scroll" style="padding:8px 16px">
+        {% if audit %}
+        <table>{% for a in audit %}<tr><td class="muted">{{ a[0] }}</td><td>{{ a[1] }}</td><td>{{ a[2] }}</td><td class="muted">{{ a[3] }}</td></tr>{% endfor %}</table>
+        {% else %}<p class="small muted">{{ t.no_audit }}</p>{% endif %}
+      </div>
+    </section>
+  </div>
+</div>
 {% endblock %}

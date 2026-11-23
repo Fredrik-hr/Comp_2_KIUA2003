@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{{ t.how }} · Agenda Brief Builder{% endblock %}
+{% block style %}
+.wrap{max-width:960px;margin:0 auto;padding-top:16px}
+ol.tl{list-style:none;margin:0;padding:0}
+ol.tl li{display:flex;gap:20px}
+.rail{display:flex;flex-direction:column;align-items:center}
+.dot{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:700;border:2px solid var(--fg);background:var(--panel);flex:none}
+.dot.model{border-color:var(--info);color:var(--info)}
+.dot.you{background:var(--brand);border-color:var(--brand);color:#fff}
+.line{flex:1;width:2px;background:var(--rule);min-height:24px}
+.who{font-size:12px;font-weight:700;padding:2px 8px;border-radius:10px;background:var(--chip);color:var(--fg2)}
+.who.model{background:var(--info-bg);color:var(--info)}
+.who.you{background:var(--brand-tint);color:var(--brand)}
+{% endblock %}
+{% block body %}
+<div class="wrap">
+  <h1 style="font-size:36px">{{ t.how }}</h1>
+  <p style="margin:10px 0 32px;font-size:18px;color:var(--fg2);max-width:720px">{{ t.how_lead }}</p>
+  <ol class="tl">
+    {% for title, who, body, see in t.steps %}
+    <li>
+      <div class="rail"><span class="dot {{ who }}">{{ loop.index }}</span><span class="line"></span></div>
+      <div style="flex:1;min-width:0;padding-bottom:28px">
+        <div class="actions"><h2 style="margin:4px 0 0;font-size:20px">{{ title }}</h2><span class="who {{ who }}">{{ t.who[who] }}</span></div>
+        <p style="margin:6px 0 0;color:var(--fg2)">{{ body }}</p>
+        <p class="small muted" style="margin:6px 0 0">{{ see }}</p>
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+  <section class="card" aria-labelledby="not" style="margin-top:8px">
+    <h2 id="not" style="margin:0 0 8px;font-size:20px">{{ t.not_title }}</h2>
+    <ul style="margin:0;padding-left:20px;color:var(--fg2)">{% for n in t["not"] %}<li>{{ n }}</li>{% endfor %}</ul>
+  </section>
+</div>
+{% endblock %}

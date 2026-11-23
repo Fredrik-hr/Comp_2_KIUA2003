@@ -1,18 +1,56 @@
 {% extends "base.html" %}
+{% block title %}{{ t.meetings }} · Agenda Brief Builder{% endblock %}
+{% block style %}
+.run{display:block;color:var(--fg)!important;text-decoration:none;margin-bottom:12px}
+.run:hover{border-color:var(--brand)}
+.run .head{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;justify-content:space-between}
+.run .name{font-size:22px;font-weight:700;margin-top:2px}
+.bar{margin-top:16px;height:8px;border-radius:4px;background:var(--rule2);overflow:hidden}
+.bar span{display:block;height:100%;background:var(--brand)}
+.counts{display:flex;flex-wrap:wrap;gap:24px;margin-top:10px;font-size:14px;color:var(--fg2)}
+.drop{display:block;width:100%;padding:18px 12px;border:1px dashed var(--field);background:var(--soft);margin-top:6px}
+{% endblock %}
 {% block body %}
 <h1>{{ t.meetings }}</h1>
-<table>
-<tr><th>{{ t.run }}</th><th>Meeting</th><th>{{ t.style }}</th><th>{{ t.items }}</th><th></th></tr>
-{% for r in runs %}
-<tr>
-  <td class="muted">{{ r.summary.run_id }}</td>
-  <td>{{ r.summary.meeting_id }}{% if r.summary.halted %} <span class="status s-halted">halted</span>{% endif %}</td>
-  <td>{{ r.summary.style }} · {{ r.summary.brief_language }}</td>
-  <td>{{ r.summary.statuses|length }}</td>
-  <td><a href="/m/{{ r.path }}">{{ t.review }}</a></td>
-</tr>
-{% else %}
-<tr><td colspan="5" class="muted">No runs yet. Drop an agenda.yaml into inbox/ or run <code>briefer run</code>.</td></tr>
-{% endfor %}
-</table>
+<p class="lead">{{ t.meetings_lead }}</p>
+<div class="row">
+  <section style="flex:999 1 640px;min-width:0" aria-label="{{ t.meetings }}">
+    {% for r in runs %}
+    <a class="card run" href="/m/{{ r.path }}">
+      <div class="head">
+        <div>
+          <div class="tiny muted">{% if r.meeting %}{{ r.meeting.date.strftime("%d.%m.%Y") }} · {{ r.meeting.municipality }}{% else %}{{ r.summary.meeting_id }}{% endif %}</div>
+          <div class="name">{% if r.meeting %}{{ r.meeting.body }}{% else %}{{ r.summary.meeting_id }}{% endif %}</div>
+          <div class="small muted">{{ t.run }} {{ r.summary.run_id }} · {{ t.style }} {{ r.summary.style }} · {{ t.brief_in }} {{ t.lang_names[r.summary.brief_language] }}</div>
+        </div>
+        {% if r.summary.halted %}<span class="status s-halted">{{ t.halted }}</span>
+        {% elif r.awaiting %}<span class="status s-awaiting_review">{{ r.awaiting }} {{ t.awaiting_n }}</span>
+        {% elif r.n and r.approved == r.n %}<span class="status s-approved">{{ t.status.approved }}</span>{% endif %}
+      </div>
+      <div class="bar" role="img" aria-label="{{ r.approved }} {{ t.approved_of.format(n=r.n) }}"><span style="width:{{ (100 * r.approved / r.n) | round | int if r.n else 0 }}%"></span></div>
+      <div class="counts">
+        <span><strong>{{ r.n }}</strong> {{ t.items_n }}</span>
+        <span><strong>{{ r.approved }}</strong> {{ t.approved_n }}</span>
+        <span><strong>{{ r.extracts }}</strong> {{ t.extracts }}</span>
+        <span><strong>{{ r.docs }}</strong> {{ t.attachments_n }}{% if r.pages %} ({{ "{:,}".format(r.pages).replace(",", " ") }} {{ t.pages }}){% endif %}</span>
+      </div>
+    </a>
+    {% else %}
+    <div class="card muted">{{ t.no_runs }}</div>
+    {% endfor %}
+  </section>
+
+  <aside class="card" style="flex:1 1 300px" aria-labelledby="up">
+    <h2 id="up" style="margin:0 0 8px;font-size:18px">{{ t.upload_title }}</h2>
+    <p class="small" style="margin:0 0 14px;color:var(--fg2)">{{ t.upload_lead }}</p>
+    <form method="post" action="/upload" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:12px">
+      <label class="small" style="font-weight:600">{{ t.upload_field }}
+        <input class="drop" type="file" name="file" accept=".yaml,.yml" required>
+      </label>
+      <button class="btn primary" type="submit">{{ t.upload_button }}</button>
+    </form>
+    <p class="small" style="margin:14px 0 0"><a href="/example-agenda.yaml" download>{{ t.example }}</a></p>
+    <p class="tiny muted" style="margin:12px 0 0">{{ t.upload_note }}</p>
+  </aside>
+</div>
 {% endblock %}

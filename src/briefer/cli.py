@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 import logging
 import os
@@ -63,25 +62,21 @@ def watch(interval: int = typer.Option(300, help="seconds between inbox scans"),
           once: bool = typer.Option(False, help="scan once and exit (for cron / task scheduler)"),
           lang: str = "nb") -> None:
     """Process every new agenda.yaml dropped into inbox/ without a person."""
+    from .pipeline import is_processed, mark_processed
     from .pipeline import run as run_pipeline
 
     _load_dotenv()
     _setup_logging(True)
-    seen_file = paths.RUNS / ".processed.json"
     while True:
-        seen = json.loads(seen_file.read_text()) if seen_file.exists() else {}
         for f in sorted(paths.INBOX.glob("*.yaml")):
-            h = hashlib.sha256(f.read_bytes()).hexdigest()
-            if seen.get(f.name) == h:
+            if is_processed(f):
                 continue
             try:
                 s = run_pipeline(f, lang, "described")
                 logging.info("inbox %s -> %s %s", f.name, s["run_id"], s["statuses"])
             except Exception as e:  # noqa: BLE001 — one bad file must not stop the watcher
                 logging.error("inbox %s failed: %s", f.name, e)
-            seen[f.name] = h
-            seen_file.parent.mkdir(parents=True, exist_ok=True)
-            seen_file.write_text(json.dumps(seen, indent=2))
+            mark_processed(f)
         if once:
             return
         time.sleep(interval)

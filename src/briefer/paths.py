@@ -1,5 +1,6 @@
 """Project paths and config loading. Pipeline code reads inbox/, data/raw/ and context/,
-and writes only data/derived/ and runs/ (§8.1)."""
+and writes only data/derived/ and runs/ (§8.1). The review UI may also save validated
+uploaded agendas to inbox/ (pending/ until the organiser starts the run)."""
 
 from __future__ import annotations
 
@@ -13,6 +14,7 @@ ROOT = Path(os.environ.get("BRIEFER_ROOT", Path(__file__).resolve().parents[2]))
 CONFIG = ROOT / "config"
 CONTEXT = ROOT / "context"
 INBOX = ROOT / "inbox"
+INBOX_PENDING = INBOX / "pending"
 RAW = ROOT / "data" / "raw"
 DERIVED = ROOT / "data" / "derived"
 LLM_CACHE = ROOT / "data" / "llm_cache"

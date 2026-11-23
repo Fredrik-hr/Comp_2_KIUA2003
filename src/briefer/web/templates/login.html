@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block body %}
-<form method="post" action="/login">
-  <label>Passphrase <input type="password" name="passphrase" autofocus></label>
-  <button class="primary">OK</button>
-</form>
+<section class="card" style="max-width:420px;margin:48px auto">
+  <form method="post" action="/login" style="display:flex;flex-direction:column;gap:12px">
+    <label class="small" style="display:flex;flex-direction:column;gap:4px;font-weight:600">{{ t.passphrase }}
+      <input type="password" name="passphrase" autofocus>
+    </label>
+    <button class="btn primary">OK</button>
+  </form>
+</section>
 {% endblock %}

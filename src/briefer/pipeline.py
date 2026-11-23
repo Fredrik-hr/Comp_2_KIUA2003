@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import datetime as dt
+import hashlib
 import json
 import logging
 import re
@@ -26,6 +27,30 @@ ITEM_WORKERS = 2
 
 def slug(s: str) -> str:
     return re.sub(r"[^A-Za-z0-9]+", "_", s).strip("_")
+
+
+_seen_lock = threading.Lock()
+
+
+def _seen_file() -> Path:
+    return paths.RUNS / ".processed.json"
+
+
+def is_processed(agenda_file: Path) -> bool:
+    """True if this inbox file, with this exact content, has already been run."""
+    f = _seen_file()
+    seen = json.loads(f.read_text()) if f.exists() else {}
+    return seen.get(agenda_file.name) == hashlib.sha256(agenda_file.read_bytes()).hexdigest()
+
+
+def mark_processed(agenda_file: Path) -> None:
+    """Record an inbox file so `watch` does not run it again (shared with the review UI)."""
+    f = _seen_file()
+    with _seen_lock:
+        seen = json.loads(f.read_text()) if f.exists() else {}
+        seen[agenda_file.name] = hashlib.sha256(agenda_file.read_bytes()).hexdigest()
+        f.parent.mkdir(parents=True, exist_ok=True)
+        f.write_text(json.dumps(seen, indent=2))
 
 
 @dataclass

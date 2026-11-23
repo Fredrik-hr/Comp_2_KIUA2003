@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}{{ t.upload_title }} · Agenda Brief Builder{% endblock %}
+{% block style %}
+.wrap{max-width:1080px;margin:0 auto}
+dl.meta{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 24px}
+@media (max-width:760px){dl.meta{grid-template-columns:1fr}}
+dl.meta dt{font-size:13px;color:var(--muted)}dl.meta dd{margin:0}
+.yes{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-rule)}
+ul.err{margin:0;padding:12px 16px 12px 36px;background:var(--bad-bg);border-radius:4px;font-family:ui-monospace,Consolas,monospace;font-size:14px}
+{% endblock %}
+{% block body %}
+<div class="wrap">
+<nav class="crumb" aria-label="{{ t.crumb }}"><a href="/">{{ t.meetings }}</a> › {{ t.upload_title }}</nav>
+<h1 style="margin-bottom:16px">{{ t.upload_title }}</h1>
+
+{% if view == "error" %}
+<section class="card" aria-labelledby="eh" style="border-color:var(--bad-rule)">
+  <h2 id="eh" style="margin:0;font-size:20px;color:var(--bad)">{{ t.error_h }}</h2>
+  <p style="margin:6px 0 12px;color:var(--fg2)">{{ t.error_lead }}</p>
+  <ul class="err">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>
+  <p class="small muted" style="margin:12px 0 0">{{ t.error_note }}</p>
+  <div class="actions" style="margin-top:16px;gap:12px">
+    <a class="btn primary" href="/">{{ t.choose_other }}</a>
+    <a href="/example-agenda.yaml" download style="font-weight:600;padding:10px 0">{{ t.example }}</a>
+  </div>
+</section>
+
+{% elif view == "preview" %}
+<section class="card row" aria-labelledby="okh" style="border-color:var(--ok-rule);align-items:center;justify-content:space-between;gap:16px">
+  <div style="min-width:0">
+    <h2 id="okh" style="margin:0;font-size:20px;color:var(--ok)">{{ t.valid_h }}</h2>
+    <p style="margin:4px 0 0;color:var(--fg2);overflow-wrap:anywhere">{{ t.saved_as }} <code>{{ name }}</code> · {{ (size / 1024) | round(1) }} KB</p>
+  </div>
+  <div class="actions">
+    <a class="btn" href="/">{{ t.cancel }}</a>
+    <form class="inline" method="post" action="/upload/{{ name }}/start"><button class="btn primary">{{ t.start_run }}</button></form>
+  </div>
+</section>
+
+<section class="card" aria-labelledby="mh" style="margin-top:16px">
+  <h2 id="mh" style="margin:0 0 12px;font-size:18px">{{ t.meeting_read }}</h2>
+  <dl class="meta">
+    <div><dt>{{ t.body }}</dt><dd>{{ agenda.meeting.body }}</dd></div>
+    <div><dt>{{ t.date }}</dt><dd>{{ agenda.meeting.date.strftime("%d.%m.%Y") }}</dd></div>
+    <div><dt>{{ t.written }}</dt><dd>{{ t.lang_names[agenda.meeting.written_standard] }}</dd></div>
+    <div><dt>{{ t.meeting_id }}</dt><dd><code>{{ agenda.meeting.id }}</code></dd></div>
+    <div><dt>{{ t.authority }}</dt><dd>{{ agenda.meeting.municipality }}</dd></div>
+    <div><dt>{{ t.unique_att }}</dt><dd style="overflow-wrap:anywhere">{{ urls | length }}{% if urls %} ({{ urls | join(", ") }}){% endif %}</dd></div>
+  </dl>
+</section>
+
+<section class="card" aria-labelledby="ih" style="margin-top:16px">
+  <div class="row" style="align-items:baseline;justify-content:space-between;gap:12px">
+    <h2 id="ih" style="margin:0;font-size:18px">{{ t.items_h }}</h2>
+    <span class="small muted"><strong style="color:var(--fg)">{{ n_process }}</strong> {{ t.to_process }} · <strong style="color:var(--fg)">{{ rows | length - n_process }}</strong> {{ t.to_skip }}</span>
+  </div>
+  <div class="scroll" style="margin-top:12px">
+    <table style="min-width:640px">
+      <thead><tr><th>{{ t.col_case }}</th><th>{{ t.col_type }}</th><th>{{ t.col_title }}</th><th>{{ t.col_att }}</th><th>{{ t.col_process }}</th></tr></thead>
+      <tbody>
+      {% for r in rows %}
+      <tr>
+        <td style="font-weight:700;white-space:nowrap">{{ r.item.case_no }}</td>
+        <td>{{ t.types[r.item.type.value] }}</td>
+        <td>{{ r.item.title }}</td>
+        <td>{{ r.item.attachments | length or "–" }}</td>
+        <td>{% if r.process %}<span class="status yes">{{ t.yes }}</span>{% else %}<span class="status s-skipped">{{ t.skip[r.skip] }}</span>{% endif %}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{% elif view == "started" %}
+<section class="card" aria-labelledby="sh" aria-live="polite" style="border-color:var(--info-rule)">
+  <h2 id="sh" style="margin:0;font-size:20px;color:var(--info)">{{ t.started_h }}</h2>
+  <p style="margin:6px 0 0;color:var(--fg2)">{{ agenda.meeting.body }}, {{ agenda.meeting.date.strftime("%d.%m.%Y") }} · {{ n_process }} {{ t.items_n }}. {{ t.started_body }}</p>
+  <div class="actions" style="margin-top:16px"><a class="btn primary" href="/">{{ t.refresh }}</a></div>
+</section>
+{% endif %}
+</div>
+{% endblock %}

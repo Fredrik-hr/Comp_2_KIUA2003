@@ -1,18 +1,96 @@
 {% extends "base.html" %}
+{% block title %}{{ summary.meeting_id }} · Agenda Brief Builder{% endblock %}
+{% block style %}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:32px 0 8px;padding:0 20px}
+.steps div{display:flex;gap:10px;align-items:center;font-weight:700}
+.num{width:26px;height:26px;border-radius:50%;background:var(--fg);color:var(--bg);display:grid;place-items:center;font-size:14px;flex:none}
+.it{background:var(--panel);border:1px solid var(--rule);border-radius:6px;display:flex;flex-wrap:wrap;margin-bottom:12px}
+.it>div{min-width:0;padding:18px 20px}
+.c1{flex:1 1 320px;border-right:1px solid var(--rule2)}
+.c2{flex:1 1 320px;border-right:1px solid var(--rule2);background:var(--soft)}
+.c3{flex:1 1 240px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.it h3{margin:6px 0 8px;font-size:17px;line-height:1.3}
+.it p{margin:0;font-size:14px;color:var(--fg2)}
+.big{font-size:26px;font-weight:700}
+@media (max-width:760px){.steps{display:none}.c1,.c2{border-right:0;border-bottom:1px solid var(--rule2)}}
+{% endblock %}
 {% block body %}
-<h1>{{ summary.meeting_id }}</h1>
-<p class="muted">{{ t.run }} {{ summary.run_id }} · {{ summary.style }} · {{ summary.llm_calls }} LLM calls · {{ summary.tokens }} tokens · {{ summary.seconds }} s</p>
-{% if summary.halted %}<p class="disclaimer">HALTED: {{ summary.halted }}</p>{% endif %}
-<table>
-<tr><th>Sak</th><th>Tittel</th><th>{{ t.status }}</th><th>{{ t.extracts }}</th><th></th></tr>
+<nav class="crumb" aria-label="{{ t.crumb }}"><a href="/">{{ t.meetings }}</a> › {{ agenda.meeting.body if agenda else summary.meeting_id }}</nav>
+<div class="row" style="align-items:flex-end;justify-content:space-between;gap:16px">
+  <div>
+    <h1>{% if agenda %}{{ agenda.meeting.body }} {{ agenda.meeting.date.strftime("%d.%m.%Y") }}{% else %}{{ summary.meeting_id }}{% endif %}</h1>
+    <p class="muted" style="margin:6px 0 0">{% if agenda %}{{ agenda.meeting.municipality }} · {{ t.written }}: {{ t.lang_names[agenda.meeting.written_standard] }} · {% endif %}{{ t.run }} {{ summary.run_id }} · {{ summary.llm_calls }} {{ t.llm_calls }} · {{ summary.tokens }} {{ t.tokens }} · {{ summary.seconds }} {{ t.seconds }}</p>
+  </div>
+  {% if first %}<a class="btn primary" href="/i/{{ base }}/{{ first }}">{{ t.start_review }} →</a>{% endif %}
+</div>
+{% if summary.halted %}<p class="card" style="margin-top:16px;border-color:var(--bad-rule);color:var(--bad)">{{ t.halted }}: {{ summary.halted }}</p>{% endif %}
+
+<section class="grid4" aria-label="{{ t.summary }}" style="margin:24px 0">
+  <div class="stat"><b>{{ items | length }}</b><span class="small muted">{{ t.stat_items }}</span></div>
+  <div class="stat"><b style="color:var(--info)">{{ stats.awaiting }}</b><span class="small muted">{{ t.stat_awaiting }}</span></div>
+  <div class="stat"><b style="color:var(--ok)">{{ stats.approved }}</b><span class="small muted">{{ t.stat_approved }}</span></div>
+  <div class="stat"><b>{{ stats.passed }} <span style="font-size:18px;font-weight:400" class="muted">/ {{ stats.checked }}</span></b><span class="small muted">{{ t.stat_checked }}</span></div>
+</section>
+
+<section class="card row" aria-labelledby="af" style="align-items:center;justify-content:space-between;padding:16px 20px">
+  <div style="display:flex;gap:14px;align-items:center;min-width:0">
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--brand);flex:none"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></svg>
+    <div style="min-width:0">
+      <h2 id="af" style="margin:0;font-size:16px">{{ t.agenda_file }}: <code style="font-size:15px">{{ agenda_name }}</code></h2>
+      {% for d in summary.documents.values() %}<p class="small muted" style="margin:2px 0 0">{{ t.attachment }}: {{ d.title }}{% if d.pages %} · {{ "{:,}".format(d.pages).replace(",", " ") }} {{ t.pages }}{% endif %}</p>{% endfor %}
+    </div>
+  </div>
+  {% if raw %}<a href="#raw" style="font-weight:600;padding:10px 0">{{ t.show_raw }}</a>{% else %}<span class="small muted">{{ t.agenda_missing }}</span>{% endif %}
+</section>
+
+<div class="steps" aria-hidden="true">
+  <div><span class="num">1</span>{{ t.col1 }}</div>
+  <div><span class="num">2</span>{{ t.col2 }}</div>
+  <div><span class="num">3</span>{{ t.col3 }}</div>
+</div>
+
 {% for i in items %}
-<tr>
-  <td>{{ i.brief.case_no }}</td>
-  <td>{{ i.brief.title }}{% if i.brief.skip_reason %}<br><span class="muted">{{ i.brief.skip_reason }}</span>{% endif %}</td>
-  <td><span class="status s-{{ i.state.status }}">{{ i.state.status }}</span></td>
-  <td>{{ i.n }}</td>
-  <td><a href="/i/{{ base }}/{{ i.case }}">{{ t.review }}</a></td>
-</tr>
+{% set a = i.agenda %}
+<article class="it" aria-labelledby="h-{{ i.case }}">
+  <div class="c1">
+    <p class="label sr">{{ t.col1 }}</p>
+    <div class="actions" style="gap:8px">
+      <strong>{{ i.brief.case_no }}</strong>
+      {% if a %}
+      <span class="chip">{{ t.types[a.type.value] }}</span>
+      <span class="chip">{{ t.closed if a.closed else t.open }}</span>
+      <span class="chip">{{ t.in_scope if a.in_scope else t.out_scope }}</span>
+      {% endif %}
+    </div>
+    <h3 id="h-{{ i.case }}">{{ i.brief.title }}</h3>
+    {% if a and a.description %}<p>{{ a.description | truncate(220) }}</p>{% endif %}
+    {% if a and a.recommendation %}<p style="margin-top:8px"><strong>{{ t.recommendation }}:</strong> {{ a.recommendation | truncate(180) }}</p>{% endif %}
+  </div>
+  <div class="c2">
+    <p class="label sr">{{ t.col2 }}</p>
+    {% if i.interp %}
+    <p class="label">{{ t.topic }}</p>
+    <p lang="en" style="margin:4px 0 12px;color:var(--fg)">{{ i.interp.topic }}</p>
+    <p class="label">{{ t.queries }}</p>
+    <div class="qs">{% for q in i.interp.queries %}<span class="q"><b>{{ q.lang }}</b><span>{{ q.text }}</span></span>{% endfor %}</div>
+    {% else %}
+    <p class="muted">{{ i.brief.skip_reason or t.no_interp }}</p>
+    {% endif %}
+  </div>
+  <div class="c3">
+    <p class="label sr">{{ t.col3 }}</p>
+    <span class="status s-{{ i.state.status }}">{{ t.status.get(i.state.status, i.state.status) }}</span>
+    <div><span class="big">{{ i.n }}</span> <span class="muted">{{ t.extracts }}</span></div>
+    {% if i.brief.verification and i.brief.verification.checks %}<div class="tiny muted">{{ i.brief.verification.checks | join(" · ") }}</div>{% endif %}
+    <a class="btn outline" style="margin-top:auto" href="/i/{{ base }}/{{ i.case }}">{{ t.review }} →</a>
+  </div>
+</article>
 {% endfor %}
-</table>
+
+{% if raw %}
+<section id="raw" aria-labelledby="rawh" style="margin-top:32px">
+  <h2 id="rawh" style="font-size:20px;margin:0 0 8px">{{ t.raw_title }}</h2>
+  <pre class="raw">{{ raw }}</pre>
+</section>
+{% endif %}
 {% endblock %}
