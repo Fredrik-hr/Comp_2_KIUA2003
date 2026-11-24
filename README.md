@@ -55,12 +55,36 @@ The synthetic textbook agenda is still available (needs `algorithms.pdf` and `ma
 .\make.ps1 run -Agenda tests/cases/algorithms_synthetic/agenda.yaml   # Linux/macOS: make run AGENDA=…
 ```
 
+From a møteinnkalling (PDF or Word) instead of a hand-written YAML:
+
+- **Web UI:** `.\make.ps1 ui` → *Last opp agenda* → choose the `.pdf` or `.docx`. The UI reads the
+  meeting header and the saksliste and shows a form: choose a *Behandling* on every item
+  (*Behandles*, *Lukket sak*, *Utenfor omfang* or *Utelat*; there is no default) and fix any title flagged for a name. For a Word agenda, add the
+  case-paper PDF on the same form. *Lagre og kontroller* gives the usual preview and
+  *Start kjøring*.
+- **CLI:** `python -m briefer convert innkalling.pdf` writes a draft to
+  `data/derived/agenda_drafts/`; fill in every `closed` / `in_scope` and move it into `inbox/`.
+
 Unattended: drop an `agenda.yaml` into `inbox/` and run `python -m briefer watch` (or
 `watch --once` from Task Scheduler / cron every 5 minutes). Runs stop at *awaiting review*;
 nothing is shared without approval.
 
 Briefs are written to `runs/<run_id>/<meeting>/<style>/` as JSON, Markdown and HTML, with
 `run_log.jsonl` (every stage, every item) and `run.json` (summary, tokens, timing).
+
+Every extract records **why** it is there: a need-to-know category chosen by S8 (*Hva skal
+vedtas*, *Hva saken gjelder*, *Konsekvenser*, *Vurdering*, *Innspill*, *Annet relevant*), the
+search phrase that found it, and the model's one-line note. The proposed decision
+(innstilling) is found by code (S7b, `innstilling.py`), never by the model. In the UI:
+
+- **Item page:** a "Hvorfor dette utdraget?" block per extract, with the matched words marked.
+- **Orientering** (meeting page): per item, 1–2 short verbatim extracts per category, decision
+  first, as reviewed. Printable.
+- **Del som PDF** (meeting page): one PDF for the participants — front page with every item
+  and page numbers, the orientation per approved item, all extracts as an appendix. Enabled
+  only when every processed item is approved or rejected, and only after the organiser ticks
+  that the extracts were checked for personal data (logged). Rejected items say *ingen brief*;
+  closed items show the case number and *lukket sak* only, never the title.
 
 ### An evaluation run
 

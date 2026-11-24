@@ -45,7 +45,7 @@
     <p class="small" style="margin:0 0 14px;color:var(--fg2)">{{ t.upload_lead }}</p>
     <form method="post" action="/upload" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:12px">
       <label class="small" style="font-weight:600">{{ t.upload_field }}
-        <input class="drop" type="file" name="file" accept=".yaml,.yml" required>
+        <input class="drop" type="file" name="file" accept=".yaml,.yml,.pdf,.docx" required>
       </label>
       <button class="btn primary" type="submit">{{ t.upload_button }}</button>
     </form>

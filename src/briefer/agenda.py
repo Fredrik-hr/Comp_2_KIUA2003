@@ -61,6 +61,8 @@ class Meeting(Strict):
     date: dt.date
     written_standard: str = Field(pattern="^(nb|nn)$")
     synthetic: bool = False
+    # The published meeting page, shown as the source in a shared meeting brief.
+    public_url: str | None = Field(default=None, pattern=r"^https://\S+$")
 
 
 class Agenda(Strict):

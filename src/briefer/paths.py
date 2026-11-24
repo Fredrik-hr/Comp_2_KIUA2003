@@ -1,6 +1,8 @@
 """Project paths and config loading. Pipeline code reads inbox/, data/raw/ and context/,
-and writes only data/derived/ and runs/ (§8.1). The review UI may also save validated
-uploaded agendas to inbox/ (pending/ until the organiser starts the run)."""
+and writes only data/derived/, data/llm_cache/ and runs/ (§8.1). The review UI may also save
+validated uploaded agendas to inbox/ (pending/ until the organiser starts the run) and
+uploaded meeting notices (PDF / Word) to data/raw/uploads/. `briefer convert` writes drafts
+to data/derived/agenda_drafts/."""
 
 from __future__ import annotations
 
@@ -16,7 +18,9 @@ CONTEXT = ROOT / "context"
 INBOX = ROOT / "inbox"
 INBOX_PENDING = INBOX / "pending"
 RAW = ROOT / "data" / "raw"
+UPLOADS = RAW / "uploads"
 DERIVED = ROOT / "data" / "derived"
+AGENDA_DRAFTS = DERIVED / "agenda_drafts"
 LLM_CACHE = ROOT / "data" / "llm_cache"
 RUNS = ROOT / "runs"
 

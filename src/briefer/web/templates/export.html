@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}{{ t.export_h }} · {{ agenda.meeting.body if agenda else summary.meeting_id }}{% endblock %}
+{% block style %}
+.wrap{max-width:900px;margin:0 auto}
+.warn{border-color:var(--warn-rule);background:var(--warn-bg)}
+.pii{display:flex;gap:10px;align-items:flex-start;font-weight:600}
+.pii input{margin-top:4px;width:18px;height:18px;flex:none}
+{% endblock %}
+{% block body %}
+<div class="wrap">
+<nav class="crumb" aria-label="{{ t.crumb }}"><a href="/">{{ t.meetings }}</a> › <a href="/m/{{ base }}">{{ agenda.meeting.body if agenda else summary.meeting_id }}</a> › {{ t.share_pdf }}</nav>
+<h1 style="margin-bottom:4px">{{ t.export_h }}</h1>
+<p class="lead" style="margin-top:0">{{ t.export_lead }}</p>
+
+{% if blocking %}
+<section class="card warn" aria-labelledby="bl" role="status">
+  <h2 id="bl" style="margin:0 0 8px;font-size:18px">{{ t.export_blocked }}</h2>
+  <ul style="margin:0;padding-left:20px">
+    {% for i in blocking %}<li><a href="/i/{{ base }}/{{ i.case }}">{{ i.brief.case_no }}</a> – {{ i.brief.title }} <span class="status s-{{ i.state.status }}">{{ t.status.get(i.state.status, i.state.status) }}</span></li>{% endfor %}
+  </ul>
+</section>
+{% else %}
+<p class="status s-approved" style="display:inline-block">{{ t.export_ready }}</p>
+{% endif %}
+
+<section class="card" aria-labelledby="inpdf" style="margin-top:16px">
+  <h2 id="inpdf" style="margin:0 0 8px;font-size:18px">{{ t.in_pdf }}</h2>
+  <div class="scroll"><table>
+    <tbody>
+    {% for e in entries %}
+    <tr><td style="font-weight:700;white-space:nowrap">{{ e.case_no }}</td>
+      <td>{% if e.kind != "closed" %}{{ e.title }}{% endif %}</td>
+      <td><span class="chip">{{ t.entry[e.kind] }}</span>{% if e.kind == "approved" %} <span class="small muted">{{ e.brief.extracts | length }} {{ t.extracts }}</span>{% endif %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+</section>
+
+<form class="card" method="post" action="/m/{{ base }}/export.pdf" style="margin-top:16px;display:flex;flex-direction:column;gap:14px">
+  <label class="small" style="font-weight:600">{{ t.meeting_note }}<textarea name="note">{{ note }}</textarea></label>
+  <label class="small" style="font-weight:600;display:flex;flex-direction:column;gap:4px;max-width:260px">{{ t.pdf_language }}
+    <select name="language">{% for l in ["nb", "nn", "en"] %}<option value="{{ l }}" {% if l == lang %}selected{% endif %}>{{ t.lang_names[l] }}</option>{% endfor %}</select>
+  </label>
+  <p class="small" style="margin:0;color:var(--warn)">{{ t.pii_warning }}</p>
+  <label class="pii"><input type="checkbox" name="confirm_pii" value="yes" required {% if blocking %}disabled{% endif %}> {{ t.confirm_pii }}</label>
+  <div><button class="btn primary" type="submit" {% if blocking %}disabled aria-disabled="true"{% endif %}>{{ t.download_pdf }}</button></div>
+</form>
+
+{% if audit %}
+<section aria-labelledby="lg" style="margin-top:20px">
+  <h2 id="lg" style="font-size:18px;margin:0 0 8px">{{ t.audit }}</h2>
+  <div class="card scroll" style="padding:8px 16px"><table>{% for a in audit %}<tr><td class="muted">{{ a[0] }}</td><td>{{ a[1] }}</td><td>{{ a[2] }}</td><td class="muted">{{ a[3] }}</td></tr>{% endfor %}</table></div>
+</section>
+{% endif %}
+</div>
+{% endblock %}

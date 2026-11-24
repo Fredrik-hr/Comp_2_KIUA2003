@@ -14,6 +14,10 @@
 font-family:"Source Serif 4","Source Serif Pro",Georgia,serif;font-size:16px;line-height:1.55}
 img.page{width:100%;border:1px solid var(--rule);background:#fff;border-radius:2px}
 .mnote{font-style:italic;color:var(--muted);margin:0;font-size:14px}
+.why{margin:0;padding:10px 14px;border-left:3px solid var(--brand);background:var(--soft);border-radius:0 4px 4px 0}
+.why p{margin:0;font-size:14px}.why .label{margin-bottom:2px}
+mark{background:var(--warn-bg);color:inherit;border-bottom:2px solid var(--warn-rule);padding:0 1px}
+.cat{font-weight:700;color:var(--fg)}
 {% endblock %}
 {% block body %}
 <div class="row">
@@ -82,11 +86,18 @@ img.page{width:100%;border:1px solid var(--rule);background:#fff;border-radius:2
     {% set removed = e.segment_id in state.removed %}
     <article class="ex {% if removed %}removed{% endif %}">
       <div class="txt">
-        <div class="actions tiny muted" style="gap:8px"><strong style="color:var(--fg)">#{{ loop.index }}</strong><span>{{ e.relevance }} · {{ e.found_via }}</span>{% if removed %}<strong style="color:var(--bad)">{{ t.removed }}</strong>{% endif %}</div>
-        <blockquote>{{ e.text }}</blockquote>
+        <div class="actions tiny muted" style="gap:8px"><strong style="color:var(--fg)">#{{ loop.index }}</strong>{% if e.category %}<span class="chip cat">{{ t.categories[e.category] }}</span>{% endif %}<span>{{ t.relevance[e.relevance] }}</span>{% if removed %}<strong style="color:var(--bad)">{{ t.removed }}</strong>{% endif %}</div>
+        <blockquote>{{ e | highlight }}</blockquote>
         {% if e.table_header %}<p class="tiny muted" style="margin:0">{{ t.table_header }}: {{ e.table_header }}</p>{% endif %}
         <p class="tiny muted" style="margin:0">{{ e.document_title }} · {{ t.page }} {{ e.physical_page }}{% if e.printed_page_label %} ({{ t.printed }} {{ e.printed_page_label }}){% endif %}{% if e.section_path %} · {{ e.section_path | join(" › ") }}{% endif %}{% if e.source_url and e.source_url.startswith("http") %} · <a href="{{ e.source_url }}" target="_blank" rel="noopener">{{ t.open_pdf }}</a>{% endif %}</p>
-        {% if e.note %}<p class="mnote">{{ note_label }}: {{ e.note }}</p>{% endif %}
+        {% set w = e | why(lang) %}
+        {% if w or e.note %}
+        <div class="why">
+          <p class="label">{{ t.why_h }}</p>
+          {% if w %}<p>{{ w }}</p>{% endif %}
+          {% if e.note %}<p class="mnote">{{ note_label }}: {{ e.note }}</p>{% endif %}
+        </div>
+        {% endif %}
         <div class="actions">
           {% for op, sym in [("up", "↑"), ("down", "↓")] %}
           <form class="inline" method="post" action="/i/{{ base }}/{{ case }}/action"><input type="hidden" name="op" value="{{ op }}"><input type="hidden" name="segment_id" value="{{ e.segment_id }}"><button class="btn sm" aria-label="{{ t[op] }}" title="{{ t[op] }}">{{ sym }}</button></form>

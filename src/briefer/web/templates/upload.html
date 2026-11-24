@@ -6,6 +6,11 @@ dl.meta{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:
 @media (max-width:760px){dl.meta{grid-template-columns:1fr}}
 dl.meta dt{font-size:13px;color:var(--muted)}dl.meta dd{margin:0}
 .yes{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-rule)}
+input[type=text],input[type=date]{font:inherit;color:var(--fg);background:var(--panel);border:1px solid var(--field);border-radius:4px;padding:8px 10px;width:100%;margin-top:4px}
+td textarea{min-height:3.2rem;margin-top:0}
+td.choice label{display:block;white-space:nowrap;padding:2px 0}
+.flag{margin-top:6px;font-size:13px;color:var(--bad)}
+.hint{font-size:12px;color:var(--warn);margin-top:2px}
 ul.err{margin:0;padding:12px 16px 12px 36px;background:var(--bad-bg);border-radius:4px;font-family:ui-monospace,Consolas,monospace;font-size:14px}
 {% endblock %}
 {% block body %}
@@ -24,6 +29,65 @@ ul.err{margin:0;padding:12px 16px 12px 36px;background:var(--bad-bg);border-radi
     <a href="/example-agenda.yaml" download style="font-weight:600;padding:10px 0">{{ t.example }}</a>
   </div>
 </section>
+
+{% elif view == "draft" %}
+<form method="post" action="/upload/draft/{{ token }}" enctype="multipart/form-data">
+<input type="hidden" name="n" value="{{ draft.items | length }}">
+<section class="card" aria-labelledby="dh" style="border-color:var(--warn-rule)">
+  <h2 id="dh" style="margin:0;font-size:20px">{{ t.draft_h }}</h2>
+  <p style="margin:6px 0 0;color:var(--fg2)">{{ t.draft_lead }}</p>
+  <p class="small muted" style="margin:6px 0 0;overflow-wrap:anywhere"><code>{{ token }}</code> · {{ draft.items | length }} {{ t.draft_found }}</p>
+  {% if errors %}<ul class="err" style="margin-top:12px">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+</section>
+
+<section class="card" aria-labelledby="dmh" style="margin-top:16px">
+  <h2 id="dmh" style="margin:0 0 12px;font-size:18px">{{ t.draft_meeting }}</h2>
+  <dl class="meta">
+    <div><dt><label for="f-body">{{ t.body }}</label></dt><dd><input type="text" id="f-body" name="body" value="{{ draft.body }}" required></dd></div>
+    <div><dt><label for="f-date">{{ t.date }}</label></dt><dd><input type="date" id="f-date" name="date" value="{{ draft.date }}" required></dd></div>
+    <div><dt><label for="f-ws">{{ t.written }}</label></dt><dd><select id="f-ws" name="written_standard" style="width:100%;margin-top:4px">
+      {% for w in ["nb", "nn"] %}<option value="{{ w }}" {% if w == draft.written_standard %}selected{% endif %}>{{ t.lang_names[w] }}</option>{% endfor %}
+    </select></dd></div>
+    <div><dt><label for="f-id">{{ t.meeting_id }}</label></dt><dd><input type="text" id="f-id" name="meeting_id" value="{{ draft.meeting_id }}" pattern="[A-Za-z0-9_.\-]+" required></dd></div>
+    <div><dt><label for="f-auth">{{ t.authority }}</label></dt><dd><input type="text" id="f-auth" name="municipality" value="{{ draft.municipality }}" required></dd></div>
+    <div><dt><label for="f-url">{{ t.public_url }}</label></dt><dd><input type="text" id="f-url" name="public_url" value="{{ draft.public_url }}" placeholder="https://…" pattern="https://\S+"></dd></div>
+    {% if is_word %}<div><dt><label for="f-papers">{{ t.papers_field }}</label></dt><dd><input type="file" id="f-papers" name="papers" accept=".pdf" style="width:100%;margin-top:4px"></dd></div>{% endif %}
+  </dl>
+</section>
+
+<section class="card" aria-labelledby="dih" style="margin-top:16px">
+  <h2 id="dih" style="margin:0 0 12px;font-size:18px">{{ t.items_h }}</h2>
+  <div class="scroll">
+    <table style="min-width:760px">
+      <thead><tr><th>{{ t.col_case }}</th><th>{{ t.col_type }}</th><th>{{ t.col_title }}</th><th>{{ t.col_handling }}</th></tr></thead>
+      <tbody>
+      {% for it in draft.items %}{% set i = loop.index0 %}
+      <tr>
+        <td style="white-space:nowrap"><input type="text" name="case_no_{{ i }}" value="{{ it.case_no }}" aria-label="{{ t.col_case }}" style="width:7.5rem;font-weight:700" required></td>
+        <td><select name="type_{{ i }}" aria-label="{{ t.col_type }}">{% for ty in types %}<option value="{{ ty }}" {% if ty == it.type %}selected{% endif %}>{{ t.types[ty] }}</option>{% endfor %}</select></td>
+        <td style="min-width:260px"><textarea name="title_{{ i }}" aria-label="{{ t.col_title }}" rows="2">{{ it.title }}</textarea>
+          {% if it.name_flags %}<div class="flag" role="alert">{{ t.name_flag }}</div>{% endif %}</td>
+        {% if it.closed == true %}{% set h = "closed" %}{% elif it.closed == false and it.in_scope == true %}{% set h = "process" %}{% elif it.closed == false and it.in_scope == false %}{% set h = "out_of_scope" %}{% else %}{% set h = "" %}{% endif %}
+        <td style="min-width:190px">
+          <input type="hidden" name="suggested_closed_{{ i }}" value="{{ '1' if it.suggested_closed else '' }}">
+          <select name="handling_{{ i }}" aria-label="{{ t.col_handling }}" required style="width:100%">
+            <option value="" {% if not h %}selected{% endif %} disabled>{{ t.h_choose }}</option>
+            {% for key in ["process", "closed", "out_of_scope"] %}<option value="{{ key }}" {% if h == key %}selected{% endif %}>{{ t.handling[key] }}</option>{% endfor %}
+            <option disabled>──────────</option>
+            <option value="leave_out">{{ t.handling.leave_out }}</option>
+          </select>
+          {% if it.suggested_closed %}<div class="hint">{{ t.suggested }}: {{ t.handling.closed }}</div>{% endif %}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="actions" style="margin-top:16px;gap:12px">
+    <a class="btn" href="/">{{ t.cancel }}</a>
+    <button class="btn primary" type="submit">{{ t.draft_save }}</button>
+  </div>
+</section>
+</form>
 
 {% elif view == "preview" %}
 <section class="card row" aria-labelledby="okh" style="border-color:var(--ok-rule);align-items:center;justify-content:space-between;gap:16px">

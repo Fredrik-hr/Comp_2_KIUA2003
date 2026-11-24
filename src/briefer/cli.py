@@ -1,4 +1,5 @@
-"""Command line: `briefer run`, `briefer watch`, `briefer ui`, `briefer purge`."""
+"""Command line: `briefer run`, `briefer watch`, `briefer convert`, `briefer ui`,
+`briefer purge`."""
 
 from __future__ import annotations
 
@@ -80,6 +81,32 @@ def watch(interval: int = typer.Option(300, help="seconds between inbox scans"),
         if once:
             return
         time.sleep(interval)
+
+
+@app.command()
+def convert(file: Path,
+            attachment: str | None = typer.Option(
+                None, help="case-paper PDF for every item (default: FILE itself if it is a PDF)"),
+            out: str | None = typer.Option(
+                None, help="draft path (default: data/derived/agenda_drafts/<stem>.draft.yaml)")
+            ) -> None:
+    """Turn a møteinnkalling (.pdf or .docx) into a DRAFT agenda.yaml. `closed` and
+    `in_scope` are left empty for a person to set; S0 rejects the draft until then."""
+    from . import agenda_import
+
+    try:
+        draft = agenda_import.convert(file)
+    except agenda_import.AgendaImportError as e:
+        typer.echo(str(e), err=True)
+        raise typer.Exit(2) from e
+    pdf = Path(attachment) if attachment else (file if file.suffix.lower() == ".pdf" else None)
+    att = agenda_import.attachment_for(draft, pdf)
+    dest = Path(out) if out else paths.AGENDA_DRAFTS / f"{file.stem}.draft.yaml"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(agenda_import.draft_yaml(draft, att), encoding="utf-8")
+    flagged = sum(1 for i in draft.items if i.name_flags)
+    typer.echo(f"{len(draft.items)} items -> {dest}"
+               + (f" ({flagged} titles flagged)" if flagged else ""))
 
 
 @app.command()

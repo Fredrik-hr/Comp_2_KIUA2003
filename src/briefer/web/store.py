@@ -41,6 +41,13 @@ def save_state(brief_key: str, state: dict, action: str, detail: str = "") -> No
                    detail[:500]))
 
 
+def get_meeting(meeting_key: str) -> dict:
+    """Meeting-level review state (the organiser's note for the shared brief)."""
+    with closing(_conn()) as c:
+        row = c.execute("SELECT state FROM reviews WHERE brief=?", (meeting_key,)).fetchone()
+    return json.loads(row[0]) if row else {"organiser_note": ""}
+
+
 def audit(brief_key: str) -> list[tuple]:
     with closing(_conn()) as c:
         return c.execute("SELECT t, role, action, detail FROM audit WHERE brief=? ORDER BY id",

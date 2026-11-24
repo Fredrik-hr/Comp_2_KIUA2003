@@ -21,7 +21,11 @@
     <h1>{% if agenda %}{{ agenda.meeting.body }} {{ agenda.meeting.date.strftime("%d.%m.%Y") }}{% else %}{{ summary.meeting_id }}{% endif %}</h1>
     <p class="muted" style="margin:6px 0 0">{% if agenda %}{{ agenda.meeting.municipality }} · {{ t.written }}: {{ t.lang_names[agenda.meeting.written_standard] }} · {% endif %}{{ t.run }} {{ summary.run_id }} · {{ summary.llm_calls }} {{ t.llm_calls }} · {{ summary.tokens }} {{ t.tokens }} · {{ summary.seconds }} {{ t.seconds }}</p>
   </div>
-  {% if first %}<a class="btn primary" href="/i/{{ base }}/{{ first }}">{{ t.start_review }} →</a>{% endif %}
+  <div class="actions">
+    <a class="btn outline" href="/o/{{ base }}">{{ t.orientation }}</a>
+    <a class="btn outline" href="/m/{{ base }}/export">{{ t.share_pdf }}</a>
+    {% if first %}<a class="btn primary" href="/i/{{ base }}/{{ first }}">{{ t.start_review }} →</a>{% endif %}
+  </div>
 </div>
 {% if summary.halted %}<p class="card" style="margin-top:16px;border-color:var(--bad-rule);color:var(--bad)">{{ t.halted }}: {{ summary.halted }}</p>{% endif %}
 

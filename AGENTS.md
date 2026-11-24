@@ -16,6 +16,8 @@ You are helping build the Agenda Brief Builder (see `project_plan.md`). Read thi
 - Pipeline code reads `inbox/`, `data/raw/`, `context/`, `config/`; writes only `data/derived/`,
   `data/llm_cache/` and `runs/`. `data/raw/` is read-only after fetch.
 - The review UI (`src/briefer/web`) may also save validated uploaded agendas to `inbox/` and read the agenda file a run recorded.
+  It may save uploaded meeting notices (PDF / Word) read-only to `data/raw/uploads/`;
+  `briefer convert` writes drafts to `data/derived/agenda_drafts/`.
 - No secrets in code, prompts or logs. Keys come from the environment or `.env` (gitignored).
 
 ## Commands

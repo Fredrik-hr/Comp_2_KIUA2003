@@ -21,10 +21,13 @@ Executed against `project_plan.md` with `algorithms.pdf` as the test document (a
 | T09, T26 S10 V1–V7 | done | `test_verify.py` |
 | T13 S9 assemble JSON / Markdown / HTML | done | |
 | T14, T38 CLI + inbox watcher | done | `briefer run`, `briefer watch [--once]`, `briefer purge` |
+| Agenda import (PDF / .docx) | done (code only) | `agenda_import.py`; upload box → draft form (`/upload/draft/…`) → `inbox/pending/` preview → Start; CLI `briefer convert`. Reads header and saksliste; `closed`/`in_scope` must be set by the organiser; titles screened for names. Reproduces the 6 items of the real Fylkesutvalget agenda; other layouts untested |
 | T29 labelling guideline + helper | done | `docs/labelling_guideline.md`, `eval/label.py` (refuses non-verbatim quotes) |
 | T32 synthetic cases | done | `tests/cases/make_synthetic.py` |
 | T33, T34 harness, both agenda styles | done | `eval/harness.py`; candidate-recall diagnostic added |
 | T35, T39, T40 web UI, languages, audit | done | `test_web.py`; smoke-tested on a real run |
+| Need-to-know categories, "why", innstilling (S7b) | done, eval pending | S8 returns a category per extract; extracts record the matching search phrase; `innstilling.py` finds the proposed decision by code (10/10 items in the two real bundles). One `eval-live` 24.11: titles_only recall 0.19→0.23, described 0.10→0.05 (S7 ceiling also fell, likely S6 variance); `results.md` not regenerated until a second run |
+| Orientation view + shared meeting PDF | done | `/o/…` and `/m/…/export`; PDF via PyMuPDF Story; `test_web.py` (closed titles never in the PDF, export blocked until reviewed, personal-data confirmation logged) |
 | T36, T37 budget, kill switch 1–5 | done | `test_llm_safety.py` |
 | T42 nightly CI | written, not run | `.github/workflows/ci.yml` (no remote configured) |
 

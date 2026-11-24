@@ -6,7 +6,10 @@ language (UI strings and disclaimer), and approve or reject.
 
 The organiser can also upload an agenda. It is validated in memory, saved to
 inbox/pending/ under a normalised name, previewed, and only moved to inbox/ and run when
-the organiser presses Start.
+the organiser presses Start. A møteinnkalling as PDF or Word is saved read-only to
+data/raw/uploads/, converted by agenda_import into a draft, and shown as a form: the
+organiser must set `closed` and `in_scope` on every item before the draft becomes an agenda
+in inbox/pending/ and gets the same preview and Start step.
 """
 
 from __future__ import annotations
@@ -18,15 +21,18 @@ import json
 import logging
 import os
 import re
+import stat
 from pathlib import Path
 from typing import Annotated
 
 import fitz
+import yaml
 from fastapi import BackgroundTasks, FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse, Response
 from fastapi.templating import Jinja2Templates
+from markupsafe import Markup
 
-from .. import assemble, paths, pipeline
+from .. import agenda_import, assemble, meeting_export, paths, pipeline
 from ..agenda import Agenda, AgendaError, gate, parse
 from . import store
 from .i18n import LANGS, UI
@@ -34,9 +40,15 @@ from .i18n import LANGS, UI
 log = logging.getLogger(__name__)
 app = FastAPI(title="Agenda Brief Builder — review")
 templates = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
+# "Why" line and highlighting: code facts in the UI language; the text itself is unchanged.
+templates.env.filters["why"] = lambda e, lang: assemble.why(e, lang)
+templates.env.filters["highlight"] = lambda e: Markup(
+    assemble.highlight(e["text"], e.get("matched_terms") or []))
+templates.env.filters["shorten"] = lambda text: assemble.shorten(text)
 _SAFE = re.compile(r"^[A-Za-z0-9_.\-]+$")
 _UPLOAD = re.compile(r"^upload_\d{8}-\d{6}_[A-Za-z0-9_]+\.yaml$")
 MAX_UPLOAD = 200 * 1024
+_MAGIC = {".pdf": b"%PDF", ".docx": b"PK"}
 EXAMPLE_AGENDA = Path("tests") / "cases" / "algorithms_synthetic" / "agenda.yaml"
 
 
@@ -238,6 +250,95 @@ def meeting(run_id: str, meeting: str, style: str, request: Request):
                              == "awaiting_review"), items[0]["case"] if items else None))
 
 
+def _meeting_key(run_id: str, meeting: str, style: str) -> str:
+    return f"{run_id}/{meeting}/{style}/_meeting"
+
+
+def _export_entries(d: Path, summary: dict, run_id: str, meeting: str, style: str
+                    ) -> tuple[list[meeting_export.ItemEntry], list[dict]]:
+    """Every item in agenda order for the shared brief, and the items still blocking it."""
+    entries, blocking = [], []
+    for i in _items(d, summary, run_id, meeting, style):
+        b, st = i["brief"], i["state"]
+        if b["status"] == "skipped":
+            entries.append(meeting_export.ItemEntry(
+                b["case_no"], b["title"], _skip_kind(b.get("skip_reason")) or "scope"))
+        elif st["status"] == "approved":
+            entries.append(meeting_export.ItemEntry(b["case_no"], b["title"], "approved",
+                                                    reviewed(b, st), st.get("organiser_note", "")))
+        elif st["status"] == "rejected":
+            entries.append(meeting_export.ItemEntry(b["case_no"], b["title"], "rejected"))
+        else:
+            blocking.append(i)
+    return entries, blocking
+
+
+@app.get("/m/{run_id}/{meeting}/{style}/export", response_class=HTMLResponse)
+def meeting_export_page(run_id: str, meeting: str, style: str, request: Request):
+    _check_auth(request)
+    d = _run_dir(run_id, meeting, style)
+    summary = json.loads((d / "run.json").read_text(encoding="utf-8"))
+    agenda, _ = _agenda(summary)
+    entries, blocking = _export_entries(d, summary, run_id, meeting, style)
+    key = _meeting_key(run_id, meeting, style)
+    return _page(request, "export.html", summary=summary, agenda=agenda, entries=entries,
+                 blocking=blocking, base=f"{run_id}/{meeting}/{style}",
+                 note=store.get_meeting(key).get("organiser_note", ""), audit=store.audit(key))
+
+
+@app.post("/m/{run_id}/{meeting}/{style}/export.pdf")
+def meeting_export_pdf(run_id: str, meeting: str, style: str, request: Request,
+                       language: str = Form("nb"), note: str = Form(""),
+                       confirm_pii: str = Form("")):
+    _check_auth(request)
+    d = _run_dir(run_id, meeting, style)
+    summary = json.loads((d / "run.json").read_text(encoding="utf-8"))
+    entries, blocking = _export_entries(d, summary, run_id, meeting, style)
+    if blocking:
+        raise HTTPException(409, "every processed item must be approved or rejected first")
+    if confirm_pii != "yes":
+        raise HTTPException(400, "confirm that the extracts were checked for personal data")
+    if language not in assemble.DISCLAIMER:
+        raise HTTPException(400, "language must be nb, nn or en")
+    agenda, _ = _agenda(summary)
+    if agenda:
+        m = agenda.meeting
+        info = {"body": m.body, "date": m.date.strftime("%d.%m.%Y"),
+                "municipality": m.municipality}
+        public_url = m.public_url
+    else:
+        info = {"body": summary["meeting_id"], "date": "", "municipality": ""}
+        public_url = None
+    note = note.strip()[:2000]
+    key = _meeting_key(run_id, meeting, style)
+    store.save_state(key, {"organiser_note": note}, "export_meeting",
+                     f"pdf {language}; personal data checked by organiser; "
+                     f"{sum(e.kind == 'approved' for e in entries)} approved items")
+    pdf = meeting_export.build(info, entries, language, note, public_url)
+    name = f"{pipeline.slug(summary['meeting_id'])}_brief.pdf"
+    return Response(pdf, media_type="application/pdf",
+                    headers={"Content-Disposition": f'attachment; filename="{name}"'})
+
+
+@app.get("/o/{run_id}/{meeting}/{style}", response_class=HTMLResponse)
+def orientation(run_id: str, meeting: str, style: str, request: Request):
+    """A short view for participants: per item, what is to be decided, why the item is
+    here, consequences, assessment and input — 1–2 verbatim extracts each, as reviewed."""
+    _check_auth(request)
+    d = _run_dir(run_id, meeting, style)
+    summary = json.loads((d / "run.json").read_text(encoding="utf-8"))
+    agenda, _ = _agenda(summary)
+    cards = []
+    for i in _items(d, summary, run_id, meeting, style):
+        final = reviewed(i["brief"], i["state"])
+        cards.append({"case": i["case"], "brief": i["brief"], "status": i["state"]["status"],
+                      "groups": assemble.orientation(final["extracts"]),
+                      "skip": _skip_kind(i["brief"].get("skip_reason"))
+                      if i["brief"]["status"] == "skipped" else None})
+    return _page(request, "orientation.html", summary=summary, agenda=agenda, cards=cards,
+                 base=f"{run_id}/{meeting}/{style}")
+
+
 @app.get("/i/{run_id}/{meeting}/{style}/{case}", response_class=HTMLResponse)
 def item(run_id: str, meeting: str, style: str, case: str, request: Request):
     _check_auth(request)
@@ -348,6 +449,13 @@ async def upload(request: Request, file: Annotated[UploadFile | None, File()] = 
     agenda = None
     if file is None or not file.filename:
         errors = [t["err_empty"]]
+    elif Path(file.filename).suffix.lower() in agenda_import.SUFFIXES:
+        try:
+            src = await _save_document(file, agenda_import.SUFFIXES)
+        except ValueError as e:
+            return _page(request, "upload.html", status_code=400, view="error",
+                         errors=[t[str(e)]])
+        return RedirectResponse(f"/upload/draft/{src.name}", status_code=303)
     elif Path(file.filename).suffix.lower() not in (".yaml", ".yml"):
         errors = [t["err_ext"]]
     else:
@@ -421,4 +529,122 @@ def upload_start(name: str, request: Request, background: BackgroundTasks):
     src.replace(dst)
     pipeline.mark_processed(dst)  # so `watch` does not run it a second time
     background.add_task(_run_upload, dst)
+    return RedirectResponse(f"/upload/{name}", status_code=303)
+
+
+# --- Upload of a møteinnkalling (PDF / Word) ---------------------------------------------
+
+
+async def _save_document(f: UploadFile, allowed: tuple[str, ...]) -> Path:
+    """Save an uploaded document read-only under data/raw/uploads/<sha12>_<name>.
+    Raises ValueError with an i18n key on a wrong type, size or content."""
+    suffix = Path(f.filename or "").suffix.lower()
+    if suffix not in allowed:
+        raise ValueError("err_ext")
+    limit = paths.config("sources")["max_download_mb"] * 1024 * 1024
+    data = bytearray()
+    while chunk := await f.read(1024 * 1024):
+        data += chunk
+        if len(data) > limit:
+            raise ValueError("err_doc_size")
+    if not bytes(data).startswith(_MAGIC[suffix]):
+        raise ValueError("err_doc_content")
+    digest = hashlib.sha256(data).hexdigest()[:12]
+    stem = re.sub(r"[^A-Za-z0-9_.\-]+", "_", Path(f.filename).stem)[:60].strip("._") or "upload"
+    dest = paths.UPLOADS / f"{digest}_{stem}{suffix}"
+    if not dest.exists():
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_bytes(bytes(data))
+        os.chmod(dest, stat.S_IREAD)
+    return dest
+
+
+def _document(token: str) -> Path:
+    if not _SAFE.match(token) or Path(token).suffix.lower() not in agenda_import.SUFFIXES:
+        raise HTTPException(400, "bad upload reference")
+    p = paths.UPLOADS / token
+    if not p.is_file():
+        raise HTTPException(404, "upload not found")
+    return p
+
+
+def _draft_page(request: Request, token: str, draft, errors: list[str] | None = None,
+                status_code: int = 200) -> HTMLResponse:
+    return _page(request, "upload.html", status_code=status_code, view="draft", token=token,
+                 draft=draft, errors=errors or [], is_word=token.lower().endswith(".docx"),
+                 types=[x.value for x in agenda_import.ItemType])
+
+
+@app.get("/upload/draft/{token}", response_class=HTMLResponse)
+def upload_draft(token: str, request: Request):
+    _check_auth(request)
+    src = _document(token)
+    try:
+        draft = agenda_import.convert(src)
+    except agenda_import.AgendaImportError as e:
+        return _page(request, "upload.html", status_code=400, view="error", errors=[str(e)])
+    return _draft_page(request, token, draft)
+
+
+# One "Handling" choice per row, written as explicit closed / in_scope (no defaults).
+HANDLING = {"process": (False, True), "closed": (True, False), "out_of_scope": (False, False)}
+
+
+@app.post("/upload/draft/{token}", response_class=HTMLResponse)
+async def upload_draft_confirm(token: str, request: Request):
+    _check_auth(request)
+    t = UI[_lang(request)]
+    src = _document(token)
+    form = await request.form()
+
+    def get(k: str) -> str:
+        v = form.get(k, "")
+        return v.strip() if isinstance(v, str) else ""
+
+    draft = agenda_import.Draft(
+        meeting_id=get("meeting_id"), body=get("body"), municipality=get("municipality"),
+        date=get("date"), written_standard=get("written_standard") or "nb",
+        public_url=get("public_url"))
+    errors: list[str] = []
+    for i in range(min(int(get("n") or 0), 500)):
+        handling = get(f"handling_{i}")
+        if handling == "leave_out":
+            continue
+        closed, in_scope = HANDLING.get(handling, (None, None))
+        item = agenda_import.DraftItem(
+            case_no=get(f"case_no_{i}"), title=get(f"title_{i}"), type=get(f"type_{i}"),
+            suggested_closed=bool(get(f"suggested_closed_{i}")),
+            closed=closed, in_scope=in_scope)
+        if closed is None:
+            errors.append(t["err_handling"].format(case=item.case_no or f"#{i + 1}"))
+        draft.items.append(item)
+    agenda_import.flag_names(draft)
+
+    papers = None
+    upload = form.get("papers")
+    if isinstance(upload, UploadFile) and upload.filename:
+        try:
+            papers = await _save_document(upload, (".pdf",))
+        except ValueError as e:
+            errors.append(t[str(e)])
+    pdf = papers or (src if src.suffix.lower() == ".pdf" else None)
+    if not _SAFE.match(draft.meeting_id):
+        errors.append(t["err_meeting_id"])
+    raw = None
+    try:
+        raw = agenda_import.to_agenda(draft, agenda_import.attachment_for(draft, pdf))
+    except agenda_import.AgendaImportError as e:
+        # a missing handling is already reported above in the organiser's words
+        errors += [x for x in str(e).splitlines()
+                   if ": choose closed" not in x and ": choose in_scope" not in x]
+    if errors or raw is None:
+        return _draft_page(request, token, draft, errors, 400)
+
+    text = (f"# Imported from an uploaded meeting notice ({src.name}) and confirmed in the "
+            "review UI.\n" + yaml.safe_dump(raw, allow_unicode=True, sort_keys=False, width=100))
+    parse(text, "agenda.yaml")  # the same check as a .yaml upload
+    stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
+    name = f"upload_{stamp}_{pipeline.slug(draft.meeting_id) or 'agenda'}.yaml"
+    paths.INBOX_PENDING.mkdir(parents=True, exist_ok=True)
+    (paths.INBOX_PENDING / name).write_text(text, encoding="utf-8")
     return RedirectResponse(f"/upload/{name}", status_code=303)
