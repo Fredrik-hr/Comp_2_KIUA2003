@@ -24,15 +24,18 @@ log = logging.getLogger(__name__)
 MAX_TOOL_CALLS = 8
 SNIPPET_CHARS = 450
 LANG_NAME = {"nb": "Norwegian bokmål", "nn": "Norwegian nynorsk", "en": "English"}
+# What a participant needs the passage for (relevance_rubric.md, "Category").
+CATEGORIES = ("decision", "background", "consequences", "assessment", "input", "other")
 
 # Length limits are part of the schema so constrained decoding (Ollama) cannot run away:
 # small models otherwise repeat a query string until max_tokens (seen in the first run).
 _ID = {"type": "string", "maxLength": 40}
 _SELECTION = {
-    "type": "object", "required": ["segment_id", "relevance", "note"],
+    "type": "object", "required": ["segment_id", "relevance", "category", "note"],
     "properties": {
         "segment_id": _ID,
         "relevance": {"enum": ["direct", "supporting", "cross_reference"]},
+        "category": {"enum": list(CATEGORIES)},
         "note": {"type": "string", "maxLength": 160},
     },
 }
@@ -65,7 +68,7 @@ PROTOCOL = f"""You work in steps. Each reply is ONE JSON object with an "action"
   cross-references ("see Section 4.2", "jf. kap. 3") point to.
 - {{"action": "finish", "nothing_found": false, "selections": [
      {{"segment_id": "<id>", "relevance": "direct|supporting|cross_reference",
-      "note": "<one line>"}}]}}
+      "category": "{'|'.join(CATEGORIES)}", "note": "<one line>"}}]}}
 - {{"action": "finish", "nothing_found": true, "selections": []}} — no candidate is about the item.
 
 You may use at most {MAX_TOOL_CALLS} tool calls; finishing early is fine. Only use segment IDs
@@ -93,12 +96,14 @@ class AgentResult:
     tool_calls: int = 0
     trace: list[dict] = field(default_factory=list)
     found_via: dict[str, str] = field(default_factory=dict)
+    queries: dict[str, str | None] = field(default_factory=dict)  # segment -> query that found it
 
 
 def run(item: Item, understanding: dict, candidates: list[Candidate], index: Index,
         xrefs: dict[str, list[XRef]], doc_ids: set[str], llm: LLMClient,
         brief_language: str) -> AgentResult:
     shown: dict[str, str] = {c.seg.id: c.found_via for c in candidates}
+    queries: dict[str, str | None] = {c.seg.id: c.query for c in candidates}
     system = "\n\n".join([
         "You select passages for a pre-meeting brief. Follow the rubric exactly.",
         context_text("relevance_rubric.md"), context_text("injection_policy.md"), PROTOCOL,
@@ -125,6 +130,7 @@ def run(item: Item, understanding: dict, candidates: list[Candidate], index: Ind
             hits = index.search(step.get("query", ""), 6, doc_ids)
             for seg, _ in hits:
                 shown.setdefault(seg.id, "search")
+                queries.setdefault(seg.id, step.get("query") or None)
             body = "\n\n".join(_render(None, s, shown[s.id]) for s, _ in hits) or "(no results)"
         elif action == "get_segment":
             seg = index.by_id.get(sid) if sid in shown else None
@@ -137,6 +143,7 @@ def run(item: Item, understanding: dict, candidates: list[Candidate], index: Ind
                 for t in ref.targets:
                     if t in index.by_id:
                         shown.setdefault(t, f"cross_reference_from:{sid}")
+                        queries.setdefault(t, queries.get(sid))
                         lines.append(f"({ref.label})\n" + _render(None, index.by_id[t],
                                                                   shown[t]))
             body = "\n\n".join(lines) or f"(segment {sid!r} has no resolvable cross-references)"
@@ -159,6 +166,7 @@ def run(item: Item, understanding: dict, candidates: list[Candidate], index: Ind
         seen.add(sid)
         result.selections.append({**sel, "segment_id": sid})
         result.found_via[sid] = shown[sid]
+        result.queries[sid] = queries.get(sid)
     if result.rejected_ids:
         log.warning("S8 %s: rejected unknown segment ids %s", item.case_no, result.rejected_ids)
     return result
@@ -166,9 +174,10 @@ def run(item: Item, understanding: dict, candidates: list[Candidate], index: Ind
 
 POINTWISE_SCHEMA = {
     "type": "object",
-    "required": ["relevance", "note"],
+    "required": ["relevance", "category", "note"],
     "properties": {
         "relevance": {"enum": ["direct", "supporting", "cross_reference", "not_relevant"]},
+        "category": {"enum": list(CATEGORIES)},
         "note": {"type": "string", "maxLength": 160},
     },
 }
@@ -197,8 +206,9 @@ def run_pointwise(item: Item, understanding: dict, candidates: list[Candidate],
         result.trace.append({"segment_id": c.seg.id, **out})
         if out["relevance"] != "not_relevant":
             result.selections.append({"segment_id": c.seg.id, "relevance": out["relevance"],
-                                      "note": out["note"]})
+                                      "category": out["category"], "note": out["note"]})
             result.found_via[c.seg.id] = c.found_via
+            result.queries[c.seg.id] = c.query
     result.nothing_found = not result.selections
     return result
 

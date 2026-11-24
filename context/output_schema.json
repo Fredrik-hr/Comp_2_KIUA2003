@@ -33,9 +33,14 @@
         "printed_page_label": {"type": ["string", "null"]},
         "section_path": {"type": "array", "items": {"type": "string"}},
         "relevance": {"enum": ["direct", "supporting", "cross_reference"]},
-        "found_via": {"type": "string", "pattern": "^(search|cross_reference_from:.+)$"},
+        "found_via": {"type": "string",
+                      "pattern": "^(search|innstilling|cross_reference_from:.+)$"},
         "note": {"type": "string"},
-        "table_header": {"type": ["string", "null"]}
+        "table_header": {"type": ["string", "null"]},
+        "category": {"enum": ["decision", "background", "consequences", "assessment", "input",
+                              "other", null]},
+        "matched_query": {"type": ["string", "null"]},
+        "matched_terms": {"type": "array", "items": {"type": "string"}}
       }}},
     "verification": {
       "type": "object", "required": ["all_passed", "checks"],

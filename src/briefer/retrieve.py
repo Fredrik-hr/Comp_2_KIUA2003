@@ -31,6 +31,7 @@ class Candidate:
     seg: Segment
     score: float
     via: str          # search | neighbour | section | cross_reference_from:<segment_id>
+    query: str | None = None  # the query that ranked it, or that ranked the hit it came from
 
     @property
     def found_via(self) -> str:
@@ -73,17 +74,21 @@ def _sections(index: Index) -> dict[tuple[str, tuple[str, ...]], list[Segment]]:
 def retrieve(index: Index, queries: list[str], doc_ids: set[str],
              xrefs: dict[str, list[XRef]]) -> list[Candidate]:
     fused: dict[str, float] = {}
+    best: dict[str, tuple[float, str]] = {}   # segment -> (best single-query share, query)
     for q in queries:
         hits = [(s, sc) for s, sc in index.search(q, K_PER_QUERY * 2, doc_ids) if _usable(s)]
         for rank, (seg, _) in enumerate(hits[:K_PER_QUERY]):
-            fused[seg.id] = fused.get(seg.id, 0.0) + 1.0 / (RRF_K + rank)
+            share = 1.0 / (RRF_K + rank)
+            fused[seg.id] = fused.get(seg.id, 0.0) + share
+            if share > best.get(seg.id, (0.0, ""))[0]:
+                best[seg.id] = (share, q)
     top = sorted(fused, key=fused.get, reverse=True)[:TOP_MERGED]
     cands: dict[str, Candidate] = {
-        sid: Candidate(index.by_id[sid], fused[sid], "search") for sid in top}
+        sid: Candidate(index.by_id[sid], fused[sid], "search", best[sid][1]) for sid in top}
 
-    def add(seg: Segment, score: float, via: str) -> None:
+    def add(seg: Segment, score: float, via: str, query: str | None) -> None:
         if seg.id not in cands and _usable(seg) and seg.doc_id in doc_ids:
-            cands[seg.id] = Candidate(seg, score, via)
+            cands[seg.id] = Candidate(seg, score, via, query)
 
     # Section expansion: where do the hits concentrate?
     sec_score: dict[tuple[str, tuple[str, ...]], float] = defaultdict(float)
@@ -94,19 +99,24 @@ def retrieve(index: Index, queries: list[str], doc_ids: set[str],
         sec_score[key] += fused[sid]
         hit_seqs[key].append(s.seq)
     sections = _sections(index)
+    hit_query: dict[tuple[str, tuple[str, ...]], str] = {}
+    for sid in top:   # the strongest hit in each section names the query
+        s = index.by_id[sid]
+        hit_query.setdefault((s.doc_id, tuple(s.section_path)), best[sid][1])
     for key in sorted(sec_score, key=sec_score.get, reverse=True)[:TOP_SECTIONS]:
         members = sorted(sections[key], key=lambda s: min(abs(s.seq - h) for h in hit_seqs[key]))
         for s in [m for m in members if _usable(m)][:PER_SECTION]:
-            add(s, sec_score[key] * 0.4, "section")
+            add(s, sec_score[key] * 0.4, "section", hit_query.get(key))
 
     for i, sid in enumerate(top):
         for ref in xrefs.get(sid, []):
             for t in ref.targets:
                 if t in index.by_id:
-                    add(index.by_id[t], fused[sid] * 0.5, f"cross_reference_from:{sid}")
+                    add(index.by_id[t], fused[sid] * 0.5, f"cross_reference_from:{sid}",
+                        best[sid][1])
         if i < NEIGHBOURS_FOR_TOP:
             for n in _neighbours(index, index.by_id[sid]):
-                add(n, fused[sid] * 0.3, "neighbour")
+                add(n, fused[sid] * 0.3, "neighbour", best[sid][1])
 
     ranked = sorted(cands.values(), key=lambda c: c.score, reverse=True)[:MAX_CANDIDATES]
     return sorted(ranked, key=lambda c: (c.seg.doc_id, c.seg.seq))

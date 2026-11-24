@@ -31,3 +31,24 @@ to have something.
 The note for each segment is ONE line saying why it is relevant, in the requested brief
 language. Do not put numbers in the note unless they appear in that segment — no case
 numbers, page numbers or section numbers. Do not summarise or interpret beyond that one line.
+
+## Category
+
+The brief is read by people who will take part in the meeting. Give each selected segment ONE
+category saying what a participant needs it for:
+
+- `decision`: what the meeting is asked to decide — the proposed resolution (innstilling,
+  forslag til vedtak) or a draft decision text.
+  - nb: «Fylkesutvalget legger forslag til planprogram ut på høring.»
+- `background`: what the item is and why it is on the agenda now — history, mandate, earlier
+  decisions it follows up.
+  - nb: «Utvalget ble oppnevnt i 2024 for å utrede kjernekraft som mulig kraftkilde.»
+- `consequences`: effects of the decision — money, staff, deadlines, who is affected.
+  - nb: «Tiltaket koster 4,2 mill. kr årlig og finansieres innenfor rammen.»
+- `assessment`: the administration's evaluation, arguments for and against, alternatives.
+  - nb: «Fylkeskommunedirektøren vurderer at alternativ 2 gir best måloppnåelse.»
+- `input`: what others have said — hearing responses, councils, partners, protests.
+  - nb: «Eldrerådet støtter forslaget, men ber om bedre kollektivtilbud.»
+- `other`: relevant, but none of the above fits. Use it rather than guessing.
+
+The category never changes whether a segment is relevant; decide relevance first.

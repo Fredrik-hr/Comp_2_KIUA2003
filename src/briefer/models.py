@@ -68,3 +68,7 @@ class Extract(BaseModel):
     found_via: str
     note: str
     table_header: str | None = None
+    # Why the extract is here (optional; older briefs lack them):
+    category: str | None = None           # decision | background | consequences | ...
+    matched_query: str | None = None      # the search phrase that ranked it (or its hit)
+    matched_terms: list[str] = Field(default_factory=list)  # words of that phrase in the text

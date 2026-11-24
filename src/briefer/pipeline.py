@@ -14,7 +14,19 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import agent, assemble, index, paths, privacy, retrieve, safety, understand, verify, xref
+from . import (
+    agent,
+    assemble,
+    index,
+    innstilling,
+    paths,
+    privacy,
+    retrieve,
+    safety,
+    understand,
+    verify,
+    xref,
+)
 from .agenda import Agenda, Item, gate, load
 from .fetch import Fetcher, FetchError
 from .llm import BudgetExceeded, LLMClient, LLMError, ProviderNotApproved
@@ -193,10 +205,26 @@ def run(agenda_path: Path, brief_language: str = "nb", style: str = "described",
             safety.check_injection({s["segment_id"]: idx.by_id[s["segment_id"]].flags
                                     for s in res.selections})
             extracts = []
+            chosen = {s["segment_id"] for s in res.selections}
+            # S7b: the proposed decision, found by code (never left to the model).
+            decision: list = []
+            for d in sorted(doc_ids):
+                decision = innstilling.find(item.case_no, docs[d])
+                if decision:
+                    break
+            rlog("S7b", "innstilling", item.case_no,
+                 segments=[s.id for s in decision], found=bool(decision))
+            decision_ids = {s.id for s in decision}
             for sel in res.selections:
                 seg = idx.by_id[sel["segment_id"]]
+                category = "decision" if seg.id in decision_ids else sel.get("category")
                 extracts.append(assemble.extract_for(
-                    seg, docs[seg.doc_id], sel["relevance"], res.found_via[seg.id], sel["note"]))
+                    seg, docs[seg.doc_id], sel["relevance"], res.found_via[seg.id], sel["note"],
+                    category, res.queries.get(seg.id)))
+            for seg in decision:
+                if seg.id not in chosen:
+                    extracts.append(assemble.extract_for(
+                        seg, docs[seg.doc_id], "direct", "innstilling", "", "decision"))
             extracts = assemble.order(extracts, {s.id: s.seq for s in idx.segments})
             brief["llm_calls"] = llm.llm_calls(item.case_no)
             brief["tokens"] = llm.tokens_used(item.case_no)
